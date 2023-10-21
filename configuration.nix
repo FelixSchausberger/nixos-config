@@ -131,8 +131,6 @@ in
     else
       null;
   };
-
-  programs.thunar.enable = true;
     
   services.dbus.enable = true;
   

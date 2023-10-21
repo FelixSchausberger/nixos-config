@@ -27,6 +27,11 @@ fn find_battery_files(filename: &str) -> io::Result<String> {
         }
     }
 
+    // Check if content is still empty after processing all directories
+    if content.is_empty() {
+        return Ok(String::new());
+    }
+
     Ok(content)
 }
 
@@ -35,15 +40,21 @@ fn main() -> io::Result<()> {
     let capacity_content = find_battery_files("capacity")?;
     let charging_content = find_battery_files("online")?;
 
+    if capacity_content.is_empty() || charging_content.is_empty() {
+        // No battery found, print an empty string and return
+        println!("");
+        return Ok(());
+    }
+
     // Parse the capacity and online status
     let capacity: i32 = capacity_content.trim().parse().unwrap_or(-1);
     let online: i32 = charging_content.trim().parse().unwrap_or(0);
 
     // Determine the battery symbol based on charging status
     let battery_symbol = if online == 1 {
-        "+" // "󰂄" // Charging symbol
+        "+" // Charging symbol
     } else {
-        "-" // "󰁹" // Battery symbol
+        "-" // Battery symbol
     };
 
     // Print the capacity and the appropriate battery symbol
@@ -51,3 +62,4 @@ fn main() -> io::Result<()> {
 
     Ok(())
 }
+

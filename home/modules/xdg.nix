@@ -12,6 +12,7 @@
         x-scheme-handler/https=firefox.desktop
 
         image/gif=oculante
+        image/jpg=oculante
         image/jpeg=oculante
         image/png=oculante
 

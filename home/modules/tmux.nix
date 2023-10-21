@@ -22,6 +22,12 @@
     escapeTime = 0;
     historyLimit = 50000;
     extraConfig = ''
+      set -g status-interval 1
+      set -g window-status-separator " "
+      set -g window-status-current-format ""
+      set -g window-status-format ""
+
+      set -g status-justify centre
       set -g status-left ""
       set -g status-right ""
       set-option -g status-style bg=default

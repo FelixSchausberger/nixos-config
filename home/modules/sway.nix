@@ -51,7 +51,7 @@ in {
 
       startup = [
         { command = "autotiling"; }
-        { command = "eww daemon && eww open bar"; }
+        { command = "eww daemon"; } # && eww open bar"; }
         { command = "foot --server"; }
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
@@ -84,6 +84,8 @@ in {
 
         # File Manager
         "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
+
+        "--release ${modifier}+" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/launch";
 
         # Notification daemon
         "Control+Space" = "exec ${dunst} close";

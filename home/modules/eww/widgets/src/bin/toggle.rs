@@ -7,12 +7,27 @@ fn main() {
         eprintln!("Usage: {} <widget_name>", args[0]);
         std::process::exit(1);
     }
+    
+    // Check if the eww daemon is running
+    let eww_pid = Command::new("pidof")
+        .arg("eww")
+        .output()
+        .expect("Failed to check eww daemon")
+        .stdout;
+    
+    if eww_pid.is_empty() {
+        Command::new(eww.split_whitespace().next().expect("Invalid eww command"))
+            .arg("daemon")
+            .spawn()
+            .expect("Failed to start eww daemon");
+        std::thread::sleep(std::time::Duration::from_secs(1));
+    }
 
     widget(&args[1]);
 }
 
 fn widget(widget_name: &str) {
-    let lock_file = format!("{}/.cache/eww-calendar.lock", std::env::var("HOME").unwrap());
+    let lock_file = format!("{}/.cache/{}.lock", std::env::var("HOME").unwrap(), widget_name);
     let eww_config = format!("{}/.nixos/home/modules/eww", std::env::var("HOME").unwrap());
 
     if !fs::metadata(&lock_file).is_ok() {
