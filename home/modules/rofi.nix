@@ -1,9 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }: # pkgs-unstable, ... }:
 
 {  
   programs.rofi = {
     enable = true;
-    package = pkgs-unstable.rofi-wayland-unwrapped;
+    package = pkgs.rofi-wayland-unwrapped; # -unstable
     # plugins = with pkgs; [
     #   rofi-calc
     #   rofi-bluetooth
