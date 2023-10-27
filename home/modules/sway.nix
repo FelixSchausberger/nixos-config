@@ -85,7 +85,8 @@ in {
         # File Manager
         "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
 
-        "--release ${modifier}+" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/launch";
+        # Toggle bar
+        "Control+Return" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/toggle bar";
 
         # Notification daemon
         "Control+Space" = "exec ${dunst} close";
@@ -97,7 +98,7 @@ in {
         "${modifier}+minus" = "scratchpad show";
 
         # Screenshots
-        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) --stdout | ${wl-copy}";
+        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";

@@ -2,15 +2,16 @@
 
 {
   nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+    settings = {
+      warn-dirty = false;
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
 
     gc = {
       automatic = true;
-      dates = "thursday";
-      options = "--delete-older-than 8d";
+      dates = "weekly";
+      options = "--delete-older-than 14d";
     };
   };
 

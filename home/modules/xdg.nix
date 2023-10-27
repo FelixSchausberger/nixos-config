@@ -11,10 +11,9 @@
         x-scheme-handler/http=firefox.desktop
         x-scheme-handler/https=firefox.desktop
 
-        image/gif=oculante
-        image/jpg=oculante
-        image/jpeg=oculante
-        image/png=oculante
+        image/gif=swayimg.desktop
+        image/jpeg=swayimg.desktop
+        image/png=swayimg.desktop
 
         video/mp4=mpv.desktop
         video/quicktime=mpv.desktop

@@ -22,8 +22,8 @@
     escapeTime = 0;
     historyLimit = 50000;
     extraConfig = ''
-      set -g status-interval 1
-      set -g window-status-separator " "
+      # set -g status-interval 1
+      # set -g window-status-separator " "
       set -g window-status-current-format ""
       set -g window-status-format ""
 

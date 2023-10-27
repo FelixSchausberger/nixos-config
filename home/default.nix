@@ -42,12 +42,13 @@
         pkgs.joplin
         pkgs.keepassxc
         pkgs.keepmenu
-        pkgs.oculante
+        # pkgs.oculante
         pkgs.unzip
         pkgs.pavucontrol
         pkgs.rclone
         pkgs.ripgrep
         pkgs.rm-improved
+        pkgs.swayimg
         pkgs.typst
         pkgs.wl-clipboard
     ];

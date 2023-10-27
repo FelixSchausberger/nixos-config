@@ -1,3 +1,5 @@
+use std::thread;
+use std::time::Duration;
 use std::fs;
 
 fn main() {
@@ -9,18 +11,22 @@ fn main() {
     }
     
     // Check if the eww daemon is running
-    let eww_pid = Command::new("pidof")
+    let eww_pid = std::process::Command::new("pidof")
         .arg("eww")
         .output()
         .expect("Failed to check eww daemon")
         .stdout;
     
     if eww_pid.is_empty() {
-        Command::new(eww.split_whitespace().next().expect("Invalid eww command"))
+        let result = std::process::Command::new("eww")
             .arg("daemon")
-            .spawn()
-            .expect("Failed to start eww daemon");
-        std::thread::sleep(std::time::Duration::from_secs(1));
+            .status();
+        thread::sleep(Duration::from_secs(1));
+    
+        if let Err(e) = result {
+            eprintln!("Error running eww: {}", e);
+            std::process::exit(1);
+        }    
     }
 
     widget(&args[1]);
