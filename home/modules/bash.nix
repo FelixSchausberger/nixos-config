@@ -1,4 +1,4 @@
-{ host, pkgs-unstable, ... }:
+{ host, pkgs, ... }: # pkgs-unstable, ... }:
 
 {
   programs.bash = {
@@ -31,7 +31,7 @@
       upgrade = "rebuild --upgrade";
     };
     bashrcExtra = ''
-      source ${pkgs-unstable.blesh}/share/blesh/ble.sh
+      source ${pkgs.blesh}/share/blesh/ble.sh
       
       if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
         tmux a -t default || exec tmux new -s default && exit;

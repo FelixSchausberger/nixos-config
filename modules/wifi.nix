@@ -1,4 +1,4 @@
-{ config, pkg, ... }:
+# { config, pkg, ... }:
 
 {
   networking.networkmanager = {

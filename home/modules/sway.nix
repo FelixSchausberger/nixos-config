@@ -1,12 +1,13 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }: # pkgs-unstable, ... }:
 
 let
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   dunst = "${pkgs.dunst}/bin/dunstctl";
   gsettings = "${pkgs.glib}/bin/gsettings";
-  rofi = "${pkgs-unstable.rofi-wayland}/bin/rofi"; 
+  rofi = "${pkgs.rofi-wayland}/bin/rofi"; # -unstable 
   slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
+  swww = "${pkgs.swww}/bin/swww"; # -unstable
   wayshot = "${pkgs.wayshot}/bin/wayshot";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
@@ -55,11 +56,12 @@ in {
         { command = "foot --server"; }
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${swww} img ../wallpaper.png"; }
       ];
 
-      output = {
-        "*" = { bg = "${../wallpaper.png} fill"; };
-      };
+      # output = {
+      #   "*" = { bg = "${../wallpaper.png} fill"; };
+      # };
 
       seat = {
         "*" = { 
@@ -238,6 +240,12 @@ in {
   systemd.user.services.rclone = {
     Unit.Description = "rclone daemon";
     Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
+    Install.WantedBy = [ "sway-session.target" ];
+  };
+  
+  systemd.user.services.swww = {
+    Unit.Description = "swww daemon";
+    Service.ExecStart = "${swww} init";
     Install.WantedBy = [ "sway-session.target" ];
   };
  

@@ -1,4 +1,4 @@
-{ host, nix-colors, pkgs, pkgs-unstable, ... }:
+{ host, nix-colors, pkgs, ... }: # pkgs-unstable, ... }:
   
 {
   imports = [ 
@@ -35,22 +35,38 @@
     homeDirectory = "/home/fesch";
     username = "fesch";
     
-    packages = [
-        pkgs.autotiling
-        pkgs-unstable.eza    
-        pkgs.fd
-        pkgs.joplin
-        pkgs.keepassxc
-        pkgs.keepmenu
-        # pkgs.oculante
-        pkgs.unzip
-        pkgs.pavucontrol
-        pkgs.rclone
-        pkgs.ripgrep
-        pkgs.rm-improved
-        pkgs.swayimg
-        pkgs.typst
-        pkgs.wl-clipboard
+    # packages = [
+    #     pkgs.autotiling
+    #     pkgs-unstable.eza    
+    #     pkgs.fd
+    #     pkgs.joplin
+    #     pkgs.keepassxc
+    #     pkgs.keepmenu
+    #     pkgs.unzip
+    #     pkgs.pavucontrol
+    #     pkgs.rclone
+    #     pkgs.ripgrep
+    #     pkgs.rm-improved
+    #     pkgs.swayimg
+    #     pkgs.typst
+    #     pkgs.wl-clipboard
+    # ];
+
+    packages = with pkgs; [
+        autotiling
+        eza    
+        fd
+        joplin
+        keepassxc
+        keepmenu
+        unzip
+        pavucontrol
+        rclone
+        ripgrep
+        rm-improved
+        swayimg
+        typst
+        wl-clipboard
     ];
     
     # This value determines the Home Manager release that your

@@ -1,11 +1,11 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs, ... }: # pkgs-unstable, ... }:
 
 { 
-  home.packages = [
-    pkgs-unstable.freecad
-    pkgs.linuxKernel.packages.linux_zen.xpadneo    
-    pkgs.lutris
-    pkgs-unstable.wineWowPackages.waylandFull
+  home.packages = with pkgs; [
+    freecad # -unstable
+    linuxKernel.packages.linux_zen.xpadneo    
+    lutris
+    wineWowPackages.waylandFull # -unstable
   ];
   
   wayland.windowManager.sway.config = {
