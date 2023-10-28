@@ -1,7 +1,10 @@
-{ host, nix-colors, pkgs, ... }: # pkgs-unstable, ... }:
-  
 {
-  imports = [ 
+  host,
+  nix-colors,
+  pkgs,
+  ...
+}: {
+  imports = [
     ./hosts/${host}.nix
     ./modules/bash.nix
     ./modules/bat.nix
@@ -22,7 +25,7 @@
     ./modules/sway.nix
     ./modules/tmux.nix
     ./modules/topgrade.nix
-    ./modules/udiskie.nix
+    # ./modules/udiskie.nix
     ./modules/vscode.nix
     ./modules/xdg.nix
     ./modules/zoxide.nix
@@ -30,14 +33,14 @@
   ];
 
   colorScheme = nix-colors.colorSchemes.onedark;
-  
+
   home = {
     homeDirectory = "/home/fesch";
     username = "fesch";
-    
+
     # packages = [
     #     pkgs.autotiling
-    #     pkgs-unstable.eza    
+    #     pkgs-unstable.eza
     #     pkgs.fd
     #     pkgs.joplin
     #     pkgs.keepassxc
@@ -53,22 +56,23 @@
     # ];
 
     packages = with pkgs; [
-        autotiling
-        eza    
-        fd
-        joplin
-        keepassxc
-        keepmenu
-        unzip
-        pavucontrol
-        rclone
-        ripgrep
-        rm-improved
-        swayimg
-        typst
-        wl-clipboard
+      autotiling
+      eza
+      fd
+      joplin
+      keepassxc
+      keepmenu
+      unzip
+      pavucontrol
+      rclone
+      ripgrep
+      rm-improved
+      swayimg
+      swww
+      typst
+      wl-clipboard
     ];
-    
+
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
@@ -84,5 +88,5 @@
   systemd.user.startServices = "sd-switch";
 
   # Automatically set some environment variables.
-  targets.genericLinux.enable = true;        
+  targets.genericLinux.enable = true;
 }

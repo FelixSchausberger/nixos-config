@@ -1,6 +1,8 @@
-{ host, pkgs, ... }: # pkgs-unstable, ... }:
-
 {
+  host,
+  pkgs,
+  ...
+}: {
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -25,14 +27,14 @@
       pull = "git pull";
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
-      rm = "echo 'This is not the command you are looking for, use rip instead.'; false"; 
+      rm = "echo 'This is not the command you are looking for, use rip instead.'; false";
       rip = "rip --graveyard $HOME/.local/share/Trash";
       swayconfig = "hx ~/.nixos/home/modules/sway.nix";
       upgrade = "rebuild --upgrade";
     };
     bashrcExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
-      
+
       if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
         tmux a -t default || exec tmux new -s default && exit;
       fi

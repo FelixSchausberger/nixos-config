@@ -1,5 +1,3 @@
-# { config, ... }:
-
 {
   boot = {
     loader = {
@@ -13,8 +11,8 @@
       timeout = 0;
     };
 
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     initrd.systemd.enable = true;
-    kernelParams = [ "quiet" "udev.log_level=3" ];
+    kernelParams = ["quiet" "udev.log_level=3"];
   };
 }

@@ -1,15 +1,13 @@
-{ home-manager, ... }: # config, pkgs
-
-{
+{home-manager, ...}: {
   imports = [
     home-manager.nixosModules.home-manager
   ];
-  
-  users.users = {  
+
+  users.users = {
     fesch = {
       isNormalUser = true;
       description = "Felix Schausberger";
-      extraGroups = [ "networkmanager" "video" "wheel" ];
+      extraGroups = ["networkmanager" "video" "wheel"];
     };
   };
 

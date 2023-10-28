@@ -1,6 +1,8 @@
-{ config, pkgs, ... }: # pkgs-unstable, ... }:
-
-{  
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland-unwrapped; # -unstable
@@ -16,7 +18,7 @@
     terminal = "${pkgs.foot}/bin/footclient";
     # icon-theme = "Tela";
     theme = "Arc-Dark";
-    # theme = 
+    # theme =
     #   let
     #     # Use `mkLiteral` for string-like values that should show without
     #     # quotes, e.g.:

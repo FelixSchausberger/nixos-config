@@ -1,21 +1,22 @@
-{ config, pkgs, ... }: # pkgs-unstable, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   dunst = "${pkgs.dunst}/bin/dunstctl";
   gsettings = "${pkgs.glib}/bin/gsettings";
-  rofi = "${pkgs.rofi-wayland}/bin/rofi"; # -unstable 
+  rofi = "${pkgs.rofi-wayland}/bin/rofi";
   slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  swww = "${pkgs.swww}/bin/swww"; # -unstable
   wayshot = "${pkgs.wayshot}/bin/wayshot";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
-  editor="hx";
-  browser="firefox";
-  footclient="${pkgs.foot}/bin/footclient";
+  editor = "hx";
+  browser = "firefox";
+  footclient = "${pkgs.foot}/bin/footclient";
 in {
   xdg.configFile."sway/environment" = {
     executable = true;
@@ -45,18 +46,18 @@ in {
     enable = true;
     package = pkgs.swayfx;
 
-    config = rec {    
+    config = rec {
       menu = "${rofi} -show drun";
       terminal = "${footclient}";
       modifier = "Mod4";
 
       startup = [
-        { command = "autotiling"; }
-        { command = "eww daemon"; } # && eww open bar"; }
-        { command = "foot --server"; }
-        { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
-        { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
-        { command = "${swww} img ../wallpaper.png"; }
+        {command = "autotiling";}
+        {command = "eww daemon";} # && eww open bar"; }
+        {command = "foot --server";}
+        {command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark";}
+        {command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita";}
+        {command = "swww img ${../pixel-lofi-city-moewalls-com.gif}";}
       ];
 
       # output = {
@@ -64,7 +65,7 @@ in {
       # };
 
       seat = {
-        "*" = { 
+        "*" = {
           hide_cursor = "10000";
           xcursor_theme = "Adwaita 24";
         };
@@ -81,8 +82,8 @@ in {
         "${modifier}+v" = "exec ${cliphist} list | rofi -dmenu | ${cliphist} decode | ${wl-copy}";
 
         # Cycle through workspaces
-        "${modifier}+tab" = "workspace next_on_output"; 
-        "${modifier}+Shift+tab" = "workspace prev_on_output"; 
+        "${modifier}+tab" = "workspace next_on_output";
+        "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
         "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
@@ -94,7 +95,7 @@ in {
         "Control+Space" = "exec ${dunst} close";
         "Control+Shift+Space" = "exec ${dunst} close-all";
         "Control+m" = "exec ${dunst} set-paused toggle";
-        
+
         # Scratchpad
         "${modifier}+Shift+minus" = "move scratchpad";
         "${modifier}+minus" = "scratchpad show";
@@ -112,10 +113,10 @@ in {
         "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";
-      
+
         # Window switcher
         "${modifier}+a" = "exec ${rofi} -show window";
-        
+
         # Move focused window
         "${modifier}+Shift+h" = "move left";
         "${modifier}+Shift+j" = "move down";
@@ -130,10 +131,16 @@ in {
 
       window.commands = [
         # Volume Control
-        { criteria = { app_id = "pavucontrol"; }; command = "floating enable"; }
+        {
+          criteria = {app_id = "pavucontrol";};
+          command = "floating enable";
+        }
 
         # Steam
-        { criteria = { class = "Steam"; }; command = "floating enable"; }
+        {
+          criteria = {class = "Steam";};
+          command = "floating enable";
+        }
       ];
 
       modes = {
@@ -176,88 +183,100 @@ in {
         focusedInactive = {
           background = "#181818"; # "#${config.colorScheme.colors.base00}";
           border = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          childBorder= "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
+          childBorder = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
           indicator = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
           text = "#b7bcb9";
         };
         unfocused = {
           background = "#181818"; # "#${config.colorScheme.colors.base00}";
           border = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          childBorder= "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
+          childBorder = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
           indicator = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
           text = "#b7bcb9";
         };
         urgent = {
           background = "#${config.colorScheme.colors.base08}";
           border = "#${config.colorScheme.colors.base08}";
-          childBorder= "#${config.colorScheme.colors.base08}";
+          childBorder = "#${config.colorScheme.colors.base08}";
           indicator = "#${config.colorScheme.colors.base08}";
           text = "#b7bcb9";
         };
       };
     };
-    
+
     extraConfig = ''
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
 
       # SwayFX settings
       shadows enable
-      
+
       corner_radius 12
-      
+
       blur enable
       blur_radius 7
       blur_passes 4
     '';
   };
-  
+
   services.swayidle = {
     enable = true;
     events = [
-      { event = "before-sleep"; command = "${swaylock}"; }
-      { event = "lock"; command = "${swaylock}"; }
+      {
+        event = "before-sleep";
+        command = "${swaylock}";
+      }
+      {
+        event = "lock";
+        command = "${swaylock}";
+      }
     ];
     timeouts = [
-      { timeout = 300; command = "${swaylock}"; } 
-      { timeout = 600; command = "swaymsg 'output * dpms off' resume swaymsg 'output * dpms on'"; }
+      {
+        timeout = 300;
+        command = "${swaylock}";
+      }
+      {
+        timeout = 600;
+        command = "swaymsg 'output * dpms off' resume swaymsg 'output * dpms on'";
+      }
     ];
   };
 
   # use systemd to manage some services
   systemd.user.services.autotiling = {
     Unit.Description = "autotiling daemon";
-    Service.ExecStart = "${pkgs.autotiling}/bin/autotiling"; 
-    Install.WantedBy = [ "sway-session.target" ];
+    Service.ExecStart = "${pkgs.autotiling}/bin/autotiling";
+    Install.WantedBy = ["sway-session.target"];
   };
-  
+
   systemd.user.services.polkit = {
     Unit.Description = "polkit daemon";
-    Service.ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; 
-    Install.WantedBy = [ "sway-session.target" ];
+    Service.ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    Install.WantedBy = ["sway-session.target"];
   };
 
   systemd.user.services.rclone = {
     Unit.Description = "rclone daemon";
     Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
   };
-  
+
   systemd.user.services.swww = {
     Unit.Description = "swww daemon";
-    Service.ExecStart = "${swww} init";
-    Install.WantedBy = [ "sway-session.target" ];
+    Service.ExecStart = "swww init";
+    Install.WantedBy = ["sway-session.target"];
   };
- 
+
   systemd.user.services.wl-clipbpoard = {
     Unit.Description = "clipboard daemon";
     Service.ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${cliphist} store";
-    Install.WantedBy = [ "sway-session.target" ];
+    Install.WantedBy = ["sway-session.target"];
   };
 
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";
-    Service.ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 45.5 -L -122.6 -g 0.8"; 
-    Install.WantedBy = [ "sway-session.target" ];
+    Service.ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 45.5 -L -122.6 -g 0.8";
+    Install.WantedBy = ["sway-session.target"];
   };
 }

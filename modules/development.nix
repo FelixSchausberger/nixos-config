@@ -1,6 +1,4 @@
-{ pkgs, ... }: # config
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # C env
     gcc

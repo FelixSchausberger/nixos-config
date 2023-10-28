@@ -1,10 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ host, pkgs, ... }:
-
-let
+{
+  host,
+  pkgs,
+  ...
+}: let
   start-sway = pkgs.writeTextFile {
     name = "start-sway";
     destination = "/bin/start-sway";
@@ -15,12 +16,12 @@ let
 
       ## Internal variables
       SWAY_EXTRA_ARGS=""
-      
+
       ## General exports
       export XDG_CURRENT_DESKTOP=sway
       export XDG_SESSION_DESKTOP=sway
       export XDG_SESSION_TYPE=wayland
-      
+
       ## Hardware compatibility
       # We can't be sure that the virtual GPU is compatible with Sway.
       # We should be attempting to detect an EGL driver instead, but that appears
@@ -49,7 +50,7 @@ let
               export WLR_NO_HARDWARE_CURSORS=1
               ;;
       esac
-      
+
       ## Load system environment customizations
       if [ -f /etc/sway/environment ]; then
           set -o allexport
@@ -57,7 +58,7 @@ let
           . /etc/sway/environment
           set +o allexport
       fi
-      
+
       ## Load user environment customizations
       if [ -f "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment" ]; then
           set -o allexport
@@ -65,21 +66,19 @@ let
           . "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment"
           set +o allexport
       fi
-      
+
       ## Unexport internal variables
       # export -n is not POSIX :(
       _SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS"
       unset SWAY_EXTRA_ARGS
-      
+
       # Start sway with extra arguments and send output to the journal
       # shellcheck disable=SC2086 # quoted expansion of EXTRA_ARGS can produce empty field
       exec systemd-cat -- sway $_SWAY_EXTRA_ARGS "$@"
     '';
   };
-
-in
-{
-  imports = [ 
+in {
+  imports = [
     ./hosts/${host}/hardware-configuration.nix
     ./modules/bluetooth.nix
     ./modules/bootloader.nix
@@ -87,7 +86,7 @@ in
     ./modules/fonts.nix
     ./modules/nix.nix
     ./modules/polkit.nix
-    ./modules/sound.nix 
+    ./modules/sound.nix
     ./modules/users.nix
     ./modules/wifi.nix
   ];
@@ -110,7 +109,7 @@ in
     LC_TIME = "de_AT.UTF-8";
   };
 
-  environment = {      
+  environment = {
     systemPackages = with pkgs; [
       gnome.adwaita-icon-theme
       gnome.gnome-themes-extra
@@ -119,29 +118,29 @@ in
       xdg-utils
     ];
 
-    loginShellInit = '' 
+    loginShellInit = ''
       [[ "$(tty)" == /dev/tty1 ]] && sway
     '';
 
     # Get bash completion for system packages
-    pathsToLink = [ "/share/bash-completion" ];
+    pathsToLink = ["/share/bash-completion"];
 
-    etc."ssh/ssh_host_ed25519_key.pub".source = if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub then
-      ./hosts/${host}/ssh_host_ed25519_key.pub
-    else
-      null;
+    etc."ssh/ssh_host_ed25519_key.pub".source =
+      if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
+      then ./hosts/${host}/ssh_host_ed25519_key.pub
+      else null;
   };
-    
+
   services.dbus.enable = true;
-  
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     # Needed to make gtk apps happy.
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs = {  
+  programs = {
     sway = {
       enable = true;
       wrapperFeatures.gtk = true;
@@ -161,11 +160,11 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system = { 
+  system = {
     autoUpgrade = {
-        enable = true;
-        allowReboot = true;
-      };
+      enable = true;
+      allowReboot = true;
+    };
     stateVersion = "23.05"; # Did you read the comment?
   };
 }
