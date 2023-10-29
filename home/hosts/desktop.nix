@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     # freecad
     linuxKernel.packages.linux_zen.xpadneo
-    lutris
+    lutris-unwrapped
     wineWowPackages.waylandFull
   ];
 
