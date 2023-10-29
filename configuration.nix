@@ -140,11 +140,10 @@ in {
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs = {
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
+  programs.sway = {
+    enable = true;
+    package = pkgs.swayfx.overrideAttrs (old: {passthru.providedSessions = ["sway"];});
+    wrapperFeatures.gtk = true;
   };
 
   # Configure system wide privileges.

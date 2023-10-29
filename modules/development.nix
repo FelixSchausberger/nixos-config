@@ -5,7 +5,7 @@
     gnumake
 
     # Python
-    jq
+    # jq
     python3
 
     # Rust
@@ -13,7 +13,12 @@
     rustc
 
     # Language Servers
-    rnix-lsp # nix
+    nodePackages.bash-language-server # bash
     clang-tools # c / cpp
+    marksman # markdown
+    nil # nix
+    python311Packages.python-lsp-server # python
+    rust-analyzer # rust
+    taplo # toml
   ];
 }

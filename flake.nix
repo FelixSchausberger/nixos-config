@@ -49,7 +49,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.extraSpecialArgs = {
-              inherit host nix-colors;
+              inherit host nixpkgs nix-colors;
             };
           }
         ];

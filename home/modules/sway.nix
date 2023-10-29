@@ -44,7 +44,7 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-    package = pkgs.swayfx;
+    # package = pkgs.swayfx;
 
     config = rec {
       menu = "${rofi} -show drun";
@@ -53,16 +53,12 @@ in {
 
       startup = [
         {command = "autotiling";}
-        {command = "eww daemon";} # && eww open bar"; }
+        {command = "eww daemon && eww open bar";}
         {command = "foot --server";}
         {command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark";}
         {command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita";}
-        {command = "swww img ${../pixel-lofi-city-moewalls-com.gif}";}
+        {command = "swww init && swww img ${../pixel-lofi-city-moewalls-com.gif}";}
       ];
-
-      # output = {
-      #   "*" = { bg = "${../wallpaper.png} fill"; };
-      # };
 
       seat = {
         "*" = {
@@ -162,11 +158,7 @@ in {
 
       bars = [];
 
-      gaps = {
-        # smartBorders = "off";
-        # smartGaps = false;
-        inner = 10;
-      };
+      gaps.inner = 10;
 
       floating.border = 3;
       window.border = 3;
@@ -259,12 +251,6 @@ in {
   systemd.user.services.rclone = {
     Unit.Description = "rclone daemon";
     Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
-    Install.WantedBy = ["sway-session.target"];
-  };
-
-  systemd.user.services.swww = {
-    Unit.Description = "swww daemon";
-    Service.ExecStart = "swww init";
     Install.WantedBy = ["sway-session.target"];
   };
 

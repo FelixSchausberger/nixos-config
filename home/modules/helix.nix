@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       editor = {
-        gutters = [ "diff" "line-numbers" "spacer" "diagnostics" ];
+        gutters = ["diff" "line-numbers" "spacer" "diagnostics"];
         cursorline = true;
         cursor-shape.insert = "bar";
         true-color = true;
@@ -11,31 +11,58 @@
         mouse = false;
       };
       theme = "charm";
-      keys.insert.esc = [ "collapse_selection" "normal_mode" ];
-      keys.normal.esc = [ "collapse_selection" "normal_mode" ];
-      keys.select.esc =
-        [ "collapse_selection" "keep_primary_selection" "normal_mode" ];
+      keys.insert.esc = ["collapse_selection" "normal_mode"];
+      keys.normal.esc = ["collapse_selection" "normal_mode"];
+      keys.select.esc = ["collapse_selection" "keep_primary_selection" "normal_mode"];
       keys.normal = {
         X = "extend_line_above";
-        a = [ "append_mode" "collapse_selection" ];
+        a = ["append_mode" "collapse_selection"];
         g.q = ":reflow";
-        i = [ "insert_mode" "collapse_selection" ];
-        ret = [ "move_line_down" "goto_line_start" ];
+        i = ["insert_mode" "collapse_selection"];
+        ret = ["move_line_down" "goto_line_start"];
         space = {
           w = ":write";
           q = ":quit";
         };
       };
     };
-    languages =  {
+    languages = {
       language = [
+        {
+          name = "bash";
+          auto-format = true;
+          # language-server = {command = "bash-language-server";};
+        }
+
         {
           name = "nix";
           auto-format = true;
-          formatter = { command = "alejandra"; };
-          language-server = { command = "nil"; };
+          formatter = {command = "alejandra";};
+          # language-server = { command = "nil"; };
         }
-      
+
+        {
+          name = "markdown";
+          auto-format = true;
+          # language-server = {command = "marksman";};
+        }
+
+        {
+          name = "python";
+          auto-format = true;
+          # language-server = {command="python-lsp-server";};
+        }
+
+        {
+          name = "rust";
+          auto-format = true;
+          formatter = {command = "clippy";};
+        }
+
+        {
+          name = "toml";
+          formatter = {command = "taplo fmt";};
+        }
       ];
     };
   };
