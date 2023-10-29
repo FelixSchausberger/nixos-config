@@ -31,26 +31,22 @@
         {
           name = "bash";
           auto-format = true;
-          # language-server = {command = "bash-language-server";};
         }
 
         {
           name = "nix";
           auto-format = true;
           formatter = {command = "alejandra";};
-          # language-server = { command = "nil"; };
         }
 
         {
           name = "markdown";
           auto-format = true;
-          # language-server = {command = "marksman";};
         }
 
         {
           name = "python";
           auto-format = true;
-          # language-server = {command="python-lsp-server";};
         }
 
         {
@@ -62,6 +58,11 @@
         {
           name = "toml";
           formatter = {command = "taplo fmt";};
+        }
+
+        {
+          name = "yaml";
+          auto-format = true;
         }
       ];
     };

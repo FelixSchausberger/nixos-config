@@ -41,6 +41,7 @@
     packages = with pkgs; [
       autotiling
       eza
+      deadnix
       fd
       joplin
       keepassxc

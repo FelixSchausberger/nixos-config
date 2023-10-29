@@ -20,5 +20,6 @@
     python311Packages.python-lsp-server # python
     rust-analyzer # rust
     taplo # toml
+    yaml-language-server # yaml
   ];
 }
