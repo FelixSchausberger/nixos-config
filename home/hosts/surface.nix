@@ -1,18 +1,16 @@
-{ config, pkgs, ... }:
-
-{ 
-  home.packages = [
-    pkgs.light
-    pkgs.tlp
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    light
+    tlp
   ];
-    
+
   wayland.windowManager.sway.config = {
     input = {
       "*" = {
-	      xkb_layout = "de";
+        xkb_layout = "de";
       };
     };
-    
+
     keybindings = pkgs.lib.mkOptionDefault {
       # Brightness
       "XF86MonBrightnessDown" = "exec light -U 10";

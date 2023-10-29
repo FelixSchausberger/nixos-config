@@ -1,17 +1,15 @@
-{ pkgs, pkgs, ... }: # pkgs-unstable, ... }:
-
-{ 
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    freecad # -unstable
-    linuxKernel.packages.linux_zen.xpadneo    
+    # freecad
+    linuxKernel.packages.linux_zen.xpadneo
     lutris
-    wineWowPackages.waylandFull # -unstable
+    wineWowPackages.waylandFull
   ];
-  
+
   wayland.windowManager.sway.config = {
     input = {
       "*" = {
-	      xkb_layout = "eu";
+        xkb_layout = "eu";
       };
     };
   };

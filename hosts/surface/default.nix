@@ -1,5 +1,3 @@
-# { config, pkgs, ... }:
-
 {
   networking.hostName = "surface";
 
