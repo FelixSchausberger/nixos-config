@@ -9,6 +9,7 @@
     ./modules/bash.nix
     ./modules/bat.nix
     ./modules/blesh.nix
+    ./modules/bottom.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
