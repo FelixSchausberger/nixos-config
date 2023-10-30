@@ -18,18 +18,25 @@
     #   url = "github:nix-community/nixpkgs-wayland";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    devenv.url = "github:cachix/devenv";
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
   };
 
   outputs = {
-    self,
+    # self,
     alejandra,
     home-manager,
     nix-colors,
     nixpkgs,
     # nixpkgs-wayland,
+    devenv,
     ...
-  }: let
-    # outputs = inputs: let
+  } @ inputs: let
     mkSystem = host:
       nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -56,7 +63,25 @@
 
         # config.nixpkgs.overlays = [nixpkgs-wayland.overlay];
       };
+
+    pkgs = nixpkgs.legacyPackages."x86_64-linux";
   in {
+    devShell.x86_64-linux = devenv.lib.mkShell {
+      inherit inputs pkgs;
+      modules = [
+        ({pkgs, ...}: {
+          # This is your devenv configuration
+          packages = [pkgs.hello];
+
+          enterShell = ''
+            hello
+          '';
+
+          processes.run.exec = "hello";
+        })
+      ];
+    };
+
     nixosConfigurations = {
       desktop = mkSystem "desktop";
       surface = mkSystem "surface";

@@ -9,6 +9,7 @@
     ./modules/bash.nix
     ./modules/bat.nix
     ./modules/blesh.nix
+    ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
     ./modules/firefox.nix
@@ -41,7 +42,6 @@
     packages = with pkgs; [
       autotiling
       eza
-      deadnix
       fd
       joplin
       keepassxc
