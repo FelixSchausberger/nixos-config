@@ -153,6 +153,18 @@ in {
     auth include login
   '';
 
+  # services.openvpn.servers = {
+  #   nordVPN  = { config = '' config /root/nixos/openvpn/nordVPN.conf ''; };
+  # };
+
+  environment.etc."nixos/configuration.nix" = {
+    source = "/home/fesch/.nixos/configuration.nix";
+  };
+
+  environment.etc."nixos/hardware-configuration.nix" = {
+    source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

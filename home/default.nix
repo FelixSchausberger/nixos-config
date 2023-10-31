@@ -13,6 +13,7 @@
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
+    ./modules/eza.nix
     ./modules/firefox.nix
     ./modules/foot.nix
     ./modules/fzf.nix
@@ -22,6 +23,7 @@
     ./modules/home-manager.nix
     ./modules/mpv.nix
     ./modules/qt.nix
+    ./modules/ripgrep.nix
     ./modules/rofi.nix
     ./modules/starship.nix
     ./modules/sway.nix
@@ -37,12 +39,9 @@
   colorScheme = nix-colors.colorSchemes.onedark;
 
   home = {
-    homeDirectory = "/home/fesch";
-    username = "fesch";
-
-    packages = with pkgs; [
+     packages = with pkgs; [
       autotiling
-      eza
+      du-dust
       fd
       joplin
       keepassxc
@@ -50,7 +49,6 @@
       unzip
       pavucontrol
       rclone
-      ripgrep
       rm-improved
       swayimg
       swww

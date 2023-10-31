@@ -29,6 +29,7 @@
       swayconfig = "hx ~/.nixos/home/modules/sway.nix";
       upgrade = "rebuild --upgrade";
     };
+
     bashrcExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
 
