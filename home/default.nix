@@ -26,10 +26,9 @@
     ./modules/ripgrep.nix
     ./modules/rofi.nix
     ./modules/starship.nix
-    ./modules/sway.nix
+    ./modules/sway
     ./modules/tmux.nix
     ./modules/topgrade.nix
-    # ./modules/udiskie.nix
     ./modules/vscode.nix
     ./modules/xdg.nix
     ./modules/zoxide.nix

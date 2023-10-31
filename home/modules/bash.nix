@@ -17,7 +17,7 @@
       gcm = "git commit -m";
       gst = "git status";
       homeconfig = "hx ~/.nixos/home/default.nix";
-      ls = "eza --icons";
+      # ls = "eza --icons";
       merge = "rsync -avhu --progress";
       mkdir = "mkdir -p";
       nixconfig = "hx ~/.nixos/configuration.nix";
@@ -26,7 +26,7 @@
       rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
       # rm = "echo 'This is not the command you are looking for, use rip instead.'; false";
       rip = "rip --graveyard $HOME/.local/share/Trash";
-      swayconfig = "hx ~/.nixos/home/modules/sway.nix";
+      swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
       upgrade = "rebuild --upgrade";
     };
 

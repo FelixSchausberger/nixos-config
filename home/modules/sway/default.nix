@@ -57,7 +57,7 @@ in {
         {command = "foot --server";}
         {command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark";}
         {command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita";}
-        {command = "swww init && swww img ${../pixel-lofi-city-moewalls-com.gif}";}
+        {command = "swww init && swww img ${../wallpaper_1920x1080.gif}";}
       ];
 
       seat = {
