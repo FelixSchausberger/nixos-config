@@ -82,7 +82,8 @@ in {
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
+        # "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
+        "${modifier}+e" = "exec ${footclient} -e broot";
 
         # Toggle bar
         "Control+Return" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/toggle bar";

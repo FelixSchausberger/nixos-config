@@ -19,6 +19,7 @@
       gst = "git status";
       homeconfig = "hx ~/.nixos/home/default.nix";
       # ls = "eza --icons";
+      ls = "broot -sdp";
       merge = "rsync -avhu --progress";
       mkdir = "mkdir -p";
       nixconfig = "hx ~/.nixos/configuration.nix";

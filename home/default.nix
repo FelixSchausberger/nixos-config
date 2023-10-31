@@ -6,15 +6,17 @@
 }: {
   imports = [
     ./hosts/${host}.nix
+    ./modules/atuin.nix
     ./modules/bash.nix
     ./modules/bashmount.nix
     ./modules/bat.nix
     ./modules/blesh.nix
     ./modules/bottom.nix
+    ./modules/broot.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
-    ./modules/eza.nix
+    # ./modules/eza.nix # replaced by broot
     ./modules/firefox.nix
     ./modules/foot.nix
     ./modules/fzf.nix
@@ -41,7 +43,7 @@
   home = {
      packages = with pkgs; [
       autotiling
-      du-dust
+      # du-dust # replaced by broot
       fd
       joplin
       keepassxc
