@@ -1,15 +1,15 @@
-extern crate swayipc;
 extern crate image;
+extern crate swayipc;
 
 use swayipc::{Connection, Fallible};
 
 fn main() -> Fallible<()> {
     // Connect to the Sway IPC socket
-    let connection = Connection::new()?;
+    let mut connection = Connection::new()?;
 
     // Get the current workspace
     let tree = connection.get_tree()?;
-    let workspace = tree.find_focused_workspace();
+    let workspace = tree.find_focused(|_w| true);
 
     if let Some(workspace) = workspace {
         // Get the resolution of the focused workspace
@@ -17,9 +17,9 @@ fn main() -> Fallible<()> {
 
         // Determine the wallpaper based on the resolution
         let wallpaper_name = if resolution.width == 1920 && resolution.height == 1080 {
-            "wallpaper_1920x1080.jpg"
+            "~/.nixos/home/wallpaper_1920x1080.gif"
         } else if resolution.width == 2736 && resolution.height == 1824 {
-            "wallpaper_2736x1824.jpg"
+            "~/.nixos/home/wallpaper_2736x1824.gif"
         } else {
             // Set a default wallpaper if the resolution doesn't match
             "default_wallpaper.jpg"
@@ -31,4 +31,3 @@ fn main() -> Fallible<()> {
 
     Ok(())
 }
-
