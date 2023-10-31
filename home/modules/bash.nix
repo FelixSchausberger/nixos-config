@@ -1,8 +1,9 @@
-{ host, pkgs, ... }: {
+{ host, ... }: {
   programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = {
+      bm = "bashmount";
       c = "clear";
       cat = "bat";
       cd = "z";
@@ -31,8 +32,6 @@
     };
 
     bashrcExtra = ''
-      source ${pkgs.blesh}/share/blesh/ble.sh
-
       if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
         tmux a -t default || exec tmux new -s default && exit;
       fi

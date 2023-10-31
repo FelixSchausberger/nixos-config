@@ -140,10 +140,14 @@ in {
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs.sway = {
-    enable = true;
-    package = pkgs.swayfx.overrideAttrs (old: {passthru.providedSessions = ["sway"];});
-    wrapperFeatures.gtk = true;
+  programs = {
+    bash.blesh.enable = true;
+    
+    sway = {
+      enable = true;
+      package = pkgs.swayfx.overrideAttrs (old: {passthru.providedSessions = ["sway"];});
+      wrapperFeatures.gtk = true;
+    };
   };
 
   # Configure system wide privileges.
@@ -152,10 +156,6 @@ in {
     # the 'login' configuration file (see /etc/pam.d/login)
     auth include login
   '';
-
-  # services.openvpn.servers = {
-  #   nordVPN  = { config = '' config /root/nixos/openvpn/nordVPN.conf ''; };
-  # };
 
   environment.etc."nixos/configuration.nix" = {
     source = "/home/fesch/.nixos/configuration.nix";

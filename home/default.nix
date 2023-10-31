@@ -7,6 +7,7 @@
   imports = [
     ./hosts/${host}.nix
     ./modules/bash.nix
+    ./modules/bashmount.nix
     ./modules/bat.nix
     ./modules/blesh.nix
     ./modules/bottom.nix
@@ -46,6 +47,7 @@
       keepassxc
       keepmenu
       unzip
+      # upscayl
       pavucontrol
       rclone
       rm-improved
