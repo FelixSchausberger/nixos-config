@@ -1,4 +1,4 @@
-{home-manager, ...}: {
+{home-manager, pkgs, ...}: {
   imports = [
     home-manager.nixosModules.home-manager
   ];
@@ -7,7 +7,8 @@
     fesch = {
       isNormalUser = true;
       description = "Felix Schausberger";
-      extraGroups = ["networkmanager" "video" "wheel"];
+      extraGroups = ["networkmanager" "video" "wheel"];  
+      shell = pkgs.nushell;
     };
   };
 

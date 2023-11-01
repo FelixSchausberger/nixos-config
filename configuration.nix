@@ -122,9 +122,6 @@ in {
       [[ "$(tty)" == /dev/tty1 ]] && sway
     '';
 
-    # Get bash completion for system packages
-    pathsToLink = ["/share/bash-completion"];
-
     etc = {
       "ssh/ssh_host_ed25519_key.pub".source =
         if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
@@ -141,25 +138,17 @@ in {
     };
 
     shellAliases = {
-      bm = "bashmount";
       br = "broot";
       cat = "bat";
       cd = "z";
       cleanup = "sudo nix-collect-garbage";
       cp = "cp -rpv";
-      fetch = "git fetch";
-      gaa = "git add .";
-      gcm = "git commit -m";
-      gst = "git status";
       homeconfig = "hx ~/.nixos/home/default.nix";
       ls = "broot -sdp";
       merge = "rsync -avhu --progress";
-      mkdir = "mkdir -p";
       nixconfig = "hx ~/.nixos/configuration.nix";
-      pull = "git pull";
-      push = "git push";
       rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
-      rip = "rip --graveyard $HOME/.local/share/Trash";
+      # rip = "rip --graveyard $HOME/.local/share/Trash";
       swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
       upgrade = "rebuild --upgrade";
     };
@@ -174,12 +163,7 @@ in {
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
-  programs = {
-    bash = {
-      blesh.enable = true;
-      enableCompletion = true;
-    };
-    
+  programs = {   
     sway = {
       enable = true;
       package = pkgs.swayfx.overrideAttrs (old: {passthru.providedSessions = ["sway"];});

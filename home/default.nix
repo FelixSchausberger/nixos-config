@@ -6,29 +6,19 @@
 }: {
   imports = [
     ./hosts/${host}.nix
-    ./modules/atuin.nix
-    ./modules/bash.nix
-    ./modules/bashmount.nix
     ./modules/bat.nix
-    ./modules/blesh.nix
-    ./modules/bottom.nix
     ./modules/broot.nix
     ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
-    ./modules/firefox.nix
     ./modules/foot.nix
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
-    ./modules/home-manager.nix
-    ./modules/mpv.nix
     ./modules/nushell.nix
-    ./modules/playerctl.nix
     ./modules/qt.nix
-    ./modules/ripgrep.nix
     ./modules/rofi.nix
     ./modules/starship.nix
     ./modules/sway
@@ -37,11 +27,23 @@
     ./modules/vscode.nix
     ./modules/xdg.nix
     ./modules/zellij.nix
-    ./modules/zoxide.nix
     nix-colors.homeManagerModule
   ];
 
   colorScheme = nix-colors.colorSchemes.onedark;
+
+  programs = {
+    bottom.enable = true;
+    firefox.enable = true;
+    home-manager.enable = true;
+    mpv.enable = true;
+    ripgrep.enable = true;
+    zoxide.enable = true;
+  };
+
+  services = {
+    playerctld.enable = true;
+  };
 
   home = {
      packages = with pkgs; [
