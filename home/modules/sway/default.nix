@@ -82,7 +82,6 @@ in {
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        # "${modifier}+e" = "exec ${footclient} -e ${pkgs.joshuto}/bin/joshuto";
         "${modifier}+e" = "exec ${footclient} -e broot";
 
         # Toggle bar
@@ -255,11 +254,11 @@ in {
     Install.WantedBy = ["sway-session.target"];
   };
 
-  systemd.user.services.wl-clipbpoard = {
-    Unit.Description = "clipboard daemon";
-    Service.ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${cliphist} store";
-    Install.WantedBy = ["sway-session.target"];
-  };
+  # systemd.user.services.wl-clipbpoard = {
+  #   Unit.Description = "clipboard daemon";
+  #   Service.ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${cliphist} store";
+  #   Install.WantedBy = ["sway-session.target"];
+  # };
 
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";

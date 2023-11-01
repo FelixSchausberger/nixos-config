@@ -13,28 +13,29 @@
     ./modules/blesh.nix
     ./modules/bottom.nix
     ./modules/broot.nix
+    ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
-    # ./modules/eza.nix # replaced by broot
     ./modules/firefox.nix
     ./modules/foot.nix
-    # ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/home-manager.nix
     ./modules/mpv.nix
+    ./modules/playerctl.nix
     ./modules/qt.nix
     ./modules/ripgrep.nix
     ./modules/rofi.nix
     ./modules/skim.nix
     ./modules/starship.nix
     ./modules/sway
-    ./modules/tmux.nix
+    # ./modules/tmux.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
     ./modules/xdg.nix
+    ./modules/zellij.nix
     ./modules/zoxide.nix
     nix-colors.homeManagerModule
   ];
@@ -44,7 +45,6 @@
   home = {
      packages = with pkgs; [
       autotiling
-      # du-dust # replaced by broot
       fd
       joplin
       keepassxc

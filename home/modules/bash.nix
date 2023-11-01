@@ -32,11 +32,11 @@
       upgrade = "rebuild --upgrade";
     };
 
-    bashrcExtra = ''
-      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-        tmux a -t default || exec tmux new -s default && exit;
-      fi
+      # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+      #   tmux a -t default || exec tmux new -s default && exit;
+      # fi
 
+    bashrcExtra = ''
       if [[ $- == *i* ]]; then # in interactive session
         set -o vi
       fi
