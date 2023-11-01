@@ -19,19 +19,20 @@
     ./modules/eww
     ./modules/firefox.nix
     ./modules/foot.nix
+    ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/home-manager.nix
     ./modules/mpv.nix
+    ./modules/nushell.nix
     ./modules/playerctl.nix
     ./modules/qt.nix
     ./modules/ripgrep.nix
     ./modules/rofi.nix
-    ./modules/skim.nix
     ./modules/starship.nix
     ./modules/sway
-    # ./modules/tmux.nix
+    ./modules/tmux.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
     ./modules/xdg.nix

@@ -125,10 +125,44 @@ in {
     # Get bash completion for system packages
     pathsToLink = ["/share/bash-completion"];
 
-    etc."ssh/ssh_host_ed25519_key.pub".source =
-      if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
-      then ./hosts/${host}/ssh_host_ed25519_key.pub
-      else null;
+    etc = {
+      "ssh/ssh_host_ed25519_key.pub".source =
+        if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
+        then ./hosts/${host}/ssh_host_ed25519_key.pub
+        else null;
+      
+      "nixos/configuration.nix" = {
+        source = "/home/fesch/.nixos/configuration.nix";
+      };
+      
+      "nixos/hardware-configuration.nix" = {
+        source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
+      };
+    };
+
+    shellAliases = {
+      bm = "bashmount";
+      br = "broot";
+      cat = "bat";
+      cd = "z";
+      cleanup = "sudo nix-collect-garbage";
+      cp = "cp -rpv";
+      fetch = "git fetch";
+      gaa = "git add .";
+      gcm = "git commit -m";
+      gst = "git status";
+      homeconfig = "hx ~/.nixos/home/default.nix";
+      ls = "broot -sdp";
+      merge = "rsync -avhu --progress";
+      mkdir = "mkdir -p";
+      nixconfig = "hx ~/.nixos/configuration.nix";
+      pull = "git pull";
+      push = "git push";
+      rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
+      rip = "rip --graveyard $HOME/.local/share/Trash";
+      swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
+      upgrade = "rebuild --upgrade";
+    };
   };
 
   services.dbus.enable = true;
@@ -141,7 +175,10 @@ in {
   };
 
   programs = {
-    bash.blesh.enable = true;
+    bash = {
+      blesh.enable = true;
+      enableCompletion = true;
+    };
     
     sway = {
       enable = true;
@@ -156,14 +193,6 @@ in {
     # the 'login' configuration file (see /etc/pam.d/login)
     auth include login
   '';
-
-  environment.etc."nixos/configuration.nix" = {
-    source = "/home/fesch/.nixos/configuration.nix";
-  };
-
-  environment.etc."nixos/hardware-configuration.nix" = {
-    source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

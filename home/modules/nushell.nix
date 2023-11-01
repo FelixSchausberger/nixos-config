@@ -1,6 +1,5 @@
-
 {
-  programs.skim = {
+  programs.nushell = {
     enable = true;
   };
 }
