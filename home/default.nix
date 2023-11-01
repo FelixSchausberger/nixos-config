@@ -19,7 +19,7 @@
     # ./modules/eza.nix # replaced by broot
     ./modules/firefox.nix
     ./modules/foot.nix
-    ./modules/fzf.nix
+    # ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
@@ -28,6 +28,7 @@
     ./modules/qt.nix
     ./modules/ripgrep.nix
     ./modules/rofi.nix
+    ./modules/skim.nix
     ./modules/starship.nix
     ./modules/sway
     ./modules/tmux.nix
@@ -51,6 +52,7 @@
       unzip
       # upscayl
       pavucontrol
+      procs
       rclone
       rm-improved
       swayimg
