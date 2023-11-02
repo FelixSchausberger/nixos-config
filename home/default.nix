@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./hosts/${host}.nix
-    ./modules/alacritty.nix
     ./modules/bat.nix
     ./modules/broot.nix
     ./modules/cliphist.nix
