@@ -5,6 +5,7 @@
 }: let
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   dunst = "${pkgs.dunst}/bin/dunstctl";
+  fzf = "${pkgs.fzf}/bin/fzf";
   gsettings = "${pkgs.glib}/bin/gsettings";
   rofi = "${pkgs.rofi-wayland}/bin/rofi";
   slurp = "${pkgs.slurp}/bin/slurp";
@@ -75,8 +76,8 @@ in {
         "${modifier}+b" = "exec ${browser}";
 
         # Clipboard picker
-        "${modifier}+v" = "exec ${cliphist} list | rofi -dmenu | ${cliphist} decode | ${wl-copy}";
-
+        "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${cliphist} list | ${fzf} | ${cliphist} decode | ${wl-copy}";
+        
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
@@ -124,7 +125,7 @@ in {
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
 
-        "${modifier}+space" = "exec alacritty --class floating-term -e ~/test.sh";
+        "${modifier}+space" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
       };
 
       window.commands = [
@@ -201,8 +202,8 @@ in {
     extraConfig = ''
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
-      for_window [class="Alacritty" instance="floating-term"] floating enable
-
+      for_window [app_id="floating-mode"] floating enable
+      
       # SwayFX settings
       shadows enable
 
