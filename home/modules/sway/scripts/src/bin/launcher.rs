@@ -1,42 +1,32 @@
-use std::process::{exit, Command};
+use std::io::{BufRead, BufReader};
+use std::process::{Command, Stdio};
 
 fn main() {
     let opts = "--info=inline --print-query --bind=ctrl-space:print-query,tab:replace-query";
 
-    let fzf_result = Command::new("fzf")
-        .args(opts.split_whitespace())
-        .stdin(std::process::Stdio::piped())
-        .stdout(std::process::Stdio::piped())
+    // Run the compgen -c | fzf $OPTS | tail -1 command and capture its output
+    let compgen_fzf = Command::new("sh")
+        .args(&["-c", &format!("compgen -c | fzf {}", opts)])
+        .stdout(Stdio::piped())
         .spawn()
-        .expect("Failed to start fzf process");
+        .expect("Failed to execute command");
 
-    let compgen_result = Command::new("compgen")
-        .arg("-c")
-        .stdout(std::process::Stdio::piped())
-        .spawn()
-        .expect("Failed to start compgen process");
+    // Read the output of the compgen -c | fzf $OPTS | tail -1 command
+    let output = compgen_fzf.stdout.expect("Failed to capture output");
+    let mut output_lines = BufReader::new(output).lines();
 
-    let fzf_stdout = fzf_result.stdout.expect("Failed to get fzf stdout");
-    let compgen_stdout = compgen_result.stdout.expect("Failed to get compgen stdout");
+    // Get the last line of the output
+    let last_line = output_lines.last().expect("No output lines").unwrap();
 
-    let last_command = std::io::BufReader::new(fzf_stdout)
-        .lines()
-        .filter_map(|line| line.ok())
-        .last()
-        .unwrap_or_else(|| {
-            eprintln!("No command selected in fzf");
-            exit(1);
-        });
-
-    let exec_command = format!("exec --no-startup-id {}", last_command);
-    let swaymsg_result = Command::new("swaymsg")
-        .arg("-q")
-        .arg(&exec_command)
+    // Execute swaymsg with the selected command
+    let swaymsg = Command::new("swaymsg")
+        .args(&["-q", &format!("exec --no-startup-id {}", last_line)])
         .status()
         .expect("Failed to execute swaymsg");
 
-    if !swaymsg_result.success() {
-        eprintln!("swaymsg failed with exit code: {:?}", swaymsg_result.code());
-        exit(1);
+    if swaymsg.success() {
+        println!("swaymsg command executed successfully");
+    } else {
+        eprintln!("swaymsg command failed to execute");
     }
 }
