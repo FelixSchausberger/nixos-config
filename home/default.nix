@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hosts/${host}.nix
+    ./modules/alacritty.nix
     ./modules/bat.nix
     ./modules/broot.nix
     ./modules/cliphist.nix
@@ -22,7 +23,6 @@
     ./modules/rofi.nix
     ./modules/starship.nix
     ./modules/sway
-    ./modules/tmux.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
     ./modules/xdg.nix

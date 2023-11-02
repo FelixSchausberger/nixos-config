@@ -118,10 +118,6 @@ in {
       xdg-utils
     ];
 
-    loginShellInit = ''
-      [[ "$(tty)" == /dev/tty1 ]] && sway
-    '';
-
     etc = {
       "ssh/ssh_host_ed25519_key.pub".source =
         if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
@@ -135,22 +131,6 @@ in {
       "nixos/hardware-configuration.nix" = {
         source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
       };
-    };
-
-    shellAliases = {
-      br = "broot";
-      cat = "bat";
-      cd = "z";
-      cleanup = "sudo nix-collect-garbage";
-      cp = "cp -rpv";
-      homeconfig = "hx ~/.nixos/home/default.nix";
-      ls = "broot -sdp";
-      merge = "rsync -avhu --progress";
-      nixconfig = "hx ~/.nixos/configuration.nix";
-      rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
-      # rip = "rip --graveyard $HOME/.local/share/Trash";
-      swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
-      upgrade = "rebuild --upgrade";
     };
   };
 

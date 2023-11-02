@@ -2,13 +2,13 @@
   programs.zellij = {
     enable = true;
     settings = {
-      theme = "nord";
-      ui = {
-        pane_frames = {
-          hide_session_name = true;
-          rounded_corners = true;
-        };
-      };
+      pane_frames = false;      
     };
   };
+
+  home.file.".config/zellij/layouts/default.kdl".text = ''
+    layout {
+      pane    
+    }
+    '';
 }

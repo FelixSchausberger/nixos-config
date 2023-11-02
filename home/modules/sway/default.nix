@@ -123,6 +123,8 @@ in {
         "${modifier}+Shift+Down" = "move down";
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
+
+        "${modifier}+space" = "exec alacritty --class floating-term -e ~/test.sh";
       };
 
       window.commands = [
@@ -199,6 +201,7 @@ in {
     extraConfig = ''
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
+      for_window [class="Alacritty" instance="floating-term"] floating enable
 
       # SwayFX settings
       shadows enable
@@ -253,12 +256,6 @@ in {
     Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
     Install.WantedBy = ["sway-session.target"];
   };
-
-  # systemd.user.services.wl-clipbpoard = {
-  #   Unit.Description = "clipboard daemon";
-  #   Service.ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${cliphist} store";
-  #   Install.WantedBy = ["sway-session.target"];
-  # };
 
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";

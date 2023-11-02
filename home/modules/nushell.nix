@@ -13,18 +13,44 @@
         show_banner: false
       }
     '';
+    loginFile.text = ''
+      if (tty) == "/dev/tty1" {
+        sway
+      }
+    '';
+    extraConfig = "
+      def start_zellij [] {
+        if 'ZELLIJ' not-in ($env | columns) {
+          if 'ZELLIJ_AUTO_ATTACH' in ($env | columns) and $env.ZELLIJ_AUTO_ATTACH == 'true' {
+            zellij attach -c
+          } else {
+            zellij
+          }
+
+          if 'ZELLIJ_AUTO_EXIT' in ($env | columns) and $env.ZELLIJ_AUTO_EXIT == 'true' {
+            exit
+          }
+        }
+      }
+
+      start_zellij
+    ";
     shellAliases = {
       br = "broot";
       cat = "bat";
       cd = "z";
       cleanup = "sudo nix-collect-garbage";
       cp = "cp -rpv";
-      homeconfig = "hx ~/.nixos/home/default.nix";
+      fetch = "git fetch";
+      gaa = "git add .";
+      gcm = "git commit -m";
+      gst = "git status";      homeconfig = "hx ~/.nixos/home/default.nix";
       ls = "broot -sdp";
       merge = "rsync -avhu --progress";
       nixconfig = "hx ~/.nixos/configuration.nix";
-      rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
-      # rip = "rip --graveyard $HOME/.local/share/Trash";
+      pull = "git pull";
+      push = "git push";      rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
+      rip = "rip --graveyard ~/.local/share/Trash";
       swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
       upgrade = "rebuild --upgrade";
     };
