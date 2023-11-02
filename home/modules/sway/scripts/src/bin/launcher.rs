@@ -13,7 +13,7 @@ fn main() {
 
     // Read the output of the compgen -c | fzf $OPTS | tail -1 command
     let output = compgen_fzf.stdout.expect("Failed to capture output");
-    let mut output_lines = BufReader::new(output).lines();
+    let output_lines = BufReader::new(output).lines();
 
     // Get the last line of the output
     let last_line = output_lines.last().expect("No output lines").unwrap();

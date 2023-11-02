@@ -3,11 +3,8 @@
   pkgs,
   ...
 }: let
-  cliphist = "${pkgs.cliphist}/bin/cliphist";
   dunst = "${pkgs.dunst}/bin/dunstctl";
-  fzf = "${pkgs.fzf}/bin/fzf";
   gsettings = "${pkgs.glib}/bin/gsettings";
-  rofi = "${pkgs.rofi-wayland}/bin/rofi";
   slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
   wayshot = "${pkgs.wayshot}/bin/wayshot";
@@ -48,7 +45,7 @@ in {
     # package = pkgs.swayfx;
 
     config = rec {
-      menu = "${rofi} -show drun";
+      menu = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
       terminal = "${footclient}";
       modifier = "Mod4";
 
@@ -75,8 +72,8 @@ in {
         # Browser
         "${modifier}+b" = "exec ${browser}";
 
-        # Clipboard picker
-        "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${cliphist} list | ${fzf} | ${cliphist} decode | ${wl-copy}";
+        # Clipboard pickers
+        "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/cliphist}";
         
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
@@ -84,21 +81,6 @@ in {
 
         # File Manager
         "${modifier}+e" = "exec ${footclient} -e broot";
-
-        # Toggle bar
-        "Control+Return" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/toggle bar";
-
-        # Notification daemon
-        "Control+Space" = "exec ${dunst} close";
-        "Control+Shift+Space" = "exec ${dunst} close-all";
-        "Control+m" = "exec ${dunst} set-paused toggle";
-
-        # Scratchpad
-        "${modifier}+Shift+minus" = "move scratchpad";
-        "${modifier}+minus" = "scratchpad show";
-
-        # Screenshots
-        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";
@@ -111,9 +93,6 @@ in {
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";
 
-        # Window switcher
-        "${modifier}+a" = "exec ${rofi} -show window";
-
         # Move focused window
         "${modifier}+Shift+h" = "move left";
         "${modifier}+Shift+j" = "move down";
@@ -124,8 +103,21 @@ in {
         "${modifier}+Shift+Down" = "move down";
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
+        
+        # Notification daemon
+        "Control+Space" = "exec ${dunst} close";
+        "Control+Shift+Space" = "exec ${dunst} close-all";
+        "Control+m" = "exec ${dunst} set-paused toggle";
 
-        "${modifier}+space" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
+        # Scratchpad
+        "${modifier}+Shift+minus" = "move scratchpad";
+        "${modifier}+minus" = "scratchpad show";
+
+        # Screenshots
+        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
+
+        # Toggle bar
+        "Control+Return" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/toggle bar";
       };
 
       window.commands = [

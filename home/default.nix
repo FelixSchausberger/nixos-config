@@ -20,7 +20,6 @@
     ./modules/helix.nix
     ./modules/nushell.nix
     ./modules/qt.nix
-    ./modules/rofi.nix
     ./modules/starship.nix
     ./modules/sway
     ./modules/topgrade.nix
