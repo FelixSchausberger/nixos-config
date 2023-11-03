@@ -14,7 +14,8 @@
 
   editor = "hx";
   browser = "firefox";
-  footclient = "${pkgs.foot}/bin/footclient";
+  # footclient = "${pkgs.foot}/bin/footclient";
+  wezterm = "${pkgs.wezterm}/bin/wezterm";
 in {
   xdg.configFile."sway/environment" = {
     executable = true;
@@ -22,7 +23,7 @@ in {
     text = ''
       #!/bin/sh
 
-      export TERMINAL=${footclient}
+      export TERMINAL=${wezterm}
       export BROWSER=${browser}
       export EDITOR=${editor}
       export SUDO_EDITOR=${editor}
@@ -45,7 +46,8 @@ in {
     # package = pkgs.swayfx;
 
     config = rec {
-      menu = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
+      # menu = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
+      menu = "exec ${wezterm} --class=floating-mode start -- ${scripts/result/bin/launcher}";
       terminal = "${footclient}";
       modifier = "Mod4";
 
@@ -73,14 +75,16 @@ in {
         "${modifier}+b" = "exec ${browser}";
 
         # Clipboard pickers
-        "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/cliphist}";
+        # "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/cliphist}";
+        # "${modifier}+v" = "exec ${wezterm} --app-id=floating-mode start -- ${scripts/result/bin/cliphist}";
+        "${modifier}+v" = "exec ${wezterm} --app-id=floating-mode start -- cliphist list | fzf | cliphist decode | wl-copy";
         
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        "${modifier}+e" = "exec ${footclient} -e broot";
+        # "${modifier}+e" = "exec ${footclient} broot";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";
@@ -244,11 +248,11 @@ in {
     Install.WantedBy = ["sway-session.target"];
   };
 
-  systemd.user.services.rclone = {
-    Unit.Description = "rclone daemon";
-    Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
-    Install.WantedBy = ["sway-session.target"];
-  };
+  # systemd.user.services.rclone = {
+  #   Unit.Description = "rclone daemon";
+  #   Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
+  #   Install.WantedBy = ["sway-session.target"];
+  # };
 
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";

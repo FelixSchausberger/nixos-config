@@ -23,8 +23,9 @@
     ./modules/sway
     ./modules/topgrade.nix
     ./modules/vscode.nix
+    ./modules/wezterm.nix
     ./modules/xdg.nix
-    ./modules/zellij.nix
+    # ./modules/zellij.nix
     nix-colors.homeManagerModule
   ];
 
