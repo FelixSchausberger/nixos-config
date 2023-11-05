@@ -56,7 +56,6 @@
       procs
       rclone
       rm-improved
-      swayimg
       swww
       typst
       wl-clipboard

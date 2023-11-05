@@ -1,23 +1,23 @@
 {
   xdg = {
     enable = true;
-    mime.enable = true;
+    # mime.enable = true;
  
     configFile = {   
       # Default apps
-      "mimeapps.list".text = ''
-        [Default Applications]
-        text/html=firefox.desktop
-        x-scheme-handler/http=firefox.desktop
-        x-scheme-handler/https=firefox.desktop
+    #   "mimeapps.list".text = ''
+    #     [Default Applications]
+    #     text/html=firefox.desktop
+    #     x-scheme-handler/http=firefox.desktop
+    #     x-scheme-handler/https=firefox.desktop
 
-        image/gif=swayimg.desktop
-        image/jpeg=swayimg.desktop
-        image/png=swayimg.desktop
+    #     image/gif=swayimg.desktop
+    #     image/jpeg=swayimg.desktop
+    #     image/png=swayimg.desktop
 
-        video/mp4=mpv.desktop
-        video/quicktime=mpv.desktop
-      '';
+    #     video/mp4=mpv.desktop
+    #     video/quicktime=mpv.desktop
+    #   '';
 
       "user-dirs.dirs".text = ''
         XDG_DESKTOP_DIR="$HOME/Desktop"
