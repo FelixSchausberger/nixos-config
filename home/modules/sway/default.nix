@@ -14,8 +14,6 @@
 
   editor = "hx";
   browser = "firefox";
-  # footclient = "${pkgs.foot}/bin/footclient";
-  wezterm = "${pkgs.wezterm}/bin/wezterm";
 in {
   xdg.configFile."sway/environment" = {
     executable = true;
@@ -23,7 +21,7 @@ in {
     text = ''
       #!/bin/sh
 
-      export TERMINAL=${wezterm}
+      export TERMINAL="${pkgs.wezterm}/bin/wezterm"
       export BROWSER=${browser}
       export EDITOR=${editor}
       export SUDO_EDITOR=${editor}
@@ -46,15 +44,13 @@ in {
     # package = pkgs.swayfx;
 
     config = rec {
-      # menu = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/launcher}";
-      menu = "exec ${wezterm} --class=floating-mode start -- ${scripts/result/bin/launcher}";
-      terminal = "${footclient}";
+      terminal = "${pkgs.wezterm}/bin/wezterm";
+      menu = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/launcher}";
       modifier = "Mod4";
 
       startup = [
         {command = "autotiling";}
         {command = "eww daemon && eww open bar";}
-        {command = "foot --server";}
         {command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark";}
         {command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita";}
         {command = "swww init && swww img ${scripts/result/bin/wallpaper}";}
@@ -75,16 +71,14 @@ in {
         "${modifier}+b" = "exec ${browser}";
 
         # Clipboard pickers
-        # "${modifier}+v" = "exec ${footclient} --app-id=floating-mode ${scripts/result/bin/cliphist}";
-        # "${modifier}+v" = "exec ${wezterm} --app-id=floating-mode start -- ${scripts/result/bin/cliphist}";
-        "${modifier}+v" = "exec ${wezterm} --app-id=floating-mode start -- cliphist list | fzf | cliphist decode | wl-copy";
+        "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
         
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        # "${modifier}+e" = "exec ${footclient} broot";
+        # "${modifier}+e" = "exec ${wezterm} broot";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";
