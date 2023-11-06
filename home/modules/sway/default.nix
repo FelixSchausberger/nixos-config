@@ -72,13 +72,14 @@ in {
 
         # Clipboard pickers
         "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
+        "${modifier}+u" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/desktop-launcher}";
         
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        # "${modifier}+e" = "exec ${wezterm} broot";
+        "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";

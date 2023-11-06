@@ -20,7 +20,7 @@ fn main() {
 
     // Execute swaymsg with the selected command
     let swaymsg = Command::new("swaymsg")
-        .args(&["-q", &format!("exec --no-startup-id {}", last_line)])
+        .args(&["-q", &format!("exec {}", last_line)])
         .status()
         .expect("Failed to execute swaymsg");
 

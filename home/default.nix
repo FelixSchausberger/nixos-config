@@ -56,6 +56,8 @@
       procs
       rclone
       rm-improved
+      # ripgrep-all
+      swayimg
       swww
       typst
       wl-clipboard
@@ -69,7 +71,7 @@
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
 
   # Nicely reload system units when changing configs.
