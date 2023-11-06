@@ -11,7 +11,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs.url = "nixpkgs/nixos-unstable";
-  };
+    nixpkgs-stable.url = "nixpkgs/nixos-23.05";
+    };
 
   nixConfig = {
     extra-trusted-public-keys =
@@ -19,7 +20,7 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { home-manager, devenv, nix-colors, nixpkgs, ... }@inputs:
+  outputs = { home-manager, devenv, nix-colors, nixpkgs, nixpkgs-stable, ... }@inputs:
     let
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
@@ -35,7 +36,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.extraSpecialArgs = {
-                inherit host nixpkgs nix-colors;
+                inherit host nixpkgs nixpkgs-stable nix-colors;
               };
             }
           ];

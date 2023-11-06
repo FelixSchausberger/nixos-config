@@ -7,7 +7,7 @@
       # Default apps
       "mimeapps.list".text = ''
         [Default Applications]
-        text/html=firefox.desktop
+        text/html=helix.desktop
         x-scheme-handler/http=firefox.desktop
         x-scheme-handler/https=firefox.desktop
 

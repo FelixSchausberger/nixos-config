@@ -8,6 +8,4 @@ edition = "2021"
 
 [dependencies]
 image = "0.24.7"
-# serde = "1.0.189"
-# serde_json = "1.0.107"
 swayipc = "3.0.1"

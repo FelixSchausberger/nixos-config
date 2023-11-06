@@ -2,7 +2,7 @@
   host,
   nix-colors,
   pkgs,
-  ...
+  ... 
 }: {
   imports = [
     ./hosts/${host}.nix
@@ -12,7 +12,6 @@
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/eww
-    ./modules/foot.nix
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
@@ -62,6 +61,8 @@
       typst
       wl-clipboard
     ];
+
+    # packages = with nixpkgs-stable; [ ripgrep-all ];
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
