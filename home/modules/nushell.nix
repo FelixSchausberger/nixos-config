@@ -1,13 +1,13 @@
 {host, ...}: {
   programs.nushell = {
     enable = true;
-    configFile.text = ''
-      let $config = {
-        filesize_metric: false
-        table_mode: rounded
-        use_ls_colors: true
-      }
-    '';
+    # configFile.text = ''
+    #   let $config = {
+    #     filesize_metric: false
+    #     table_mode: rounded
+    #     use_ls_colors: true
+    #   }
+    # '';
     envFile.text = ''  
       $env.config = {
         show_banner: false
@@ -18,23 +18,6 @@
         sway
       }
     '';
-    # extraConfig = "
-    #   def start_zellij [] {
-    #     if 'ZELLIJ' not-in ($env | columns) {
-    #       if 'ZELLIJ_AUTO_ATTACH' in ($env | columns) and $env.ZELLIJ_AUTO_ATTACH == 'true' {
-    #         zellij attach -c
-    #       } else {
-    #         zellij
-    #       }
-
-    #       if 'ZELLIJ_AUTO_EXIT' in ($env | columns) and $env.ZELLIJ_AUTO_EXIT == 'true' {
-    #         exit
-    #       }
-    #     }
-    #   }
-
-    #   start_zellij
-    # ";
     shellAliases = {
       br = "broot";
       cat = "bat";
