@@ -1,8 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   dunst = "${pkgs.dunst}/bin/dunstctl";
   gsettings = "${pkgs.glib}/bin/gsettings";
   slurp = "${pkgs.slurp}/bin/slurp";
@@ -14,7 +14,8 @@
 
   editor = "hx";
   browser = "firefox";
-in {
+in
+{
   xdg.configFile."sway/environment" = {
     executable = true;
 
@@ -49,11 +50,11 @@ in {
       modifier = "Mod4";
 
       startup = [
-        {command = "autotiling";}
-        {command = "eww daemon && eww open bar";}
-        {command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark";}
-        {command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita";}
-        {command = "swww init && swww img ${scripts/result/bin/wallpaper}";}
+        { command = "autotiling"; }
+        { command = "eww daemon && eww open bar"; }
+        { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
+        { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "swww init && swww img ${scripts/result/bin/wallpaper}"; }
       ];
 
       seat = {
@@ -72,13 +73,16 @@ in {
 
         # Clipboard pickers
         "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
-       
+
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
         "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
+
+        # Find        
+        "${modifier}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";
@@ -101,7 +105,7 @@ in {
         "${modifier}+Shift+Down" = "move down";
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
-        
+
         # Notification daemon
         "Control+Space" = "exec ${dunst} close";
         "Control+Shift+Space" = "exec ${dunst} close-all";
@@ -121,13 +125,13 @@ in {
       window.commands = [
         # Volume Control
         {
-          criteria = {app_id = "pavucontrol";};
+          criteria = { app_id = "pavucontrol"; };
           command = "floating enable";
         }
 
         # Steam
         {
-          criteria = {class = "Steam";};
+          criteria = { class = "Steam"; };
           command = "floating enable";
         }
       ];
@@ -149,7 +153,7 @@ in {
         };
       };
 
-      bars = [];
+      bars = [ ];
 
       gaps.inner = 10;
 
@@ -233,13 +237,13 @@ in {
   systemd.user.services.autotiling = {
     Unit.Description = "autotiling daemon";
     Service.ExecStart = "${pkgs.autotiling}/bin/autotiling";
-    Install.WantedBy = ["sway-session.target"];
+    Install.WantedBy = [ "sway-session.target" ];
   };
 
   systemd.user.services.polkit = {
     Unit.Description = "polkit daemon";
     Service.ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    Install.WantedBy = ["sway-session.target"];
+    Install.WantedBy = [ "sway-session.target" ];
   };
 
   # systemd.user.services.rclone = {
@@ -251,6 +255,6 @@ in {
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";
     Service.ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 45.5 -L -122.6 -g 0.8";
-    Install.WantedBy = ["sway-session.target"];
+    Install.WantedBy = [ "sway-session.target" ];
   };
 }

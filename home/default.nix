@@ -1,8 +1,7 @@
-{
-  host,
-  nix-colors,
-  pkgs,
-  ... 
+{ host
+, nix-colors
+, pkgs
+, ...
 }: {
   imports = [
     ./hosts/${host}.nix
@@ -43,19 +42,19 @@
   };
 
   home = {
-     packages = with pkgs; [
+    packages = with pkgs; [
       autotiling
       fd
       joplin
       keepassxc
       keepmenu
       unzip
-      # upscayl
+      upscayl
       pavucontrol
       procs
       rclone
       rm-improved
-      # ripgrep-all
+      ripgrep-all
       swayimg
       swww
       typst

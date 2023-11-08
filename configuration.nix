@@ -1,11 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  host,
-  pkgs,
-  ...
-}: let
+{ host
+, pkgs
+, ...
+}:
+let
   start-sway = pkgs.writeTextFile {
     name = "start-sway";
     destination = "/bin/start-sway";
@@ -77,7 +77,8 @@
       exec systemd-cat -- sway $_SWAY_EXTRA_ARGS "$@"
     '';
   };
-in {
+in
+{
   imports = [
     ./hosts/${host}/hardware-configuration.nix
     ./modules/bluetooth.nix
@@ -123,11 +124,11 @@ in {
         if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
         then ./hosts/${host}/ssh_host_ed25519_key.pub
         else null;
-      
+
       "nixos/configuration.nix" = {
         source = "/home/fesch/.nixos/configuration.nix";
       };
-      
+
       "nixos/hardware-configuration.nix" = {
         source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
       };
@@ -140,13 +141,13 @@ in {
     enable = true;
     wlr.enable = true;
     # Needed to make gtk apps happy.
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  programs = {   
+  programs = {
     sway = {
       enable = true;
-      package = pkgs.swayfx.overrideAttrs (old: {passthru.providedSessions = ["sway"];});
+      package = pkgs.swayfx.overrideAttrs ({ passthru.providedSessions = [ "sway" ]; });
       wrapperFeatures.gtk = true;
     };
   };

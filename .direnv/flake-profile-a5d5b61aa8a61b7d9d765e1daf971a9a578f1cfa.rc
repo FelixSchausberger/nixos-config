@@ -48,7 +48,7 @@ fi
 # https://github.com/numtide/devshell/issues/158
 PATH=${PATH#/path-not-set:}
 
-export DEVENV_PROFILE=/nix/store/jz0bisb7m8ph5s9lgwi0l05wb5r7rwf7-devenv-profile
+export DEVENV_PROFILE=/nix/store/xnhyh6llig1sjl78gg85fh29pid0lf47-devenv-profile
 
 # add installed packages to PATH
 export PATH="$DEVENV_PROFILE/bin:$PATH"
@@ -64,11 +64,11 @@ export XDG_DATA_DIRS="$DEVENV_PROFILE/share:${XDG_DATA_DIRS-}"
 export XDG_CONFIG_DIRS="$DEVENV_PROFILE/etc/xdg:${XDG_CONFIG_DIRS-}"
 
 export DEVENV_DOTFILE='\''/home/fesch/.nixos/.devenv'\''
-export DEVENV_PROFILE='\''/nix/store/jz0bisb7m8ph5s9lgwi0l05wb5r7rwf7-devenv-profile'\''
+export DEVENV_PROFILE='\''/nix/store/xnhyh6llig1sjl78gg85fh29pid0lf47-devenv-profile'\''
 export DEVENV_ROOT='\''/home/fesch/.nixos'\''
 export DEVENV_STATE='\''/home/fesch/.nixos/.devenv/state'\''
 
-export PATH=/nix/store/0bnll2zm456hjvhdm1d7b8x16bbrfqjc-pre-commit-3.3.3/bin:$PATH
+export PATH=/nix/store/1hn7la1ipf7nhq7b4rj4hxbk2xbyyqkp-pre-commit-3.3.3/bin:$PATH
 if ! type -t git >/dev/null; then
   # This happens in pure shells, including lorri
   echo 1>&2 "WARNING: pre-commit-hooks.nix: git command not found; skipping installation."
@@ -82,7 +82,7 @@ else
   # and prevents installation loops by via lorri.
 
   if readlink "${GIT_WC}/.pre-commit-config.yaml" >/dev/null \
-    && [[ $(readlink "${GIT_WC}/.pre-commit-config.yaml") == /nix/store/zgz3bzfqz4q2vhn7lknabhq77lb5cayw-pre-commit-config.json ]]; then
+    && [[ $(readlink "${GIT_WC}/.pre-commit-config.yaml") == /nix/store/nvjc1h5ga67378crwvzvwjga1visnpl6-pre-commit-config.json ]]; then
     echo 1>&2 "pre-commit-hooks.nix: hooks up to date"
   else
     echo 1>&2 "pre-commit-hooks.nix: updating $PWD repo"
@@ -96,7 +96,7 @@ else
       echo 1>&2 "    2. remove .pre-commit-config.yaml"
       echo 1>&2 "    3. add .pre-commit-config.yaml to .gitignore"
     else
-      ln -fs /nix/store/zgz3bzfqz4q2vhn7lknabhq77lb5cayw-pre-commit-config.json "${GIT_WC}/.pre-commit-config.yaml"
+      ln -fs /nix/store/nvjc1h5ga67378crwvzvwjga1visnpl6-pre-commit-config.json "${GIT_WC}/.pre-commit-config.yaml"
       # Remove any previously installed hooks (since pre-commit itself has no convergent design)
       hooks="pre-commit pre-merge-commit pre-push prepare-commit-msg commit-msg post-checkout post-commit"
       for hook in $hooks; do
@@ -155,7 +155,7 @@ fi
 
 mkdir -p .devenv
 rm -f .devenv/profile
-ln -s /nix/store/jz0bisb7m8ph5s9lgwi0l05wb5r7rwf7-devenv-profile .devenv/profile
+ln -s /nix/store/xnhyh6llig1sjl78gg85fh29pid0lf47-devenv-profile .devenv/profile
 
 '
 export shellHook

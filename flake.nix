@@ -12,12 +12,12 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
-    };
+  };
 
   nixConfig = {
     extra-trusted-public-keys =
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-    extra-substituters = "https://devenv.cachix.org";
+    extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
   outputs = { home-manager, devenv, nix-colors, nixpkgs, nixpkgs-stable, ... }@inputs:

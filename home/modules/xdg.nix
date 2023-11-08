@@ -2,12 +2,14 @@
   xdg = {
     enable = true;
     mime.enable = true;
- 
-    configFile = {   
+
+    configFile = {
       # Default apps
       "mimeapps.list".text = ''
         [Default Applications]
-        text/html=helix.desktop
+        text/html=firefox.desktop
+        text/plain=Helix.desktop
+        
         x-scheme-handler/http=firefox.desktop
         x-scheme-handler/https=firefox.desktop
 

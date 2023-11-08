@@ -26,7 +26,8 @@
 	(literal :content workspaces_listen))
 	
 (defwidget center []
-	(box 	:orientation "h" 
+	(box 	:class "bar_class"
+				:orientation "h" 
 		 		:space-evenly false  
         :halign "center"
 (bat)

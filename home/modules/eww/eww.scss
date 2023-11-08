@@ -1,16 +1,23 @@
 *{
-	all: unset;
-  font-family: Fira Code NF;
-  font-size: 24;
-  font-weight: bold;
+	  all: unset;
+    font-family: Fira Code NF;
+    font-size: 24;
+    font-weight: bold;
+}
+
+/** General **/
+.bar_class {
+    background: rgba(67, 76, 94, 0.7);
+    padding: 3px 14px 3px 14px;
+    border-radius: 16px;
 }
 
 // Calendar
 .cal {
-  background-color: #0f0f17;
-  font-family: Fira Code NF Font;
-  font-size: 18px;
-  font-weight: normal;
+    background-color: #0f0f17;
+    font-family: Fira Code NF Font;
+    font-size: 18px;
+    font-weight: normal;
 
 .cal-in {
     padding: 0px 10px 0px 10px;
