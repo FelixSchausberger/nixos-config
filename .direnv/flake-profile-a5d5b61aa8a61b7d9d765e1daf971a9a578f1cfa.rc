@@ -82,7 +82,7 @@ else
   # and prevents installation loops by via lorri.
 
   if readlink "${GIT_WC}/.pre-commit-config.yaml" >/dev/null \
-    && [[ $(readlink "${GIT_WC}/.pre-commit-config.yaml") == /nix/store/nvjc1h5ga67378crwvzvwjga1visnpl6-pre-commit-config.json ]]; then
+    && [[ $(readlink "${GIT_WC}/.pre-commit-config.yaml") == /nix/store/r9z81j9y6ljaxyh48rfa6igj5zb10v3z-pre-commit-config.json ]]; then
     echo 1>&2 "pre-commit-hooks.nix: hooks up to date"
   else
     echo 1>&2 "pre-commit-hooks.nix: updating $PWD repo"
@@ -96,7 +96,7 @@ else
       echo 1>&2 "    2. remove .pre-commit-config.yaml"
       echo 1>&2 "    3. add .pre-commit-config.yaml to .gitignore"
     else
-      ln -fs /nix/store/nvjc1h5ga67378crwvzvwjga1visnpl6-pre-commit-config.json "${GIT_WC}/.pre-commit-config.yaml"
+      ln -fs /nix/store/r9z81j9y6ljaxyh48rfa6igj5zb10v3z-pre-commit-config.json "${GIT_WC}/.pre-commit-config.yaml"
       # Remove any previously installed hooks (since pre-commit itself has no convergent design)
       hooks="pre-commit pre-merge-commit pre-push prepare-commit-msg commit-msg post-checkout post-commit"
       for hook in $hooks; do

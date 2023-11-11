@@ -50,15 +50,15 @@
         modules = [{
           pre-commit.hooks = {
             # black.enable = true; # python
-            cargo-check.enable = true; # rust
+            # cargo-check.enable = true; # rust
             # clang-format.enable = true; # c
-            clippy.enable = true; # rust
+            # clippy.enable = true; # rust
             deadnix.enable = true; # nix
             markdownlint.enable = true; # markdown
             nil.enable = true; # nix
             nixpkgs-fmt.enable = true; # nix
             # shellcheck.enable = true; # shell
-            taplo.enable = true; # rust
+            # taplo.enable = true; # rust
             # yamllint.enable = true; # yaml
           };
         }];

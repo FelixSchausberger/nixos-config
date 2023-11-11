@@ -15,6 +15,7 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
+    ./modules/ironbar.nix
     ./modules/nushell.nix
     ./modules/qt.nix
     ./modules/starship.nix
@@ -45,6 +46,7 @@
     packages = with pkgs; [
       autotiling
       fd
+      ironbar
       joplin
       keepassxc
       keepmenu
