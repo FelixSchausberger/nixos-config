@@ -16,6 +16,7 @@
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/ironbar.nix
+    ./modules/ironbar1.nix
     ./modules/nushell.nix
     ./modules/qt.nix
     ./modules/starship.nix
@@ -57,6 +58,7 @@
       rclone
       rm-improved
       ripgrep-all
+      # swayest-workstyle
       swayimg
       swww
       typst

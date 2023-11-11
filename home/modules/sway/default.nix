@@ -54,7 +54,9 @@ in
         { command = "eww daemon && eww open bar"; }
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${pkgs.ironbar}/bin/ironbar"; }
         { command = "swww init && swww img ${scripts/result/bin/wallpaper}"; }
+        # { command = "sworkstyle &> /tmp/sworkstyle.log > /dev/null 2>&1"; }
       ];
 
       seat = {
@@ -153,7 +155,9 @@ in
         };
       };
 
-      bars = [ ];
+      # bars = [{ command = "${pkgs.ironbar}/bin/ironbar"; }];
+      bars = [{ command = "ironbar"; }];
+      # bars = [];
 
       gaps.inner = 10;
 
@@ -194,6 +198,11 @@ in
     };
 
     extraConfig = ''
+      bar {
+        swaybar_command ironbar
+        position top
+      }
+
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
       for_window [app_id="floating-mode"] floating enable
