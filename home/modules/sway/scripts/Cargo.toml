@@ -8,4 +8,6 @@ edition = "2021"
 
 [dependencies]
 image = "0.24.7"
+serde = { version = "1.0.192", features = ["derive"] }
+serde_json = "1.0.108"
 swayipc = "3.0.1"

@@ -64,6 +64,11 @@
     };
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
+
   services.dbus.enable = true;
 
   xdg.portal = {

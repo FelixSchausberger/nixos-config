@@ -51,6 +51,7 @@
       keepassxc
       obsidian
       pavucontrol
+      pre-commit
       procs
       rm-improved
       ripgrep-all
