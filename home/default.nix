@@ -10,14 +10,13 @@
     ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
-    # ./modules/eww
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
-    ./modules/ironbar.nix
     ./modules/nushell.nix
     ./modules/qt.nix
+    ./modules/rclone.nix
     ./modules/starship.nix
     ./modules/sway
     ./modules/topgrade.nix
@@ -48,9 +47,7 @@
     packages = with pkgs; [
       fd
       dconf
-      joplin
       keepassxc
-      keepmenu
       obsidian
       pavucontrol
       procs

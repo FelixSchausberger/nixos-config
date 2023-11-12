@@ -120,9 +120,6 @@ in
 
         # Screenshots
         "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
-
-        # Toggle bar
-        "Control+Return" = "exec ~/.nixos/home/modules/eww/widgets/result/bin/toggle bar";
       };
 
       window.commands = [
@@ -197,11 +194,6 @@ in
     };
 
     extraConfig = ''
-      # bar {
-      #   # status_command ${pkgs.ironbar}/bin/ironbar
-      #   swaybar_command ${pkgs.waybar}/bin/waybar
-      # }
-
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
       for_window [app_id="floating-mode"] floating enable
