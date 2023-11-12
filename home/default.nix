@@ -19,6 +19,7 @@
     ./modules/rclone.nix
     ./modules/starship.nix
     ./modules/sway
+    ./modules/sworkstyle.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
     ./modules/waybar.nix

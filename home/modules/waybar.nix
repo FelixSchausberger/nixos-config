@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   programs.waybar = {
     enable = true;
@@ -7,15 +9,15 @@
         position = "bottom";
         height = 35;
         spacing = 4;
-        # margin-top = 10;
-        # margin-bottom = 5;
+        margin-top = 2;
+        margin-bottom = 5;
 
         modules-left = [ "sway/workspaces" ];
         modules-center = [ ];
         modules-right = [ "idle_inhibitor" "pulseaudio" "backlight" "battery" "network" "tray" "clock" ];
 
         "backlight" = {
-          format = "{percent}% {icon}";
+          format = "<big>{percent}% {icon}</big>";
           format-icons = [ "" "" ];
         };
 
@@ -24,21 +26,19 @@
             warning = 30;
             critical = 15;
           };
-          format = "{capacity}% {icon}";
-          format-charging = "{capacity}% 󰂄";
-          # format-plugged = "{capacity}% ";
-          format-alt = "{time} {icon}";
+          format = "<big>{capacity}% {icon}</big>";
+          format-charging = "<big>{capacity}% 󰂄</big>";
+          format-alt = "<big>{time} {icon}</big>";
           format-icons = [ "" "" "" "" "" ];
         };
 
         "clock" = {
           format = "<big>{:%d %b %H:%M}</big>";
-          # tooltip-format = "<big>{:%Y %B \t week: %V }\n<tt>{calendar}</tt></big>";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          tooltip-format = "<big>{:%Y %B \t week: %V }\n<tt>{calendar}</tt></big>";
         };
 
         "idle_inhibitor" = {
-          format = "{icon}";
+          format = "<big>{icon}</big>";
           format-icons = {
             activated = "";
             deactivated = "";
@@ -46,20 +46,20 @@
         };
 
         "network" = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "󰈀";
-          tooltip-format = "{ifname} via {gwaddr}";
-          format-linked = "{ifname} (No IP)";
-          format-disconnected = "⚠";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
-          on-click = "NetworkManager";
+          format-wifi = "<big>{essid} ({signalStrength}%) </big>";
+          format-ethernet = "<big>󰈀</big>";
+          tooltip-format = "</big>{ifname} via {gwaddr}</big>";
+          format-linked = "<big>{ifname} (No IP)<big>";
+          format-disconnected = "<big>⚠</big>";
+          format-alt = "<big>{ifname}: {ipaddr}/{cidr}</big>";
+          on-right-click = "${pkgs.networkmanager}/bin/networkmanager";
         };
 
         "pulseaudio" = {
-          format = "{volume}% {icon}";
-          format-bluetooth = "{volume}% {icon}";
-          format-bluetooth-muted = "{icon} {format_source}";
-          format-muted = "{format_source}";
+          format = "<big>{volume}% {icon}</big>";
+          format-bluetooth = "<big>{volume}% {icon}</big>";
+          format-bluetooth-muted = "<big>{icon} {format_source}</big>";
+          format-muted = "<big>{format_source}</big>";
           format-source = "";
           format-source-muted = "";
           format-icons = {
@@ -71,16 +71,17 @@
             car = "";
             default = [ "" "" "" ];
           };
-          on-click = "pavucontrol";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
 
         "sway/workspaces" = {
+          format = "<span size='large'>{icon}</span>";
           disable-scroll = true;
           all-outputs = true;
         };
 
         "tray" = {
-          icon-size = 20;
+          icon-size = 21;
           spacing = 10;
         };
       };
