@@ -10,19 +10,19 @@
     ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
-    ./modules/eww
+    # ./modules/eww
     ./modules/fzf.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/ironbar.nix
-    ./modules/ironbar1.nix
     ./modules/nushell.nix
     ./modules/qt.nix
     ./modules/starship.nix
     ./modules/sway
     ./modules/topgrade.nix
     ./modules/vscode.nix
+    ./modules/waybar.nix
     ./modules/wezterm.nix
     ./modules/xdg.nix
     nix-colors.homeManagerModule
@@ -35,6 +35,7 @@
     firefox.enable = true;
     home-manager.enable = true;
     mpv.enable = true;
+    nix-index.enable = true;
     ripgrep.enable = true;
     zoxide.enable = true;
   };
@@ -45,27 +46,24 @@
 
   home = {
     packages = with pkgs; [
-      autotiling
       fd
-      ironbar
+      dconf
       joplin
       keepassxc
       keepmenu
-      unzip
-      upscayl
+      obsidian
       pavucontrol
       procs
       rclone
       rm-improved
       ripgrep-all
-      # swayest-workstyle
       swayimg
       swww
       typst
+      unzip
+      upscayl
       wl-clipboard
     ];
-
-    # packages = with nixpkgs-stable; [ ripgrep-all ];
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage

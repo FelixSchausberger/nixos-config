@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
@@ -25,7 +20,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, ironbar, nix-colors, nixpkgs, nixpkgs-stable, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, ... }@inputs:
     let
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
@@ -41,7 +36,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.extraSpecialArgs = {
-                inherit host ironbar nixpkgs nixpkgs-stable nix-colors;
+                inherit host nixpkgs nixpkgs-stable nix-colors;
               };
             }
           ];

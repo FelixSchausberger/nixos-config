@@ -7,6 +7,7 @@ let
   gsettings = "${pkgs.glib}/bin/gsettings";
   slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
+  swww = "${pkgs.swww}/bin/swww";
   wayshot = "${pkgs.wayshot}/bin/wayshot";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
@@ -42,7 +43,8 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
-    # package = pkgs.swayfx;
+    package = pkgs.swayfx;
+    wrapperFeatures.gtk = true;
 
     config = rec {
       terminal = "${pkgs.wezterm}/bin/wezterm";
@@ -50,13 +52,12 @@ in
       modifier = "Mod4";
 
       startup = [
-        { command = "autotiling"; }
-        { command = "eww daemon && eww open bar"; }
+        { command = "${pkgs.autotiling}/bin/autotiling"; }
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
-        { command = "${pkgs.ironbar}/bin/ironbar"; }
-        { command = "swww init && swww img ${scripts/result/bin/wallpaper}"; }
-        # { command = "sworkstyle &> /tmp/sworkstyle.log > /dev/null 2>&1"; }
+        { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
+        # { command = "swww init; swww img ${scripts/result/bin/wallpaper}"; }
+        { command = "${swww} init; ${swww} img ${scripts/result/bin/wallpaper}"; }
       ];
 
       seat = {
@@ -155,9 +156,7 @@ in
         };
       };
 
-      # bars = [{ command = "${pkgs.ironbar}/bin/ironbar"; }];
-      bars = [{ command = "ironbar"; }];
-      # bars = [];
+      bars = [ ];
 
       gaps.inner = 10;
 
@@ -198,10 +197,10 @@ in
     };
 
     extraConfig = ''
-      bar {
-        swaybar_command ironbar
-        position top
-      }
+      # bar {
+      #   # status_command ${pkgs.ironbar}/bin/ironbar
+      #   swaybar_command ${pkgs.waybar}/bin/waybar
+      # }
 
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
@@ -243,12 +242,6 @@ in
   };
 
   # use systemd to manage some services
-  systemd.user.services.autotiling = {
-    Unit.Description = "autotiling daemon";
-    Service.ExecStart = "${pkgs.autotiling}/bin/autotiling";
-    Install.WantedBy = [ "sway-session.target" ];
-  };
-
   systemd.user.services.polkit = {
     Unit.Description = "polkit daemon";
     Service.ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
