@@ -5,19 +5,17 @@
     enable = true;
     settings = {
       mainBar = {
+        ipc = true;
         layer = "top";
         position = "bottom";
-        height = 35;
-        spacing = 4;
-        margin-top = 2;
-        margin-bottom = 5;
+        height = 45;
 
         modules-left = [ "sway/workspaces" ];
         modules-center = [ ];
         modules-right = [ "idle_inhibitor" "pulseaudio" "backlight" "battery" "network" "tray" "clock" ];
 
         "backlight" = {
-          format = "<big>{percent}% {icon}</big>";
+          format = "{percent}% {icon}";
           format-icons = [ "" "" ];
         };
 
@@ -26,19 +24,19 @@
             warning = 30;
             critical = 15;
           };
-          format = "<big>{capacity}% {icon}</big>";
-          format-charging = "<big>{capacity}% 󰂄</big>";
-          format-alt = "<big>{time} {icon}</big>";
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% 󰂄";
+          format-alt = "{time} {icon}";
           format-icons = [ "" "" "" "" "" ];
         };
 
         "clock" = {
-          format = "<big>{:%d %b %H:%M}</big>";
-          tooltip-format = "<big>{:%Y %B \t week: %V }\n<tt>{calendar}</tt></big>";
+          format = "{:%d %b %H:%M}";
+          tooltip-format = "{:%Y %B \t week: %V }\n<tt>{calendar}</tt>";
         };
 
         "idle_inhibitor" = {
-          format = "<big>{icon}</big>";
+          format = "{icon}";
           format-icons = {
             activated = "";
             deactivated = "";
@@ -46,20 +44,19 @@
         };
 
         "network" = {
-          format-wifi = "<big>{essid} ({signalStrength}%) </big>";
-          format-ethernet = "<big>󰈀</big>";
-          tooltip-format = "</big>{ifname} via {gwaddr}</big>";
-          format-linked = "<big>{ifname} (No IP)<big>";
-          format-disconnected = "<big>⚠</big>";
-          format-alt = "<big>{ifname}: {ipaddr}/{cidr}</big>";
-          on-right-click = "${pkgs.networkmanager}/bin/networkmanager";
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "󰈀";
+          tooltip-format = "{ifname} via {gwaddr}";
+          format-linked = "{ifname} (No IP)";
+          format-disconnected = "⚠";
+          format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
 
         "pulseaudio" = {
-          format = "<big>{volume}% {icon}</big>";
-          format-bluetooth = "<big>{volume}% {icon}</big>";
-          format-bluetooth-muted = "<big>{icon} {format_source}</big>";
-          format-muted = "<big>{format_source}</big>";
+          format = "{volume}% {icon}";
+          format-bluetooth = "{volume}% {icon}";
+          format-bluetooth-muted = "{icon} {format_source}";
+          format-muted = "{format_source}";
           format-source = "";
           format-source-muted = "";
           format-icons = {
@@ -75,9 +72,9 @@
         };
 
         "sway/workspaces" = {
-          format = "<span size='large'>{icon}</span>";
           disable-scroll = true;
           all-outputs = true;
+          spacing = 10;
         };
 
         "tray" = {
@@ -90,106 +87,32 @@
       * {
         border: none;
         border-radius: 0px;
-        /* `otf-font-awesome` is required to be installed for icons */
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-size: 13px;
+        font-family: FiraCode;
+        font-size: 18px;
         min-height: 0;
-      }
-
-      window#waybar {
         background-color: transparent;
-        color: #ffffff;
-        transition-property: background-color;
-        transition-duration: .5s;
+        color: white;
       }
-
-      window#waybar.hidden {
-        opacity: 0.2;
-      }
-
-      #workspaces button {
-        background: #1f1f1f;
-        color: #ffffff;
-        border-radius: 20px;
-
-      }
-
-      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      #workspaces button:hover {
-        background: lightblue;
-        color: black;
-        border-bottom: 3px solid #ffffff;
-
-      }
-
-      #workspaces button.focused {
-        background: #1f1f1f;
-      }
-
-      #workspaces button.focused:hover {
-        background: lightblue;
-        color: black;
-        border-bottom: 3px solid #ffffff;
-
-      }
-
-      #workspaces button.urgent {
-        background-color: #eb4d4b;
-      }
-
-      #mode {
-        background-color: #64727D;
-        border-bottom: 3px solid #ffffff;
-      }
-
-      #clock,
-      #battery,
+      
       #backlight,
+      #battery,
+      #clock,
+      #idle_inhibitor,
       #network,
       #pulseaudio,
-      #tray,
-      #idle_inhibitor,
-
-      #window,
-      #workspaces {
-        margin: 0px 4px;
-      }
-
-      /* If workspaces is the leftmost module, omit left margin */
-      .modules-left > widget:first-child > #workspaces {
-        margin-left: 0px;
-      }
-
-      /* If workspaces is the rightmost module, omit right margin */
-      .modules-right > widget:last-child > #workspaces {
-        margin-right: 0px;
-      }
-
-      #clock {
+      #tray {
         background-color: #171717;
-        color: #ffffff;
-      }
-
-      #battery {
-        background-color: #ffffff;
-        color: #000000;
-      }
-
-      #battery.charging, #battery.plugged {
-        color: #ffffff;
-        background-color: #26A65B;
+        color: white;
+        padding: 10px;
       }
 
       @keyframes blink {
         to {
-          background-color: #ffffff;
-          color: #000000;
+          color: red;
         }
       }
 
       #battery.critical:not(.charging) {
-        background-color: #f53c3c;
-        color: #ffffff;
         animation-name: blink;
         animation-duration: 0.5s;
         animation-timing-function: linear;
@@ -197,69 +120,44 @@
         animation-direction: alternate;
       }
 
-      label:focus {
-        background-color: #000000;
-      }
-
-      #backlight {
-        background-color: #90b1b1;
-      }
-
-      #network {
-        background-color: #171717;
-        color: #ffffff;
-      }
-
-      #network.disconnected {
-        background-color: #171717;
-        color: red;
-      }
-
-      #pulseaudio {
-        background-color: #171717;
-        color: #ffffff;
-      }
-
-      #pulseaudio.muted {
-        background-color: #171717;
-        color: red;
-      }
-
-      #taskbar{
-        background-color: #171717;
+      #clock {
         border-radius: 0px 20px 20px 0px;
+        padding: 10px 20px;
       }
 
-      #tray {
-        background-color: #171717;
-        color: #ffffff;
+      #idle_inhibitor {
+        border-radius: 20px 0px 0px 20px;
+        padding: 10px 20px;
       }
-
+      
+      #network.disconnected,
+      #pulseaudio.muted,
+      #workspaces button.urgent {
+        color: red;
+      }
+      
       #tray > .passive {
         -gtk-icon-effect: dim;
-        background-color: #171717;
-        color: #ffffff;
       }
 
       #tray > .needs-attention {
         -gtk-icon-effect: highlight;
-        background-color: #171717;
-        color: #ffffff;
       }
 
-      #idle_inhibitor {
-        background-color: #171717;
-        border-radius: 20px 0px 0px 20px;
-
+      /* If workspaces is the leftmost module, omit left margin */
+      .modules-left > widget:first-child > #workspaces {
+        margin-left: 0px;
       }
 
-      #idle_inhibitor.activated {
+      #workspaces button {
         background-color: #171717;
-        color: #ffffff;
-        border-radius: 20px 0px 0px 20px;
+        border-radius: 20px;
+        margin: 2px;
+      }
+
+      #workspaces button.focused {
+        color: lightblue;
       }
     '';
-    systemd.enable = true;
-    systemd.target = "sway-session.target";
   };
 }

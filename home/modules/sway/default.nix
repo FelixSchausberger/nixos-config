@@ -56,7 +56,6 @@ in
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
-        # { command = "swww init; swww img ${scripts/result/bin/wallpaper}"; }
         { command = "${swww} init; ${swww} img ${scripts/result/bin/wallpaper}"; }
       ];
 
@@ -120,6 +119,9 @@ in
 
         # Screenshots
         "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
+
+        # Show waybar
+        "${modifier}" = "swaymsg bar hidden_state show";
       };
 
       window.commands = [
@@ -153,7 +155,10 @@ in
         };
       };
 
-      bars = [ ];
+      bars = [{
+        command = "waybar";
+        mode = "hide";
+      }];
 
       gaps.inner = 10;
 
@@ -194,6 +199,13 @@ in
     };
 
     extraConfig = ''
+      bar {
+        swaybar_command waybar
+        mode hide
+        hidden_state show
+        hidden_state hide
+      }
+      
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
       for_window [app_id="floating-mode"] floating enable
