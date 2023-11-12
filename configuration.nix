@@ -45,10 +45,9 @@
     ];
 
     etc = {
-      "ssh/ssh_host_ed25519_key.pub".source =
-        if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
-        then ./hosts/${host}/ssh_host_ed25519_key.pub
-        else null;
+      "fuse.conf".text = ''
+        user_allow_other
+      '';
 
       "nixos/configuration.nix" = {
         source = "/home/fesch/.nixos/configuration.nix";
@@ -57,6 +56,11 @@
       "nixos/hardware-configuration.nix" = {
         source = "/home/fesch/.nixos/hosts/${host}/hardware-configuration.nix";
       };
+
+      "ssh/ssh_host_ed25519_key.pub".source =
+        if builtins.pathExists ./hosts/${host}/ssh_host_ed25519_key.pub
+        then ./hosts/${host}/ssh_host_ed25519_key.pub
+        else null;
     };
   };
 
@@ -70,11 +74,17 @@
   };
 
   # Configure system wide privileges.
-  security.pam.services.swaylock.text = ''
-    # PAM configuration file for the swaylock screen locker. By default, it includes
-    # the 'login' configuration file (see /etc/pam.d/login)
-    auth include login
-  '';
+  security = {
+    pam.services.swaylock.text = ''
+      # PAM configuration file for the swaylock screen locker. By default, it includes
+      # the 'login' configuration file (see /etc/pam.d/login)
+      auth include login
+    '';
+
+    wrappers = {
+      fusermount.source = "${pkgs.fuse}/bin/fusermount";
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

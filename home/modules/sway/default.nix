@@ -240,12 +240,6 @@ in
     Install.WantedBy = [ "sway-session.target" ];
   };
 
-  # systemd.user.services.rclone = {
-  #   Unit.Description = "rclone daemon";
-  #   Service.ExecStart = "mkdir -p ~/Shared && ${pkgs.rclone} --vfs-cache-mode writes mount 'gDrive': '~/Shared'";
-  #   Install.WantedBy = ["sway-session.target"];
-  # };
-
   systemd.user.services.wlsunset = {
     Unit.Description = "wlsunset daemon";
     Service.ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 45.5 -L -122.6 -g 0.8";

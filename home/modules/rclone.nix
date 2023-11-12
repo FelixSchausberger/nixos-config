@@ -4,12 +4,12 @@ let
   mountdir = "${config.home.homeDirectory}/gdrive";
 in
 {
-  services.gdrive_mount = {
+  systemd.user.services.gdrive_mount = {
     Unit = {
       Description = "mount gdrive dirs";
       After = [ "network-online.target" ];
     };
-    Install.WantedBy = [ "multi-user.target" ];
+    Install.WantedBy = [ "sway-session.target" ];
     Service = {
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       ExecStart = ''

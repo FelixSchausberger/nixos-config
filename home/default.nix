@@ -51,7 +51,6 @@
       obsidian
       pavucontrol
       procs
-      rclone
       rm-improved
       ripgrep-all
       swayimg
