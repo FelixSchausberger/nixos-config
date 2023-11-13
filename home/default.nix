@@ -16,6 +16,7 @@
     ./modules/helix.nix
     ./modules/nushell.nix
     ./modules/qt.nix
+    ./modules/rbw.nix
     ./modules/rclone.nix
     ./modules/starship.nix
     ./modules/sway
