@@ -121,7 +121,7 @@ in
       ];
 
       output = {
-        "*" = { bg = "${../../wallpaper.png} fill"; };
+        "*" = { bg = "${../../wallpaper.jpg} fill"; };
       };
 
       seat = {

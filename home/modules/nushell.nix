@@ -1,4 +1,4 @@
-{ host, ... }: {
+{ config, host, ... }: {
   programs.nushell = {
     enable = true;
     envFile.text = ''  
@@ -21,17 +21,16 @@
       gaa = "git add .";
       gcm = "git commit -m";
       gst = "git status";
-      homeconfig = "hx ~/.nixos/home/default.nix";
+      homeconfig = "hx ${config.home.homeDirectory}/.nixos/home/default.nix";
       ll = "br -sdp";
       merge = "rsync -avhu --progress";
-      nixconfig = "hx ~/.nixos/configuration.nix";
+      nixconfig = "hx ${config.home.homeDirectory}/.nixos/configuration.nix";
       pull = "git pull";
       push = "git push";
-      rebuild = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch";
-      rip = "rip --graveyard ~/.local/share/Trash";
-      swayconfig = "hx ~/.nixos/home/modules/sway/default.nix";
-      update = "nix flake update -I ~/.nixos";
-      upgrade = "rebuild --upgrade";
+      rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
+      rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
+      swayconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/sway/default.nix";
+      upgrade = "nix flake update -I ${config.home.homeDirectory}/.nixos; sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };
   };
 }

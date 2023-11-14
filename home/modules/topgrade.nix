@@ -1,15 +1,14 @@
-{ host, ... }:
-
+{ config, host, ... }:
 {
   programs.topgrade = {
     enable = true;
     settings = {
-      misc = {};
+      misc = { };
       # disable = [ 
       #   "system" 
       # ];
       commands = {
-        # "System update" = "sudo nixos-rebuild --flake ~/.nixos/#${host} switch --upgrade";
+        "System update" = "nix flake update -I ${config.home.homeDirectory}/.nixos; sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
         "Run garbage collection on Nix store" = "nix-collect-garbage";
       };
     };
