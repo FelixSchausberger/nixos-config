@@ -7,7 +7,6 @@ let
   gsettings = "${pkgs.glib}/bin/gsettings";
   slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  # swww = "${pkgs.swww}/bin/swww";
   wayshot = "${pkgs.wayshot}/bin/wayshot";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
@@ -119,11 +118,10 @@ in
         { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
         { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
-        # { command = "${swww} init; ${swww} img ${scripts/result/bin/wallpaper}"; }
       ];
 
       output = {
-        "*" = { bg = "${../wallpaper.png} fill"; };
+        "*" = { bg = "${../../wallpaper.png} fill"; };
       };
 
       seat = {
