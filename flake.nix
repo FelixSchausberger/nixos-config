@@ -20,7 +20,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, self, ... }@inputs:
     let
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
@@ -36,6 +36,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.extraSpecialArgs = {
+                secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 inherit host nixpkgs nixpkgs-stable nix-colors;
               };
             }

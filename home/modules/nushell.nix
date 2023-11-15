@@ -12,6 +12,7 @@
       }
     '';
     shellAliases = {
+      build = "nix build -L";
       br = "broot";
       cat = "bat";
       cd = "z";
@@ -30,7 +31,8 @@
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
       swayconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/sway/default.nix";
-      upgrade = "nix flake update -I ${config.home.homeDirectory}/.nixos; sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
+      update = "nix flake update -I ${config.home.homeDirectory}/.nixos";
+      upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };
   };
 }

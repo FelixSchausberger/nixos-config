@@ -1,3 +1,4 @@
+{ secrets, ... }:
 {
   programs.git = {
     enable = true;
@@ -8,6 +9,11 @@
       init.defaultBranch = "main";
       pull.rebase = false;
       config.credential.helper = "libsecret";
+      url = {
+        "https://oauth2:${secrets.github.oauth_token}@github.com" = {
+          insteadOf = "https://github.com";
+        };
+      };
     };
   };
 }

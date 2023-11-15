@@ -47,8 +47,9 @@
 
   home = {
     packages = with pkgs; [
-      fd
       dconf
+      fd
+      git-crypt
       keepassxc
       obsidian
       pavucontrol
