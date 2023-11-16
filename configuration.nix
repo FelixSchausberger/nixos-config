@@ -42,6 +42,7 @@
       gnome.gnome-themes-extra
       wayland
       xdg-utils
+      # config.nur.repos.MikaelFangel.spacedrive
     ];
 
     etc = {

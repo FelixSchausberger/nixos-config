@@ -44,6 +44,7 @@
   };
 
   services = {
+    lorri.enable = true;
     playerctld.enable = true;
   };
 
@@ -59,6 +60,7 @@
       procs
       rm-improved
       ripgrep-all
+      slurp
       swayimg
       swww
       tgpt

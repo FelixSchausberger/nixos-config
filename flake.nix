@@ -12,6 +12,8 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
+
+    nur.url = "github:nix-community/NUR";
   };
 
   nixConfig = {
@@ -20,7 +22,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, self, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
     let
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
@@ -29,6 +31,13 @@
           specialArgs = { inherit home-manager host; };
 
           modules = [
+            nur.nixosModules.nur
+            # This adds a nur configuration option.
+            # Use `config.nur` for packages like this:
+            ({ config, ... }: {
+              environment.systemPackages = [ config.nur.repos.mikaelfangel-nur.spacedrive ];
+            })
+
             ./configuration.nix
             ./hosts/${host}
 

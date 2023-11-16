@@ -5,10 +5,7 @@
 let
   dunst = "${pkgs.dunst}/bin/dunstctl";
   gsettings = "${pkgs.glib}/bin/gsettings";
-  slurp = "${pkgs.slurp}/bin/slurp";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  wayshot = "${pkgs.wayshot}/bin/wayshot";
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
@@ -183,7 +180,8 @@ in
         "${modifier}+minus" = "scratchpad show";
 
         # Screenshots
-        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) --stdout | ${wl-copy}";
+        # "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) --stdout | ${wl-copy}";
+        "${modifier}+Shift+s" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
 
         # Show waybar
         "${modifier}" = "swaymsg bar hidden_state show";
