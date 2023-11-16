@@ -183,7 +183,7 @@ in
         "${modifier}+minus" = "scratchpad show";
 
         # Screenshots
-        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) | --stdout | ${wl-copy}";
+        "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) --stdout | ${wl-copy}";
 
         # Show waybar
         "${modifier}" = "swaymsg bar hidden_state show";

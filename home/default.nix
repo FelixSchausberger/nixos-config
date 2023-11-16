@@ -21,6 +21,7 @@
     ./modules/starship.nix
     ./modules/sway
     ./modules/sworkstyle.nix
+    ./modules/tealdeer.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
     ./modules/waybar.nix
@@ -38,6 +39,7 @@
     mpv.enable = true;
     nix-index.enable = true;
     ripgrep.enable = true;
+    ssh.enable = true;
     zoxide.enable = true;
   };
 
@@ -59,6 +61,7 @@
       ripgrep-all
       swayimg
       swww
+      tgpt
       typst
       unzip
       upscayl
