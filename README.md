@@ -10,8 +10,3 @@ Don't forget to replace HOSTNAME with actual hostname:
   sudo mv /etc/nixos/hardware-configuration.nix .nixos/hosts/HOSTNAME
   sudo nixos-rebuild switch --flake '.nixos#HOSTNAME'
 ```
-
-## To Do
-
-- Spacedrive
-- Overskride

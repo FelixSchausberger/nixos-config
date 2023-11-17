@@ -6,11 +6,11 @@
         show_banner: false
       }
     '';
-    # loginFile.text = ''
-    #   if (tty) == "/dev/tty1" {
-    #     sway
-    #   }
-    # '';
+    loginFile.text = ''
+      if (tty) == "/dev/tty1" {
+        sway
+      }
+    '';
     shellAliases = {
       build = "nix build -L";
       br = "broot";

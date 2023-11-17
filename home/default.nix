@@ -54,7 +54,7 @@
       fd
       git-crypt
       keepassxc
-      leftwm
+      nwg-drawer
       obsidian
       pavucontrol
       pre-commit

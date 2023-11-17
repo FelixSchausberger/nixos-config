@@ -1,32 +1,59 @@
-use std::io::{BufRead, BufReader};
-use std::process::{Command, Stdio};
+use std::env;
+use std::io::{self, Write};
+use std::fs;
 
-fn main() {
-    let opts = "--info=inline --print-query --bind=ctrl-space:print-query,tab:replace-query";
+fn main() -> io::Result<()> {
+    // Get the user's PATH environment variable
+    let path_var = env::var_os("PATH").expect("PATH environment variable not set");
+    let paths = env::split_paths(&path_var);
 
-    // Run the compgen -c | fzf $OPTS | tail -1 command and capture its output
-    let compgen_fzf = Command::new("sh")
-        .args(&["-c", &format!("compgen -c | fzf {}", opts)])
-        .stdout(Stdio::piped())
-        .spawn()
-        .expect("Failed to execute command");
+    // Collect all executable files in the user's PATH
+    let executables: Vec<String> = paths
+        .flat_map(|path| {
+            fs::read_dir(path)
+                .ok() // Handle the Result returned by read_dir
+                .map(|entries| {
+                    entries
+                        .filter_map(|entry| {
+                            entry.ok().and_then(|e| {
+                                e.file_name().into_string().ok()
+                            })
+                        })
+                        .collect::<Vec<_>>()
+                })
+                .unwrap_or_else(Vec::new)
+        })
+        .collect();
 
-    // Read the output of the compgen -c | fzf $OPTS | tail -1 command
-    let output = compgen_fzf.stdout.expect("Failed to capture output");
-    let output_lines = BufReader::new(output).lines();
+    // Run fzf with the collected executables
+    let mut fzf = std::process::Command::new("fzf")
+        .args(&["--prompt", "Select a command:"])
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .spawn()?;
 
-    // Get the last line of the output
-    let last_line = output_lines.last().expect("No output lines").unwrap();
+    if let Some(ref mut stdin) = fzf.stdin {
+        for exe in executables {
+            writeln!(stdin, "{}", exe)?;
+        }
+    }
+
+    // Read the selected command from fzf
+    let selected_command = {
+        let output = fzf.wait_with_output()?;
+        String::from_utf8_lossy(&output.stdout).trim().to_string()
+    };
 
     // Execute swaymsg with the selected command
-    let swaymsg = Command::new("swaymsg")
-        .args(&["-q", &format!("exec {}", last_line)])
-        .status()
-        .expect("Failed to execute swaymsg");
+    let swaymsg = std::process::Command::new("swaymsg")
+        .args(&["-q", &format!("exec {}", selected_command)])
+        .status()?;
 
     if swaymsg.success() {
         println!("swaymsg command executed successfully");
     } else {
         eprintln!("swaymsg command failed to execute");
     }
+
+    Ok(())
 }
