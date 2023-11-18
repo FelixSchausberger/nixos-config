@@ -101,7 +101,7 @@
       #network,
       #pulseaudio,
       #tray {
-        background-color: #171717;
+        background-color: rgba(24, 24, 24, 0.7);
         color: white;
         padding: 10px;
       }
@@ -150,7 +150,7 @@
       }
 
       #workspaces button {
-        background-color: #171717;
+        background-color: rgba(24, 24, 24, 0.7);
         border-radius: 20px;
         margin: 2px;
       }

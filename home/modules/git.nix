@@ -1,5 +1,10 @@
-{ secrets, ... }:
+{ pkgs, secrets, ... }:
 {
+  home.packages = with pkgs; [
+    git-crypt
+    pre-commit
+  ];
+
   programs.git = {
     enable = true;
     userName = "Felix Schausberger";

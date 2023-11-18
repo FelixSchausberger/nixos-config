@@ -37,6 +37,11 @@ in
     '';
   };
 
+  home.packages = with pkgs; [
+    slurp
+    swayimg
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     package = pkgs.swayfx;
@@ -124,13 +129,16 @@ in
       seat = {
         "*" = {
           hide_cursor = "10000";
-          xcursor_theme = "Adwaita 24";
+          xcursor_theme = "breeze_cursors 10";
         };
       };
 
       keybindings = pkgs.lib.mkOptionDefault {
         "${modifier}+w" = "kill";
         "${modifier}+t" = "layout tabbed";
+
+        # Application launcher
+        "${modifier}+a" = "exec ${pkgs.nwg-drawer}/bin/nwg-drawer";
 
         # Browser
         "${modifier}+b" = "exec ${browser}";
@@ -180,8 +188,7 @@ in
         "${modifier}+minus" = "scratchpad show";
 
         # Screenshots
-        # "${modifier}+Shift+s" = "exec ${wayshot} -s $(${slurp}) --stdout | ${wl-copy}";
-        "${modifier}+Shift+s" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
+        "Print" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
 
         # Show waybar
         "${modifier}" = "swaymsg bar hidden_state show";
@@ -281,6 +288,8 @@ in
       blur enable
       blur_radius 7
       blur_passes 4
+
+      layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
     '';
   };
 

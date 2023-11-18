@@ -1,7 +1,7 @@
 {
   xdg.configFile."nwg-drawer/drawer.css".text = ''
     window {
-    background-color: rgba (36, 47, 79, 0.95);
+    background-color: rgba (24, 24, 24, 0.3);
         color: #eeeeee
     }
 

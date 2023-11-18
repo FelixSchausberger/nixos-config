@@ -11,16 +11,17 @@
     ./modules/direnv.nix
     ./modules/dunst.nix
     ./modules/fzf.nix
+    ./modules/gammastep.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/nushell.nix
+    ./modules/nwg-drawer.nix
     ./modules/qt.nix
     ./modules/rbw.nix
     ./modules/rclone.nix
     ./modules/starship.nix
     ./modules/sway
-    ./modules/sworkstyle.nix
     ./modules/tealdeer.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
@@ -52,18 +53,10 @@
     packages = with pkgs; [
       dconf
       fd
-      git-crypt
-      keepassxc
-      nwg-drawer
       obsidian
-      pavucontrol
-      pre-commit
       procs
       rm-improved
       ripgrep-all
-      slurp
-      swayimg
-      swww
       tgpt
       typst
       unzip
