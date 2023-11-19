@@ -11,7 +11,7 @@
     ./modules/bootloader.nix
     ./modules/development.nix
     ./modules/fonts.nix
-    ./modules/leftwm.nix
+    # ./modules/leftwm.nix
     ./modules/nix.nix
     ./modules/polkit.nix
     ./modules/sound.nix
