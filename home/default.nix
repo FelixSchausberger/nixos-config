@@ -28,6 +28,7 @@
     ./modules/waybar.nix
     ./modules/wezterm.nix
     ./modules/xdg.nix
+    ./modules/xinit.nix
     nix-colors.homeManagerModule
   ];
 

@@ -4,8 +4,10 @@
     systemPackages = with pkgs; [
       bash
       leftwm
-      xorg
-      # xorg.xinit
+      xorg.libX11
+      xorg.libXinerama
+      xorg.xrandr
+      xorg.xorgserver
     ];
   };
 
