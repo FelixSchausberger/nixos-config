@@ -6,11 +6,11 @@
         show_banner: false
       }
     '';
-    loginFile.text = ''
-      if (tty) == "/dev/tty1" {
-        sway
-      }
-    '';
+    # loginFile.text = ''
+    #   if (tty) == "/dev/tty1" {
+    #     sway
+    #   }
+    # '';
     shellAliases = {
       build = "nix build -L";
       br = "broot";
@@ -31,7 +31,7 @@
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
       swayconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/sway/default.nix";
-      update = "nix flake update -I ${config.home.homeDirectory}/.nixos";
+      update = "nix flake update ${config.home.homeDirectory}/.nixos"; # -I
       upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };
   };

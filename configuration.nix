@@ -11,6 +11,7 @@
     ./modules/bootloader.nix
     ./modules/development.nix
     ./modules/fonts.nix
+    ./modules/leftwm.nix
     ./modules/nix.nix
     ./modules/polkit.nix
     ./modules/sound.nix
@@ -42,7 +43,6 @@
       gnome.gnome-themes-extra
       wayland
       xdg-utils
-      # config.nur.repos.MikaelFangel.spacedrive
     ];
 
     etc = {
