@@ -290,6 +290,7 @@ in
       blur_passes 4
 
       layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
+      layer_effects "notifications" blur enable; shadows enable; corner_radius 12
     '';
   };
 

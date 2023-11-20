@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # C env
     gcc
     gnumake
 
     # Python
-    # jq
+    jq
     python3
 
     # Rust

@@ -15,7 +15,6 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
-    ./modules/leftwm.nix
     ./modules/nushell.nix
     ./modules/nwg-drawer.nix
     ./modules/qt.nix
@@ -29,7 +28,6 @@
     ./modules/waybar.nix
     ./modules/wezterm.nix
     ./modules/xdg.nix
-    # ./modules/xinit.nix
     nix-colors.homeManagerModule
   ];
 

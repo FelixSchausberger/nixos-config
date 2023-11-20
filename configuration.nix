@@ -11,7 +11,6 @@
     ./modules/bootloader.nix
     ./modules/development.nix
     ./modules/fonts.nix
-    # ./modules/leftwm.nix
     ./modules/nix.nix
     ./modules/polkit.nix
     ./modules/sound.nix
@@ -39,8 +38,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      gnome.adwaita-icon-theme
-      gnome.gnome-themes-extra
       wayland
       xdg-utils
     ];

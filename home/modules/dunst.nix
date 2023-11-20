@@ -1,5 +1,3 @@
-{ config, ... }: 
-
 {
   services.dunst = {
     enable = true;
@@ -10,13 +8,13 @@
         offset = "30x50";
         origin = "top-right";
         transparency = 10;
-        frame_color = "#${config.colorScheme.colors.base00}"; # "#eceff1";
-        font = "Fira Code NF 9";
+        frame_color = "#37474f03";
+        font = "Fira Code NF 14";
       };
-      
+
       urgency_normal = {
-        background = "#${config.colorScheme.colors.base05}"; # "#37474f";
-        foreground = "#${config.colorScheme.colors.base00}"; # "#eceff1";
+        background = "#37474f03";
+        foreground = "#eceff1";
         timeout = 10;
       };
     };
