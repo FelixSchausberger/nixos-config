@@ -59,6 +59,11 @@
           name = "toml";
           formatter = {command = "taplo fmt";};
         }
+        
+        {
+          name = "typst";
+          formatter = {command = "typst-lsp";};
+        }
 
         {
           name = "yaml";

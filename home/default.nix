@@ -40,6 +40,7 @@
     mpv.enable = true;
     nix-index.enable = true;
     ripgrep.enable = true;
+    sioyek.enable = true;
     ssh.enable = true;
     zoxide.enable = true;
   };
