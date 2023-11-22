@@ -15,6 +15,7 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
+    ./modules/i3status-rust.nix
     ./modules/nushell.nix
     ./modules/nwg-drawer.nix
     ./modules/qt.nix
