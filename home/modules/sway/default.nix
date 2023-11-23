@@ -275,6 +275,21 @@ in
         hidden_state show
         hidden_state hide
       }
+
+      # bar {
+      #   font pango:Fira Code 12
+      #   position bottom
+      #   status_command i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml
+      #   colors {
+      #       separator #666666
+      #       background #22222209
+      #       statusline #dddddd
+      #       focused_workspace #0088CC #0088CC #ffffff
+      #       active_workspace #333333 #333333 #ffffff
+      #       inactive_workspace #333333 #333333 #888888
+      #       urgent_workspace #2f343a #900000 #ffffff
+      #   }
+      # }
       
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
@@ -291,6 +306,7 @@ in
 
       layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
       layer_effects "notifications" blur enable; shadows enable; corner_radius 12
+      layer_effects "panel" corner_radius 12
     '';
   };
 

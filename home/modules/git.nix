@@ -1,4 +1,5 @@
 { pkgs, secrets, ... }:
+
 {
   home.packages = with pkgs; [
     git-crypt

@@ -9,11 +9,6 @@
       "--margin=1"
       "--padding=1"
     ];
-    tmux = {
-      enableShellIntegration = true;
-      shellIntegrationOptions = [
-        "-p 80%,60%"
-      ];
-    };
   };
 }
+
