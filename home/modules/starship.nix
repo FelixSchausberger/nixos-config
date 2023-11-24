@@ -1,8 +1,9 @@
 {
   programs.starship = {
     enable = true;
+
     # https://starship.rs/config/#prompt
-    settings = { 
+    settings = {
       git_status = {
         ahead = "⇡($count)";
         diverged = "⇕⇡($ahead_count)⇣($behind_count)";

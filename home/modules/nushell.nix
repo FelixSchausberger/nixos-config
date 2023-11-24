@@ -1,16 +1,16 @@
-{ config, host, ... }: {
+{ config, host, ... }:
+
+{
   programs.nushell = {
     enable = true;
-    envFile.text = ''  
-      $env.config = {
-        show_banner: false
-      }
+    envFile.text = ''
+      $env.config = { show_banner = false };
     '';
+
     loginFile.text = ''
-      if (tty) == "/dev/tty1" {
-        sway
-      }
+      if (tty == "/dev/tty1" then sway else "";
     '';
+
     shellAliases = {
       build = "nix build -L";
       br = "broot";

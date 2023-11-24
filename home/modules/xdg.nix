@@ -4,7 +4,6 @@
     mime.enable = true;
 
     configFile = {
-      # Default apps
       "mimeapps.list".text = ''
         [Default Applications]
         text/html=firefox.desktop
@@ -22,6 +21,7 @@
       '';
 
       "user-dirs.dirs".text = ''
+        # User directories
         XDG_DESKTOP_DIR="$HOME/Desktop"
         XDG_DOCUMENTS_DIR="$HOME/Documents"
         XDG_DOWNLOAD_DIR="$HOME/Downloads"
