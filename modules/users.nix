@@ -1,13 +1,19 @@
-{home-manager, pkgs, ...}: {
+{ config, pkgs, ... }:
+
+config = {
   imports = [
+    # Import home-manager module
     home-manager.nixosModules.home-manager
+
+    # Import Home-Manager configuration for user 'fesch'
+    ./home.nix
   ];
 
   users.users = {
     fesch = {
       isNormalUser = true;
       description = "Felix Schausberger";
-      extraGroups = ["networkmanager" "video" "wheel"];  
+      extraGroups = [ "networkmanager" "video" "wheel" ];
       shell = pkgs.nushell;
     };
   };
@@ -16,15 +22,4 @@
   security.sudo.configFile = ''
     fesch  ALL=(ALL:ALL) NOPASSWD:ALL
   '';
-
-  home-manager = {
-    useUserPackages = true;
-    users.fesch = {
-      imports = [ ../home ];
-      home = {
-        homeDirectory = "/home/fesch";
-        username = "fesch";
-      };
-    };
-  };
-}
+};

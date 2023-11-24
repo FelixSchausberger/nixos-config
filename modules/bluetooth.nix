@@ -1,6 +1,6 @@
 {
   hardware.bluetooth.enable = true;
 
-  # blutooth GUI
+  # Enable Bluetooth GUI
   services.blueman.enable = true;
 }

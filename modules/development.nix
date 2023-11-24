@@ -13,13 +13,14 @@
     rustc
 
     # Language Servers
-    nodePackages.bash-language-server # bash
-    clang-tools # c / cpp
-    marksman # markdown
-    nil # nix
-    python311Packages.python-lsp-server # python
-    rust-analyzer # rust
-    taplo # toml
-    yaml-language-server # yaml
+    nodePackages.bash-language-server   # Bash
+    clang-tools                         # C/C++
+    marksman                            # Markdown
+    nil                                 # Nix
+    python311Packages.python-lsp-server # Python
+    rust-analyzer                       # Rust
+    taplo                               # TOML
+    yaml-language-server                # YAML
   ];
 }
+
