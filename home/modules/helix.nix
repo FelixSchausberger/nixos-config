@@ -36,7 +36,7 @@
         { name = "python"; auto-format = true; }
         { name = "rust"; auto-format = true; formatter = { command = "clippy"; }; }
         { name = "toml"; auto-format = true; formatter = { command = "taplo fmt"; }; }
-        { name = "typst"; auto-format = true; }
+        # { name = "typst"; auto-format = true; }
         { name = "yaml"; auto-format = true; }
       ];
     };

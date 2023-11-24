@@ -1,10 +1,3 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ system ? builtins.currentSystem }:
 
-pkgs.mkShell {
-  buildInputs = [
-    pkgs.hello
-
-    # keep this line if you use bash
-    pkgs.bashInteractive
-  ];
-}
+(builtins.getFlake (toString ./.)).devShell.${system}

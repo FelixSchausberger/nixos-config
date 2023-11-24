@@ -3,6 +3,7 @@
 , pkgs
 , ...
 }: {
+  # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
     ./modules/bat.nix
@@ -32,8 +33,10 @@
     nix-colors.homeManagerModule
   ];
 
+  # Set color scheme
   colorScheme = nix-colors.colorSchemes.onedark;
 
+  # Configure enabled programs and services
   programs = {
     bottom.enable = true;
     firefox.enable = true;
@@ -48,9 +51,10 @@
 
   services = {
     lorri.enable = true;
-    playerctld.enable = true;
+    playerctld.enable = true; # Custom services with comments
   };
 
+  # Configure additional packages
   home = {
     packages = with pkgs; [
       dconf
@@ -67,14 +71,7 @@
       wl-clipboard
     ];
 
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
+    # Specify Home Manager release version
     stateVersion = "23.11";
   };
 

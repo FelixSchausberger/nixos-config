@@ -4,38 +4,42 @@
 }:
 let
   dunst = "${pkgs.dunst}/bin/dunstctl";
-  gsettings = "${pkgs.glib}/bin/gsettings";
+  gnomeSettings = "${pkgs.glib}/bin/gsettings";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  audioControl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
-  editor = "hx";
+  # editor = "hx";
   browser = "firefox";
+
+  swayEnvironment = import ./sway-environment.nix { };
 in
 {
-  xdg.configFile."sway/environment" = {
-    executable = true;
+  inherit (swayEnvironment) xdg;
 
-    text = ''
-      #!/bin/sh
+  # xdg.configFile."sway/environment" = {
+  #   executable = true;
 
-      export TERMINAL="${pkgs.wezterm}/bin/wezterm"
-      export BROWSER=${browser}
-      export EDITOR=${editor}
-      export SUDO_EDITOR=${editor}
-      export VISUAL=${editor}
+  #   text = ''
+  #     #!/bin/sh
 
-      export SDL_VIDEODRIVER="wayland"
-      export QT_QPA_PLATFORM="wayland"
-      export GDK_BACKEND="wayland,x11"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export JAVA_HOME=${pkgs.jdk11}/lib/openjdk
+  #     export TERMINAL="${pkgs.wezterm}/bin/wezterm"
+  #     export BROWSER=${browser}
+  #     export EDITOR=${editor}
+  #     export SUDO_EDITOR=${editor}
+  #     export VISUAL=${editor}
 
-      export MOZ_ENABLE_WAYLAND=1
-      export MOZ_WEBRENDER=1
-      export MOZ_ACCELERATED=1
-    '';
-  };
+  #     export SDL_VIDEODRIVER="wayland"
+  #     export QT_QPA_PLATFORM="wayland"
+  #     export GDK_BACKEND="wayland,x11"
+  #     export _JAVA_AWT_WM_NONREPARENTING=1
+  #     export JAVA_HOME=${pkgs.jdk11}/lib/openjdk
+
+  #     export MOZ_ENABLE_WAYLAND=1
+  #     export MOZ_WEBRENDER=1
+  #     export MOZ_ACCELERATED=1
+  #   '';
+  # };
 
   home.packages = with pkgs; [
     slurp
@@ -117,8 +121,8 @@ in
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }
-        { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
-        { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
       ];
 
@@ -160,9 +164,9 @@ in
         "--release ${modifier}+l" = "exec loginctl lock-session";
 
         # Multimedia
-        "--locked XF86AudioRaiseVolume" = "exec ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
-        "--locked XF86AudioLowerVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "--locked XF86AudioMute" = "exec ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "--locked XF86AudioRaiseVolume" = "exec ${audioControl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
+        "--locked XF86AudioLowerVolume" = "exec ${audioControl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "--locked XF86AudioMute" = "exec ${audioControl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
         "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";

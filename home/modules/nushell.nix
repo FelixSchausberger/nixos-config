@@ -4,13 +4,14 @@
   programs.nushell = {
     enable = true;
     envFile.text = ''
-      $env.config = { show_banner = false };
+      $env.config = { show_banner: false };
     '';
 
     loginFile.text = ''
-      if (tty == "/dev/tty1" then sway else "";
+      if (tty) == "/dev/tty1" { sway };
     '';
 
+    # Move to home config once https://github.com/nushell/nushell/issues/10088 is closed 
     shellAliases = {
       build = "nix build -L";
       br = "broot";

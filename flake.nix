@@ -29,6 +29,12 @@
           specialArgs = { inherit home-manager host; };
           modules = [
             nur.nixosModules.nur
+            # This adds a nur configuration option.
+            # Use `config.nur` for packages like this:
+            ({ config, ... }: {
+              environment.systemPackages = [ config.nur.repos.mikaelfangel-nur.spacedrive ];
+            })
+
             # Include custom configurations
             ./configuration.nix
             ./hosts/${host}
