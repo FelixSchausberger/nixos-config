@@ -21,5 +21,12 @@
         };
       };
     };
+    # alises = {
+    #   clone = "git clone";
+    #   fetch = "git fetch";
+    #   gst = "git status";
+    #   pull = "git pull";
+    #   push = "git push";
+    # };
   };
 }

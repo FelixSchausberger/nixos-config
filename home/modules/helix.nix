@@ -57,13 +57,14 @@
 
         {
           name = "toml";
+          auto-format = true;
           formatter = { command = "taplo fmt"; };
         }
 
-        # {
-        #   name = "typst";
-        #   formatter = {command = "typst-lsp";};
-        # }
+        {
+          name = "typst";
+          auto-format = true;
+        }
 
         {
           name = "yaml";

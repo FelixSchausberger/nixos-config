@@ -6,22 +6,23 @@
         show_banner: false
       }
     '';
-    # loginFile.text = ''
-    #   if (tty) == "/dev/tty1" {
-    #     sway
-    #   }
-    # '';
+    loginFile.text = ''
+      if (tty) == "/dev/tty1" {
+        sway
+      }
+    '';
     shellAliases = {
       build = "nix build -L";
       br = "broot";
       cat = "bat";
       cd = "z";
+      clone = "gix clone"; # "git clone";
       cleanup = "sudo nix-collect-garbage";
       cp = "cp -rpv";
-      fetch = "git fetch";
+      fetch = "gix fetch"; # "git fetch";
       gaa = "git add .";
       gcm = "git commit -m";
-      gst = "git status";
+      gst = "gix status"; # "git status";
       homeconfig = "hx ${config.home.homeDirectory}/.nixos/home/default.nix";
       ll = "br -sdp";
       merge = "rsync -avhu --progress";

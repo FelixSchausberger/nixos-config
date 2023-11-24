@@ -55,6 +55,7 @@
     packages = with pkgs; [
       dconf
       fd
+      gitoxide
       obsidian
       procs
       rm-improved
