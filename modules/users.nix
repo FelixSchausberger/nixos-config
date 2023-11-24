@@ -1,12 +1,12 @@
-{ config, pkgs, ... }:
+{ home-manager, pkgs, ... }:
 
-config = {
+{
   imports = [
     # Import home-manager module
     home-manager.nixosModules.home-manager
 
     # Import Home-Manager configuration for user 'fesch'
-    ./home.nix
+    ./homemanager.nix
   ];
 
   users.users = {
@@ -22,4 +22,4 @@ config = {
   security.sudo.configFile = ''
     fesch  ALL=(ALL:ALL) NOPASSWD:ALL
   '';
-};
+}

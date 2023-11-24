@@ -1,7 +1,9 @@
+{ pkgs, ... }:
+
 {
   services.dunst = {
     enable = true;
-    
+
     # Icon theme configuration
     iconTheme = {
       name = "Tela";

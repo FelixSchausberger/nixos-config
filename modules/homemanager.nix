@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-config = {
+{
   home-manager = {
     useUserPackages = true;
     users.fesch = {
@@ -11,4 +9,4 @@ config = {
       };
     };
   };
-};
+}
