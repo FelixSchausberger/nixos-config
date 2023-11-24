@@ -4,18 +4,20 @@
 }:
 let
   dunst = "${pkgs.dunst}/bin/dunstctl";
-  gnomeSettings = "${pkgs.glib}/bin/gsettings";
+  gsettings = "${pkgs.glib}/bin/gsettings";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  audioControl = "${pkgs.wireplumber}/bin/wpctl";
+  wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
   # editor = "hx";
   browser = "firefox";
-
-  swayEnvironment = import ./sway-environment.nix { };
 in
 {
-  inherit (swayEnvironment) xdg;
+  import = [
+    ./sway-extra-session-commands.nix
+  ];
+
+  xdg.configFile."sway/environment".source = ./sway-environment.sh;
 
   # xdg.configFile."sway/environment" = {
   #   executable = true;
@@ -121,8 +123,8 @@ in
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }
-        { command = "${gnomeSettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
-        { command = "${gnomeSettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
+        { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
       ];
 
@@ -164,9 +166,9 @@ in
         "--release ${modifier}+l" = "exec loginctl lock-session";
 
         # Multimedia
-        "--locked XF86AudioRaiseVolume" = "exec ${audioControl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
-        "--locked XF86AudioLowerVolume" = "exec ${audioControl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "--locked XF86AudioMute" = "exec ${audioControl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "--locked XF86AudioRaiseVolume" = "exec ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
+        "--locked XF86AudioLowerVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "--locked XF86AudioMute" = "exec ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
         "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";
@@ -230,7 +232,8 @@ in
       };
 
       bars = [{
-        command = "waybar";
+        # command = "waybar";
+        command = "i3status-rs";
         mode = "hide";
       }];
 
@@ -273,27 +276,31 @@ in
     };
 
     extraConfig = ''
+      # bar {
+      #   swaybar_command waybar
+      #   mode hide
+      #   hidden_state show
+      #   hidden_state hide
+      # }
+
       bar {
-        swaybar_command waybar
+        # font pango:DejaVu Sans Mono, FontAwesome 6 Free 16 
+        font pango:FiraCode Nerd Font, FontAwesome 6 Free 16
+        position bottom
+        status_command i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml
         mode hide
         hidden_state show
         hidden_state hide
+        colors {
+          separator #666666
+          background #181818
+          statusline #dddddd
+          focused_workspace #0088CC #0088CC #ffffff
+          active_workspace #333333 #333333 #ffffff
+          inactive_workspace #181818 #181818 #888888
+          urgent_workspace #2f343a #900000 #ffffff
+        }
       }
-
-      # bar {
-      #   font pango:Fira Code 12
-      #   position bottom
-      #   status_command i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml
-      #   colors {
-      #       separator #666666
-      #       background #22222209
-      #       statusline #dddddd
-      #       focused_workspace #0088CC #0088CC #ffffff
-      #       active_workspace #333333 #333333 #ffffff
-      #       inactive_workspace #333333 #333333 #888888
-      #       urgent_workspace #2f343a #900000 #ffffff
-      #   }
-      # }
       
       for_window [class="."] inhibit_idle fullscreen
       for_window [app_id="."] inhibit_idle fullscreen
@@ -310,7 +317,7 @@ in
 
       layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
       layer_effects "notifications" blur enable; shadows enable; corner_radius 12
-      layer_effects "panel" corner_radius 12
+      # layer_effects "panel" blur enable; shadows enable; corner_radius 12
     '';
   };
 
