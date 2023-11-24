@@ -9,15 +9,14 @@ let
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
-  # editor = "hx";
   browser = "firefox";
 in
 {
-  import = [
-    ./sway-extra-session-commands.nix
-  ];
+  # import = [
+  #   ./sway-extra-session-commands.nix
+  # ];
 
-  xdg.configFile."sway/environment".source = ./sway-environment.sh;
+  xdg.configFile."sway/environment".source = ./sway-environment.nix;
 
   # xdg.configFile."sway/environment" = {
   #   executable = true;
