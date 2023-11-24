@@ -8,11 +8,7 @@
     wineWowPackages.waylandFull
   ];
 
-  wayland.windowManager.sway.config = {
-    input = {
-      "*" = {
-        xkb_layout = "eu";
-      };
-    };
+  wayland.windowManager.sway.config.input."*" = {
+    xkb_layout = "eu";
   };
 }
