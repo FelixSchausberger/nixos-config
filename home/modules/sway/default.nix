@@ -3,13 +3,13 @@
 , ...
 }:
 let
-  dunst = "${pkgs.dunst}/bin/dunstctl";
+  # dunst = "${pkgs.dunst}/bin/dunstctl";
   gnomeSettings = "${pkgs.glib}/bin/gsettings";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  audioControl = "${pkgs.wireplumber}/bin/wpctl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  # audioControl = "${pkgs.wireplumber}/bin/wpctl";
+  # playerctl = "${pkgs.playerctl}/bin/playerctl";
 
-  browser = "firefox";
+  # browser = "firefox";
 in
 {
   xdg.configFile."sway/environment".source = ./sway-environment.nix;
@@ -47,66 +47,66 @@ in
         };
       };
 
-      keybindings = pkgs.lib.mkOptionDefault {
-        "${modifier}+w" = "kill";
-        "${modifier}+t" = "layout tabbed";
+      # keybindings = pkgs.lib.mkOptionDefault {
+      #   "${modifier}+w" = "kill";
+      #   "${modifier}+t" = "layout tabbed";
 
-        # Application launcher
-        "${modifier}+a" = "exec ${pkgs.nwg-drawer}/bin/nwg-drawer";
+      #   # Application launcher
+      #   "${modifier}+a" = "exec ${pkgs.nwg-drawer}/bin/nwg-drawer";
 
-        # Browser
-        "${modifier}+b" = "exec ${browser}";
+      #   # Browser
+      #   "${modifier}+b" = "exec ${browser}";
 
-        # Clipboard pickers
-        "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
+      #   # Clipboard pickers
+      #   "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
 
-        # Cycle through workspaces
-        "${modifier}+tab" = "workspace next_on_output";
-        "${modifier}+Shift+tab" = "workspace prev_on_output";
+      #   # Cycle through workspaces
+      #   "${modifier}+tab" = "workspace next_on_output";
+      #   "${modifier}+Shift+tab" = "workspace prev_on_output";
 
-        # File Manager
-        "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
+      #   # File Manager
+      #   "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
 
-        # Find        
-        "${modifier}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
+      #   # Find        
+      #   "${modifier}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
 
-        # Manual lock
-        "--release ${modifier}+l" = "exec loginctl lock-session";
+      #   # Manual lock
+      #   "--release ${modifier}+l" = "exec loginctl lock-session";
 
-        # Multimedia
-        "--locked XF86AudioRaiseVolume" = "exec ${audioControl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
-        "--locked XF86AudioLowerVolume" = "exec ${audioControl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "--locked XF86AudioMute" = "exec ${audioControl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
-        "--locked XF86AudioNext" = "exec ${playerctl} next";
-        "--locked XF86AudioPrev" = "exec ${playerctl} previous";
+      #   # Multimedia
+      #   "--locked XF86AudioRaiseVolume" = "exec ${audioControl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
+      #   "--locked XF86AudioLowerVolume" = "exec ${audioControl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+      #   "--locked XF86AudioMute" = "exec ${audioControl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      #   "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
+      #   "--locked XF86AudioNext" = "exec ${playerctl} next";
+      #   "--locked XF86AudioPrev" = "exec ${playerctl} previous";
 
-        # Move focused window
-        "${modifier}+Shift+h" = "move left";
-        "${modifier}+Shift+j" = "move down";
-        "${modifier}+Shift+k" = "move up";
-        "${modifier}+Shift+l" = "move right";
-        # Ditto, with arrow keys
-        "${modifier}+Shift+Left" = "move left";
-        "${modifier}+Shift+Down" = "move down";
-        "${modifier}+Shift+Up" = "move up";
-        "${modifier}+Shift+Right" = "move right";
+      #   # Move focused window
+      #   "${modifier}+Shift+h" = "move left";
+      #   "${modifier}+Shift+j" = "move down";
+      #   "${modifier}+Shift+k" = "move up";
+      #   "${modifier}+Shift+l" = "move right";
+      #   # Ditto, with arrow keys
+      #   "${modifier}+Shift+Left" = "move left";
+      #   "${modifier}+Shift+Down" = "move down";
+      #   "${modifier}+Shift+Up" = "move up";
+      #   "${modifier}+Shift+Right" = "move right";
 
-        # Notification daemon
-        "Control+Space" = "exec ${dunst} close";
-        "Control+Shift+Space" = "exec ${dunst} close-all";
-        "Control+m" = "exec ${dunst} set-paused toggle";
+      #   # Notification daemon
+      #   "Control+Space" = "exec ${dunst} close";
+      #   "Control+Shift+Space" = "exec ${dunst} close-all";
+      #   "Control+m" = "exec ${dunst} set-paused toggle";
 
-        # Scratchpad
-        "${modifier}+Shift+minus" = "move scratchpad";
-        "${modifier}+minus" = "scratchpad show";
+      #   # Scratchpad
+      #   "${modifier}+Shift+minus" = "move scratchpad";
+      #   "${modifier}+minus" = "scratchpad show";
 
-        # Screenshots
-        "Print" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
+      #   # Screenshots
+      #   "Print" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
 
-        # Show waybar
-        "${modifier}" = "swaymsg bar hidden_state show";
-      };
+      #   # Show waybar
+      #   "${modifier}" = "swaymsg bar hidden_state show";
+      # };
 
       window.commands = [
         # Volume Control
@@ -182,51 +182,6 @@ in
         };
       };
     };
-
-    extraConfig = ''
-      # bar {
-      #   swaybar_command waybar
-      #   mode hide
-      #   hidden_state show
-      #   hidden_state hide
-      # }
-
-      bar {
-        # font pango:DejaVu Sans Mono, FontAwesome 6 Free 16 
-        font pango:FiraCode Nerd Font, FontAwesome 6 Free 16
-        position bottom
-        status_command i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml
-        mode hide
-        hidden_state show
-        hidden_state hide
-        colors {
-          separator #666666
-          background #181818
-          statusline #dddddd
-          focused_workspace #0088CC #0088CC #ffffff
-          active_workspace #333333 #333333 #ffffff
-          inactive_workspace #181818 #181818 #888888
-          urgent_workspace #2f343a #900000 #ffffff
-        }
-      }
-      
-      for_window [class="."] inhibit_idle fullscreen
-      for_window [app_id="."] inhibit_idle fullscreen
-      for_window [app_id="floating-mode"] floating enable
-      
-      # SwayFX settings
-      shadows enable
-
-      corner_radius 12
-
-      blur enable
-      blur_radius 7
-      blur_passes 4
-
-      layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
-      layer_effects "notifications" blur enable; shadows enable; corner_radius 12
-      # layer_effects "panel" blur enable; shadows enable; corner_radius 12
-    '';
   };
 
   services.swayidle = {
