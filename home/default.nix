@@ -27,6 +27,7 @@
     ./modules/sway/sway-config-keybindings.nix
     ./modules/sway/sway-extra-config.nix
     ./modules/sway/sway-extra-session-commands.nix
+    ./modules/sway/swayidle.nix
     ./modules/tealdeer.nix
     ./modules/topgrade.nix
     ./modules/vscode.nix
