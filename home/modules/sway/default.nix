@@ -4,43 +4,15 @@
 }:
 let
   dunst = "${pkgs.dunst}/bin/dunstctl";
-  gsettings = "${pkgs.glib}/bin/gsettings";
+  gnomeSettings = "${pkgs.glib}/bin/gsettings";
   swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  audioControl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
 
   browser = "firefox";
 in
 {
-  # import = [
-  #   ./sway-extra-session-commands.nix
-  # ];
-
   xdg.configFile."sway/environment".source = ./sway-environment.nix;
-
-  # xdg.configFile."sway/environment" = {
-  #   executable = true;
-
-  #   text = ''
-  #     #!/bin/sh
-
-  #     export TERMINAL="${pkgs.wezterm}/bin/wezterm"
-  #     export BROWSER=${browser}
-  #     export EDITOR=${editor}
-  #     export SUDO_EDITOR=${editor}
-  #     export VISUAL=${editor}
-
-  #     export SDL_VIDEODRIVER="wayland"
-  #     export QT_QPA_PLATFORM="wayland"
-  #     export GDK_BACKEND="wayland,x11"
-  #     export _JAVA_AWT_WM_NONREPARENTING=1
-  #     export JAVA_HOME=${pkgs.jdk11}/lib/openjdk
-
-  #     export MOZ_ENABLE_WAYLAND=1
-  #     export MOZ_WEBRENDER=1
-  #     export MOZ_ACCELERATED=1
-  #   '';
-  # };
 
   home.packages = with pkgs; [
     slurp
@@ -51,69 +23,6 @@ in
     enable = true;
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      ## Internal variables
-      SWAY_EXTRA_ARGS=""
-
-      ## General exports
-      export XDG_CURRENT_DESKTOP=sway
-      export XDG_SESSION_DESKTOP=sway
-      export XDG_SESSION_TYPE=wayland
-
-      ## Hardware compatibility
-      # We can't be sure that the virtual GPU is compatible with Sway.
-      # We should be attempting to detect an EGL driver instead, but that appears
-      # to be a bit more complicated.
-      case $(systemd-detect-virt --vm) in
-          "none"|"")
-              ;;
-          "kvm")
-              # https://github.com/swaywm/sway/issues/6581
-              export WLR_NO_HARDWARE_CURSORS=1
-              # There's two drivers we can get here, depending on the 3D acceleration
-              # flag state: either virtio_gpu/virgl or kms_swrast/llvmpipe.
-              #
-              # The former one causes graphical glitches in OpenGL apps when using
-              # 'pixman' renderer. The latter will crash 'gles2' renderer outright.
-              # Neither of those support 'vulkan'.
-              #
-              # The choice is obvious, at least until we learn to detect the driver
-              # instead of abusing the virtualization technology identifier.
-              #
-              # See also: https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/2871
-              export WLR_RENDERER=pixman
-              ;;
-          *)
-              # https://github.com/swaywm/sway/issues/6581
-              export WLR_NO_HARDWARE_CURSORS=1
-              ;;
-      esac
-
-      ## Load system environment customizations
-      if [ -f /etc/sway/environment ]; then
-          set -o allexport
-          # shellcheck source=/dev/null
-          . /etc/sway/environment
-          set +o allexport
-      fi
-
-      ## Load user environment customizations
-      if [ -f "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment" ]; then
-          set -o allexport
-          # shellcheck source=/dev/null
-          . "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment"
-          set +o allexport
-      fi
-
-      ## Unexport internal variables
-      # export -n is not POSIX :(
-      _SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS"
-      unset SWAY_EXTRA_ARGS
-
-      # Start sway with extra arguments and send output to the journal
-      # shellcheck disable=SC2086 # quoted expansion of EXTRA_ARGS can produce empty field
-      exec systemd-cat -- sway $_SWAY_EXTRA_ARGS "$@"
-    '';
 
     config = rec {
       terminal = "${pkgs.wezterm}/bin/wezterm";
@@ -122,8 +31,8 @@ in
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }
-        { command = "${gsettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
-        { command = "${gsettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
       ];
 
@@ -165,9 +74,9 @@ in
         "--release ${modifier}+l" = "exec loginctl lock-session";
 
         # Multimedia
-        "--locked XF86AudioRaiseVolume" = "exec ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
-        "--locked XF86AudioLowerVolume" = "exec ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "--locked XF86AudioMute" = "exec ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "--locked XF86AudioRaiseVolume" = "exec ${audioControl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
+        "--locked XF86AudioLowerVolume" = "exec ${audioControl} set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "--locked XF86AudioMute" = "exec ${audioControl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
         "--locked XF86AudioPlay" = "exec ${playerctl} play-pause";
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";

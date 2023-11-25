@@ -1,5 +1,3 @@
-# { config, host, pkgs, ... }:
-
 {
   wayland.windowManager.sway.extraSessionCommands = ''
     ## Internal variables
