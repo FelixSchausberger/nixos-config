@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   wayland.windowManager.sway.extraSessionCommands = ''
     ## Internal variables
@@ -9,57 +11,41 @@
     export XDG_SESSION_TYPE=wayland
 
     ## Hardware compatibility
-    # We can't be sure that the virtual GPU is compatible with Sway.
-    # We should be attempting to detect an EGL driver instead, but that appears
-    # to be a bit more complicated.
     case $(systemd-detect-virt --vm) in
-        "none"|"")
+        "none" | "")
             ;;
         "kvm")
-            # https://github.com/swaywm/sway/issues/6581
+            # Workaround for https://github.com/swaywm/sway/issues/6581
             export WLR_NO_HARDWARE_CURSORS=1
-            # There's two drivers we can get here, depending on the 3D acceleration
-            # flag state: either virtio_gpu/virgl or kms_swrast/llvmpipe.
-            #
-            # The former one causes graphical glitches in OpenGL apps when using
-            # 'pixman' renderer. The latter will crash 'gles2' renderer outright.
-            # Neither of those support 'vulkan'.
-            #
-            # The choice is obvious, at least until we learn to detect the driver
-            # instead of abusing the virtualization technology identifier.
-            #
-            # See also: https://gitlab.freedesktop.org/wlroots/wlroots/-/issues/2871
+
+            # Choose the renderer based on 3D acceleration flag state
             export WLR_RENDERER=pixman
             ;;
         *)
-            # https://github.com/swaywm/sway/issues/6581
+            # Workaround for https://github.com/swaywm/sway/issues/6581
             export WLR_NO_HARDWARE_CURSORS=1
             ;;
     esac
 
-    ## Load system environment customizations
-    if [ -f /etc/sway/environment ]; then
-        set -o allexport
-        # shellcheck source=/dev/null
-        . /etc/sway/environment
-        set +o allexport
-    fi
+    ## Load environment customizations
+    load_environment() {
+        local file="$1"
+        if [ -f "$file" ]; then
+            set -o allexport
+            . "$file"
+            set +o allexport
+        fi
+    }
 
-    ## Load user environment customizations
-    if [ -f "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment" ]; then
-        set -o allexport
-        # shellcheck source=/dev/null
-        . "''${XDG_CONFIG_HOME:-$HOME/.config}/sway/environment"
-        set +o allexport
-    fi
+    load_environment /etc/sway/environment
+    load_environment "${config.home.homeDirectory}/.config/sway/environment"
 
     ## Unexport internal variables
-    # export -n is not POSIX :(
     _SWAY_EXTRA_ARGS="$SWAY_EXTRA_ARGS"
     unset SWAY_EXTRA_ARGS
 
     # Start sway with extra arguments and send output to the journal
-    # shellcheck disable=SC2086 # quoted expansion of EXTRA_ARGS can produce empty field
     exec systemd-cat -- sway $_SWAY_EXTRA_ARGS "$@"
   '';
 }
+

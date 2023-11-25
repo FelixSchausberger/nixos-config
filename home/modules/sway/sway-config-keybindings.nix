@@ -15,23 +15,23 @@ in
     "${mod}+t" = "layout tabbed";
 
     # Application launcher
-    "${mod}+a" = "exec ${pkgs.nwg-drawer}/bin/nwg-drawer";
+    "${mod}+a" = "exec ${pkgs.nwg-drawer}/pkgs/nwg-drawer";
 
     # Browser
     "${mod}+b" = "exec ${browser}";
 
     # Clipboard pickers
-    "${mod}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
+    "${mod}+v" = "exec ${terminal} start --class=floating-mode ${pkgs.cliphist}";
 
     # Cycle through workspaces
     "${mod}+tab" = "workspace next_on_output";
     "${mod}+Shift+tab" = "workspace prev_on_output";
 
     # File Manager
-    "${mod}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
+    "${mod}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/pkgs/broot";
 
-    # Find        
-    "${mod}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
+    # Find
+    "${mod}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/pkgs/rga-fzf";
 
     # Manual lock
     "--release ${mod}+l" = "exec loginctl lock-session";
@@ -65,7 +65,7 @@ in
     "${mod}+minus" = "scratchpad show";
 
     # Screenshots
-    "Print" = "exec ${pkgs.shotman}/bin/shotman --capture region --copy";
+    "Print" = "exec ${pkgs.shotman}/pkgs/shotman --capture region --copy";
 
     # Show waybar
     "${mod}" = "swaymsg bar hidden_state show";

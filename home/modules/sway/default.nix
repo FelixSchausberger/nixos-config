@@ -1,7 +1,5 @@
-{ config
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
+
 let
   gnomeSettings = "${pkgs.glib}/bin/gsettings";
 in
@@ -25,8 +23,8 @@ in
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }
-        { command = "${gnomeSettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark"; }
-        { command = "${gnomeSettings} set org.gnome.desktop.interface icon-theme 'Adwaita"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'"; }
+        { command = "${gnomeSettings} set org.gnome.desktop.interface icon-theme 'Adwaita'"; }
         { command = "exec ${pkgs.swayest-workstyle}/bin/sworkstyle &> /tmp/sworkstyle.log"; }
       ];
 
@@ -64,8 +62,8 @@ in
       };
 
       bars = [{
-        # command = "waybar";
-        command = "i3status-rs";
+        # command = "i3status-rs";
+        command = "waybar";
         mode = "hide";
       }];
 
@@ -77,24 +75,24 @@ in
 
       colors = {
         focused = {
-          background = "#181818"; # "#${config.colorScheme.colors.base00}";
-          border = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          childBorder = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          indicator = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
+          background = "#181818";
+          border = "#1a1a1a";
+          childBorder = "#1a1a1a";
+          indicator = "#1a1a1a";
           text = "#b7bcb9";
         };
         focusedInactive = {
-          background = "#181818"; # "#${config.colorScheme.colors.base00}";
-          border = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          childBorder = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          indicator = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
+          background = "#181818";
+          border = "#1a1a1a";
+          childBorder = "#1a1a1a";
+          indicator = "#1a1a1a";
           text = "#b7bcb9";
         };
         unfocused = {
-          background = "#181818"; # "#${config.colorScheme.colors.base00}";
-          border = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          childBorder = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
-          indicator = "#1a1a1a"; # "#${config.colorScheme.colors.base00}";
+          background = "#181818";
+          border = "#1a1a1a";
+          childBorder = "#1a1a1a";
+          indicator = "#1a1a1a";
           text = "#b7bcb9";
         };
         urgent = {
