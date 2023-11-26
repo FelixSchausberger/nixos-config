@@ -70,6 +70,7 @@
         "browser.ctrlTab.recentlyUsedOrder" = false;
         "browser.discovery.enabled" = false;
         "browser.laterrun.enabled" = false;
+        "browser.newtabpage.activity-stream.showSearch" = false;
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =
           false;
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
@@ -82,6 +83,10 @@
         "browser.newtabpage.activity-stream.showSponsored" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.pinned" = false;
+        "browser.startup.homepage.StartPage" = "none";
+        "browser.startup.page.StartPage" = "none";
+        "signon.rememberSignons" = false;
+        "browser.passwordmanagerenabled" = false;
         "browser.protections_panel.infoMessage.seen" = true;
         "browser.quitShortcut.disabled" = true;
         "browser.shell.checkDefaultBrowser" = false;
