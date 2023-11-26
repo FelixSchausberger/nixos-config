@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.firefox = {
     enable = true;
@@ -36,17 +37,28 @@
           "eBay".metaData.hidden = true;
           "Wikipedia (en)".metaData.hidden = true;
         };
-
-        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        #   ublock-origin
-        # ];
       };
+
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        bitwarden
+        darkreader
+        duckduckgo-privacy-essentials
+        privacy-badger
+        private-relay
+        ublock-origin
+        youtube-nonstop
+      ];
 
       settings = {
         # Performance settings
         "gfx.webrender.all" = true; # Force enable GPU acceleration
         "media.ffmpeg.vaapi.enabled" = true;
         "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
+
+        # Keep the reader button enabled at all times; really don't
+        # care if it doesn't work 20% of the time, most websites are
+        # crap and unreadable without this
+        "reader.parse-on-load.force-enabled" = true;
 
         # Hide the "sharing indicator", it's especially annoying
         # with tiling WMs on wayland
@@ -55,7 +67,7 @@
         # Actual settings
         "browser.bookmarks.restore_default_bookmarks" = false;
         "browser.contentblocking.category" = "strict";
-        # "browser.ctrlTab.recentlyUsedOrder" = false;
+        "browser.ctrlTab.recentlyUsedOrder" = false;
         "browser.discovery.enabled" = false;
         "browser.laterrun.enabled" = false;
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =

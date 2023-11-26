@@ -26,7 +26,10 @@
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit home-manager host; };
+          specialArgs = {
+            flake-inputs = inputs;
+            inherit home-manager host;
+          };
           modules = [
             nur.nixosModules.nur
             # This adds a nur configuration option.
@@ -48,6 +51,7 @@
               home-manager.extraSpecialArgs = {
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+                flake-inputs = inputs;
                 inherit host nixpkgs nixpkgs-stable nix-colors;
               };
             }

@@ -11,7 +11,8 @@
     ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
-    ./modules/firefox.nix
+    ./modules/graphical-applications
+    # ./modules/firefox.nix
     ./modules/fzf.nix
     ./modules/gammastep.nix
     ./modules/git.nix
