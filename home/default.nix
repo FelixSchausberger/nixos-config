@@ -24,7 +24,6 @@
     ./modules/rclone.nix
     ./modules/starship.nix
     ./modules/sway
-    ./modules/sway/sway-config-keybindings.nix
     ./modules/sway/sway-extra-config.nix
     ./modules/sway/sway-extra-session-commands.nix
     ./modules/sway/swayidle.nix

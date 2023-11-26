@@ -4,10 +4,9 @@ let
   audioControl = "${pkgs.wireplumber}/bin/wpctl";
   browser = "${pkgs.firefox}/bin/firefox";
   dunst = "${pkgs.dunst}/bin/dunstctl";
+  mod = "Mod4";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   terminal = "${pkgs.wezterm}/bin/wezterm";
-
-  mod = "Mod4";
 in
 {
   wayland.windowManager.sway.config.keybindings = pkgs.lib.mkOptionDefault {
@@ -21,7 +20,7 @@ in
     "${mod}+b" = "exec ${browser}";
 
     # Clipboard pickers
-    "${mod}+v" = "exec ${terminal} start --class=floating-mode ${pkgs.cliphist}";
+    "${mod}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
 
     # Cycle through workspaces
     "${mod}+tab" = "workspace next_on_output";
