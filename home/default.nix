@@ -11,12 +11,14 @@
     ./modules/cliphist.nix
     ./modules/direnv.nix
     ./modules/dunst.nix
+    ./modules/firefox.nix
     ./modules/fzf.nix
     ./modules/gammastep.nix
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
     ./modules/i3status-rust.nix
+    ./modules/mpv.nix
     ./modules/nushell.nix
     ./modules/nwg-drawer.nix
     ./modules/qt.nix
@@ -42,9 +44,9 @@
   # Configure enabled programs and services
   programs = {
     bottom.enable = true;
-    firefox.enable = true;
+    # firefox.enable = true;
     home-manager.enable = true;
-    mpv.enable = true;
+    # mpv.enable = true;
     nix-index.enable = true;
     ripgrep.enable = true;
     sioyek.enable = true;

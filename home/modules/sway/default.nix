@@ -67,17 +67,17 @@ in
         "${modifier}+b" = "exec ${browser}";
 
         # Clipboard pickers
-        "${modifier}+v" = "exec ${terminal} start --class=floating-modifiere ${scripts/result/bin/cliphist}";
+        "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
 
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";
         "${modifier}+Shift+tab" = "workspace prev_on_output";
 
         # File Manager
-        "${modifier}+e" = "exec ${terminal} start --class=floating-modifiere ${pkgs.broot}/bin/broot";
+        "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
 
         # Find
-        "${modifier}+space" = "exec ${terminal} start --class=floating-modifiere ${pkgs.ripgrep-all}/bin/rga-fzf";
+        "${modifier}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";

@@ -32,7 +32,7 @@
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
-      swayconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/sway/default.nix";
+      swayconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/sway/";
       update = "nix flake update ${config.home.homeDirectory}/.nixos"; # -I
       upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };
