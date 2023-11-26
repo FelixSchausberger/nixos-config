@@ -10,7 +10,7 @@
     ./modules/broot.nix
     ./modules/cliphist.nix
     ./modules/direnv.nix
-    ./modules/dunst.nix
+    # ./modules/dunst.nix
     ./modules/graphical-applications
     # ./modules/firefox.nix
     ./modules/fzf.nix
@@ -18,11 +18,11 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/helix.nix
-    ./modules/i3status-rust.nix
-    ./modules/mpv.nix
+    # ./modules/i3status-rust.nix
+    # ./modules/mpv.nix
     ./modules/nushell.nix
     ./modules/nur.nix
-    ./modules/nwg-drawer.nix
+    # ./modules/nwg-drawer.nix
     ./modules/qt.nix
     ./modules/rbw.nix
     ./modules/rclone.nix
@@ -33,9 +33,9 @@
     ./modules/sway/swayidle.nix
     ./modules/tealdeer.nix
     ./modules/topgrade.nix
-    ./modules/vscode.nix
-    ./modules/waybar.nix
-    ./modules/wezterm.nix
+    # ./modules/vscode.nix
+    # ./modules/waybar.nix
+    # ./modules/wezterm.nix
     ./modules/xdg.nix
     nix-colors.homeManagerModule
   ];
