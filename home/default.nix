@@ -1,18 +1,13 @@
 { host
 , nix-colors
-  # , pkgs
 , ...
 }: {
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
     ./modules/graphical-applications
-    ./modules/gammastep.nix
-    ./modules/gtk.nix
-    ./modules/qt.nix
     ./modules/sway
     ./modules/tty-applications
-    ./modules/xdg.nix
     nix-colors.homeManagerModule
   ];
 
