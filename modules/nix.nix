@@ -15,7 +15,7 @@
   };
 
   nixpkgs = {
-    configallowUnfree = true;
+    config.allowUnfree = true;
     overlays = [ flake-inputs.nur.overlay ];
   };
 }
