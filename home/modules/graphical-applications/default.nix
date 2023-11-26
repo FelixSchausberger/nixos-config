@@ -2,6 +2,8 @@
 {
   # Import configurations of graphical applications
   imports = [
+    ./configs
+    ./libraries
     ./dunst.nix
     ./firefox.nix
     ./i3status-rust.nix

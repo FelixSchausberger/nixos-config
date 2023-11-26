@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   imports = [
+    ./tools
     ./sway.nix
-    ./sway-extra-condig.nix
-    ./sway-extra-session-commands.nix
-    ./swayidle.nix
+    ./extra-config.nix
+    ./extra-session-commands.nix
   ];
 
   home.packages = with pkgs; [
