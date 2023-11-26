@@ -20,6 +20,7 @@
     ./modules/i3status-rust.nix
     ./modules/mpv.nix
     ./modules/nushell.nix
+    ./modules/nur.nix
     ./modules/nwg-drawer.nix
     ./modules/qt.nix
     ./modules/rbw.nix

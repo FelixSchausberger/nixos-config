@@ -32,7 +32,10 @@
             # This adds a nur configuration option.
             # Use `config.nur` for packages like this:
             ({ config, ... }: {
-              environment.systemPackages = [ config.nur.repos.mikaelfangel-nur.spacedrive ];
+              environment.systemPackages = [
+                config.nur.repos.mikaelfangel-nur.spacedrive
+                config.nur.repos.rycee.firefox-addons.ublock-origin
+              ];
             })
 
             # Include custom configurations
