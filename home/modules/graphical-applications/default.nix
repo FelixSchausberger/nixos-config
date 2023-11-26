@@ -2,10 +2,10 @@
 {
   # Import configurations of graphical applications
   imports = [
+    ./firefox
     ./configs
     ./libraries
     ./dunst.nix
-    ./firefox.nix
     ./i3status-rust.nix
     ./mpv.nix
     ./nwg-drawer.nix
