@@ -17,13 +17,13 @@
       br = "broot";
       cat = "bat";
       cd = "z";
-      clone = "gix clone"; # "git clone";
+      clone = "git clone";
       cleanup = "sudo nix-collect-garbage";
       cp = "cp -rpv";
-      fetch = "gix fetch"; # "git fetch";
+      fetch = "git fetch";
       gaa = "git add .";
       gcm = "git commit -m";
-      gst = "gix status"; # "git status";
+      gst = "git status";
       homeconfig = "hx ${config.home.homeDirectory}/.nixos/home/default.nix";
       ll = "br -sdp";
       merge = "rsync -avhu --progress";

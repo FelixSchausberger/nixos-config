@@ -31,7 +31,7 @@
           };
 
           # disable default search engines
-          "Amazon.com".metaData.hidden = true;
+          "Amazon.de".metaData.hidden = true;
           "Bing".metaData.hidden = true;
           # "DuckDuckGo".metaData.hidden = true;
           "eBay".metaData.hidden = true;
@@ -44,7 +44,6 @@
         darkreader
         duckduckgo-privacy-essentials
         privacy-badger
-        private-relay
         ublock-origin
         youtube-nonstop
       ];

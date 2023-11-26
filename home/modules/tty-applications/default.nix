@@ -31,7 +31,6 @@
   home = {
     packages = with pkgs; [
       fd
-      gitoxide
       procs
       rm-improved
       ripgrep-all
