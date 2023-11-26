@@ -6,33 +6,34 @@
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
-    ./modules/bat.nix
-    ./modules/broot.nix
-    ./modules/cliphist.nix
-    ./modules/direnv.nix
+    # ./modules/bat.nix
+    # ./modules/broot.nix
+    # ./modules/cliphist.nix
+    # ./modules/direnv.nix
     # ./modules/dunst.nix
     ./modules/graphical-applications
     # ./modules/firefox.nix
-    ./modules/fzf.nix
+    # ./modules/fzf.nix
     ./modules/gammastep.nix
-    ./modules/git.nix
+    # ./modules/git.nix
     ./modules/gtk.nix
-    ./modules/helix.nix
+    # ./modules/helix.nix
     # ./modules/i3status-rust.nix
     # ./modules/mpv.nix
-    ./modules/nushell.nix
-    ./modules/nur.nix
+    # ./modules/nushell.nix
+    # ./modules/nur.nix Necessary?
     # ./modules/nwg-drawer.nix
     ./modules/qt.nix
-    ./modules/rbw.nix
-    ./modules/rclone.nix
-    ./modules/starship.nix
+    # ./modules/rbw.nix
+    # ./modules/rclone.nix
+    # ./modules/starship.nix
     ./modules/sway
     ./modules/sway/sway-extra-config.nix
     ./modules/sway/sway-extra-session-commands.nix
     ./modules/sway/swayidle.nix
-    ./modules/tealdeer.nix
-    ./modules/topgrade.nix
+    ./modules/tty-applications
+    # ./modules/tealdeer.nix
+    # ./modules/topgrade.nix
     # ./modules/vscode.nix
     # ./modules/waybar.nix
     # ./modules/wezterm.nix
@@ -45,15 +46,13 @@
 
   # Configure enabled programs and services
   programs = {
-    bottom.enable = true;
-    # firefox.enable = true;
+    # bottom.enable = true;
     home-manager.enable = true;
-    # mpv.enable = true;
-    nix-index.enable = true;
-    ripgrep.enable = true;
+    # nix-index.enable = true;
+    # ripgrep.enable = true;
     sioyek.enable = true;
-    ssh.enable = true;
-    zoxide.enable = true;
+    # ssh.enable = true;
+    # zoxide.enable = true;
   };
 
   services = {

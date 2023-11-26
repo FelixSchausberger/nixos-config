@@ -6,11 +6,11 @@
     enable = true;
 
     # Additional packages from 'bat-extras'
-    extraPackages = with pkgs.bat-extras; [ 
-      batdiff 
-      batman 
-      batgrep 
-      batwatch 
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
     ];
   };
 }
