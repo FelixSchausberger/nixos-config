@@ -17,6 +17,12 @@
             definedAliases = [ "@gh" ];
           };
 
+          "Home Manager" = {
+            urls = [{ template = "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}"; }];
+            iconURL = "https://nixos.org/favicon.ico";
+            definedAliases = [ "@hm" ];
+          };
+
           "YouTube" = {
             urls = [{ template = "https://www.youtube.com/results?search_query={searchTerms}"; }];
             iconURL = "https://www.youtube.com/favicon.ico";
@@ -30,6 +36,10 @@
           "eBay".metaData.hidden = true;
           "Wikipedia (en)".metaData.hidden = true;
         };
+
+        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        #   ublock-origin
+        # ];
       };
     };
   };
