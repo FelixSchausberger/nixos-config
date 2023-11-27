@@ -30,7 +30,7 @@
     }
 
     box, menubar, button {
-        background-color: @color_bg;
+        background-color: transparent; /* @color_bg; */
         background-image: none;
     }
 

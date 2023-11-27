@@ -16,14 +16,14 @@
         height = 300;
         offset = "30x50";
         origin = "top-right";
-        transparency = 10;
+        transparency = 1;
         frame_color = "#37474f03";
-        font = "Fira Code NF 14";
+        font = "Fira Code Nerd Font 14";
       };
 
       urgency_normal = {
         background = "#37474f03";
-        foreground = "#eceff1";
+        foreground = "#b6bdca"; # "#eceff1";
         timeout = 10;
       };
     };

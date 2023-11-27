@@ -42,6 +42,7 @@
 
     # Layer effects
     layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 12
+    layer_effects "ironbar" blur enable; shadows enable; corner_radius 12
     layer_effects "notifications" blur enable; shadows enable; corner_radius 12
     # layer_effects "panel" blur enable; shadows enable; corner_radius 12
   '';
