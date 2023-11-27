@@ -2,7 +2,6 @@
   xdg = {
     enable = true;
     mime.enable = true;
-    # portal.config.common.default = "*";
 
     configFile = {
       "mimeapps.list".text = ''

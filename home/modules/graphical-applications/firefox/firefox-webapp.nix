@@ -63,6 +63,10 @@ let
                 dark = 0;
                 light = 1;
                 system = 2;
+                "browser.newtabpage.pinned" = [{
+                  title = "NixOS";
+                  url = "https://nixos.org";
+                }];
               };
             };
         })

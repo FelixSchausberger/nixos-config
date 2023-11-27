@@ -6,11 +6,9 @@
     ./configs
     ./libraries
     ./dunst.nix
-    ./i3status-rust.nix
     ./mpv.nix
     ./nwg-drawer.nix
     ./vscode.nix
-    ./waybar.nix
     ./wezterm.nix
   ];
 
@@ -23,7 +21,9 @@
   home = {
     packages = with pkgs; [
       dconf
+      krita
       obsidian
+      rnote
       upscayl
     ];
   };

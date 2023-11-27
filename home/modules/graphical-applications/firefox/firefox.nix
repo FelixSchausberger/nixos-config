@@ -4,12 +4,33 @@
     enable = true;
     profiles."default" = {
       search = {
+        default = "DuckDuckGo";
         force = true;
         engines = {
-          "Nix" = {
+          "Nix Options" = {
             urls = [{ template = "https://search.nixos.org/options?type=options&query={searchTerms}"; }];
             iconURL = "https://nixos.org/favicon.ico";
-            definedAliases = [ "@nx" ];
+            definedAliases = [ "@no" ];
+          };
+
+          "Nix Packages" = {
+            urls = [{
+              template = "https://search.nixos.org/packages";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "query"; value = "{searchTerms}"; }
+              ];
+            }];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@np" ];
+          };
+
+          "NixOS Wiki" = {
+            urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = [ "@nw" ];
           };
 
           "GitHub" = {
@@ -42,8 +63,6 @@
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
         darkreader
-        duckduckgo-privacy-essentials
-        privacy-badger
         ublock-origin
         youtube-nonstop
       ];
@@ -85,7 +104,7 @@
         "browser.startup.homepage.StartPage" = "none";
         "browser.startup.page.StartPage" = "none";
         "signon.rememberSignons" = false;
-        "browser.passwordmanagerenabled" = false;
+        "pref.privacy.disable_button.view_passwords" = false;
         "browser.protections_panel.infoMessage.seen" = true;
         "browser.quitShortcut.disabled" = true;
         "browser.shell.checkDefaultBrowser" = false;
@@ -100,7 +119,7 @@
         "extensions.getAddons.showPane" = false;
         "extensions.htmlaboutaddons.recommendations.enabled" = false;
         "extensions.pocket.enabled" = false;
-        "identity.fxaccounts.enabled" = false;
+        "identity.fxaccounts.enabled" = true;
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
       };

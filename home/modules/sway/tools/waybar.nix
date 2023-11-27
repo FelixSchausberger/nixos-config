@@ -94,6 +94,7 @@
         };
 
         "sway/workspaces" = {
+          format = "{icon}";
           disable-scroll = true;
           all-outputs = true;
           spacing = 10;
