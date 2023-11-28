@@ -49,7 +49,7 @@
                   microsoft-surface.ipts.enable = true;
                   config.microsoft-surface.surface-control.enable = true;
                 }
-            else "")
+            else { })
 
             # Include custom configurations
             ./configuration.nix
