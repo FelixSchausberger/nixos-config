@@ -42,6 +42,9 @@
               ];
             })
 
+            # Add the Microsoft Surface module only if the host is "surface"
+            (if host == "surface" then nixos-hardware.nixosModules.microsoft-surface-pro-intel else "")
+
             # Include custom configurations
             ./configuration.nix
             ./hosts/${host}
@@ -53,7 +56,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixos-hardware nixpkgs nixpkgs-stable nix-colors;
+                inherit host nixpkgs nixpkgs-stable nix-colors;
               };
             }
           ];

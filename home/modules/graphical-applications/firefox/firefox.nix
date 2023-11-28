@@ -109,7 +109,7 @@
         "browser.quitShortcut.disabled" = true;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.ssb.enabled" = true;
-        "browser.toolbars.bookmarks.visibility" = "never";
+        "browser.toolbars.bookmarks.visibility" = "always";
         "browser.urlbar.placeholderName" = "DuckDuckGo";
         "browser.urlbar.suggest.openpage" = false;
         "datareporting.policy.dataSubmissionEnable" = false;
