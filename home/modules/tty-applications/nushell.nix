@@ -7,9 +7,9 @@
       $env.config = { show_banner: false };
     '';
 
-    # loginFile.text = ''
-    #   if (tty) == "/dev/tty1" { sway };
-    # '';
+    loginFile.text = ''
+      if (tty) == "/dev/tty1" { sway };
+    '';
 
     # Move to home config once https://github.com/nushell/nushell/issues/10088 is closed 
     shellAliases = {

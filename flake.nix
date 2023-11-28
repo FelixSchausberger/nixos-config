@@ -43,7 +43,13 @@
             })
 
             # Add the Microsoft Surface module only if the host is "surface"
-            (if host == "surface" then nixos-hardware.nixosModules.microsoft-surface-pro-intel else "")
+            (if host == "surface" then
+              nixos-hardware.nixosModules.microsoft-surface-pro-intel
+                {
+                  microsoft-surface.ipts.enable = true;
+                  config.microsoft-surface.surface-control.enable = true;
+                }
+            else "")
 
             # Include custom configurations
             ./configuration.nix
