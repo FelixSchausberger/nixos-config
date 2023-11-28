@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
@@ -20,7 +21,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
     let
       # Helper function to create NixOS system configurations
       mkSystem = host:
@@ -52,7 +53,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixpkgs nixpkgs-stable nix-colors;
+                inherit host nixos-hardware nixpkgs nixpkgs-stable nix-colors;
               };
             }
           ];

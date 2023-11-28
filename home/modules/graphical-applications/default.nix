@@ -17,10 +17,8 @@
     sioyek.enable = true;
   };
 
-  # Add packages
   home = {
     packages = with pkgs; [
-      dconf
       krita
       obsidian
       rnote

@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ nixos-hardware, pkgs, ... }:
 
 {
+  imports = [
+    <nixos-hardware/microsoft/surface/surface-pro-intel>
+  ];
+  
   # Set kernel parameters
   boot.kernelParams = [ "i915.force_probe=5916" ];
 
@@ -16,6 +20,10 @@
       vaapiIntel          # LIBVA_DRIVER_NAME=i965 (older, better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
+      libcamera           # Camera support
+      libwacom-surface    # Better stylus and touch support
+      linux-firmware      # Necessary?
+      microcodeIntel      # Necessary?
     ];
   };
 
