@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ nixos-hardware, pkgs, ... }:
 
 {
   # Set kernel parameters
@@ -22,6 +22,13 @@
       microcodeIntel # Necessary?
     ];
   };
+
+  modules = [
+    nixos-hardware.nixosModules.microsoft-surface-pro-intel {
+      microsoft-surface.ipts.enable = true;
+      config.microsoft-surface.surface-control.enable = true;
+    }
+  ]
 
   # Set the hostname
   networking.hostName = "surface";
