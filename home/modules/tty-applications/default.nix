@@ -15,6 +15,7 @@
     ./starship.nix
     ./tealdeer.nix
     ./topgrade.nix
+    ./zoxide.nix
   ];
 
   # Enable tty applications
@@ -24,7 +25,6 @@
     nix-index.enable = true;
     ripgrep.enable = true;
     ssh.enable = true;
-    zoxide.enable = true;
   };
 
   # Add packages
