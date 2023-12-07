@@ -8,6 +8,8 @@
         
         font_size = 14.0,  -- Adjust the font size to your preference
 
+        audible_bell = "Disabled",
+
         -- Choose your preferred color scheme (e.g., "Tomorrow Night")
         color_scheme = "Tomorrow Night",
 

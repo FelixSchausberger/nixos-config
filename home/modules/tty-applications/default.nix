@@ -31,6 +31,7 @@
   home = {
     packages = with pkgs; [
       fd
+      ouch
       procs
       rm-improved
       ripgrep-all

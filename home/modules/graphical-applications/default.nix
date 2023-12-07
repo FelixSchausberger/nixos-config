@@ -22,6 +22,7 @@
       krita
       obsidian
       rnote
+      spacedrive
       upscayl
     ];
   };

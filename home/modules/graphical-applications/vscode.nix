@@ -11,7 +11,6 @@
       esbenp.prettier-vscode
       rust-lang.rust-analyzer
       nvarner.typst-lsp
-      # mgt19937.typst-preview
       redhat.vscode-yaml
     ];
   };

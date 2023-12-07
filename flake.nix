@@ -21,7 +21,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
     let
       # Helper function to create NixOS system configurations
       mkSystem = host:
@@ -33,15 +33,6 @@
           };
           modules = [
             nur.nixosModules.nur
-            # This adds a nur configuration option.
-            # Use `config.nur` for packages like this:
-            ({ config, ... }: {
-              environment.systemPackages = [
-                config.nur.repos.mikaelfangel-nur.spacedrive
-                config.nur.repos.rycee.firefox-addons.ublock-origin
-              ];
-            })
-
             # Add the Microsoft Surface module only if the host is "surface"
             # (if host == "surface" then
             #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
