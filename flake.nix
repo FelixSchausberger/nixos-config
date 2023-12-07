@@ -21,7 +21,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
+  outputs = { devenv, home-manager, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
     let
       # Helper function to create NixOS system configurations
       mkSystem = host:
@@ -29,18 +29,18 @@
           system = "x86_64-linux";
           specialArgs = {
             flake-inputs = inputs;
-            inherit home-manager host;
+            inherit home-manager host nixos-hardware;
           };
           modules = [
             nur.nixosModules.nur
             # Add the Microsoft Surface module only if the host is "surface"
-            # (if host == "surface" then
-            #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            #     {
-            #       microsoft-surface.ipts.enable = true;
-            #       config.microsoft-surface.surface-control.enable = true;
-            #     }
-            # else { })
+            (if host == "surface" then
+              nixos-hardware.nixosModules.microsoft-surface-pro-intel
+                {
+                  microsoft-surface.ipts.enable = true;
+                  config.microsoft-surface.surface-control.enable = true;
+                }
+            else { })
 
             # Include custom configurations
             ./configuration.nix
