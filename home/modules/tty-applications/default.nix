@@ -9,6 +9,7 @@
     ./fzf.nix
     ./git.nix
     ./helix.nix
+    ./i2pd.nix
     ./nushell.nix
     ./rbw.nix
     ./rclone.nix
@@ -33,6 +34,7 @@
       fd
       ouch
       procs
+      protonvpn-cli_2
       rm-improved
       ripgrep-all
       tgpt
