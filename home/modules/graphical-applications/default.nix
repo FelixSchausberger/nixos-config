@@ -21,7 +21,9 @@
     packages = with pkgs; [
       krita
       obsidian
+      qbittorrent
       rnote
+      spacedrive
       upscayl
     ];
   };
