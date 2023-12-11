@@ -6,6 +6,7 @@
   imports = [
     ./hosts/${host}.nix
     ./modules/graphical-applications
+    ./modules/hyprland
     ./modules/sway
     ./modules/tty-applications
     nix-colors.homeManagerModule
