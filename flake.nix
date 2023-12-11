@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -21,7 +22,7 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
+  outputs = { devenv, home-manager, hyprland, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
     let
       # Helper function to create NixOS system configurations
       mkSystem = host:
@@ -42,14 +43,17 @@
                 }
             else { })
 
+            hyprland.homeManagerModules.default
+            { wayland.windowManager.hyprland.enable = true; }
+
             # Include custom configurations
             ./configuration.nix
             ./hosts/${host}
             # Configure Home Manager
-            home-manager.nixosModules.home-manager
+            home-manager.nixosModules.home-manager.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.extraSpecialArgs = {
+              useGlobalPkgs = true;
+              extraSpecialArgs = {
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
