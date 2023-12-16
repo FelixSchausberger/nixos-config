@@ -1,4 +1,4 @@
-{ config }:
+{ config, ... }:
 
 {
   xdg.configFile."hypr/hyprpaper.conf".text = ''

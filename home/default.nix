@@ -2,10 +2,9 @@
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
-    ./modules/graphical-applications
-    ./modules/hyprland
-    ./modules/sway
-    ./modules/tty-applications
+    ./modules/cli
+    ./modules/gui
+    ./modules/wm
   ];
 
   # Specify Home Manager release version

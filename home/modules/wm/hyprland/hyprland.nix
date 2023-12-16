@@ -3,6 +3,13 @@
 {
   wayland.windowManager.hyprland = {
     settings = {
+      env = [
+        "QT_QPA_PLATFORM,wayland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+      ];
+
       decoration = {
         shadow_offset = "0 5";
         "col.shadow" = "rgba(00000099)";
@@ -23,10 +30,7 @@
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../sway/scripts/result/bin/launcher}";
 
-      exec-once = [
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-      ];
+      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper";
 
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more

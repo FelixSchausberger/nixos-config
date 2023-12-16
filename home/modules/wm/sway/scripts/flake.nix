@@ -14,7 +14,7 @@
       imports = [
         inputs.treefmt-nix.flakeModule
       ];
-      perSystem = { config, self', pkgs, lib, system, ... }:
+      perSystem = { config, pkgs, ... }:
         let
           cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
           nonRustDeps = [
