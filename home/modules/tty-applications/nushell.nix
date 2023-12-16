@@ -28,6 +28,7 @@
       ll = "br -sdp";
       merge = "rsync -avhu --progress";
       nixconfig = "hx ${config.home.homeDirectory}/.nixos/configuration.nix";
+      nixinfo = "nix-shell -p nix-info --run 'nix-info -m'";
       pull = "git pull";
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";

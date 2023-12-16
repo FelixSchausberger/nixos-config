@@ -19,6 +19,7 @@
 
   home = {
     packages = with pkgs; [
+      celeste
       krita
       obsidian
       qbittorrent

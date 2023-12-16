@@ -2,7 +2,6 @@
 
   # Enable 32-bit support for Direct Rendering Infrastructure (DRI)
   hardware.opengl = {
-    driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       rocm-opencl-icd

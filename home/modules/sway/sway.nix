@@ -179,10 +179,10 @@ in
           text = "#b7bcb9";
         };
         urgent = {
-          background = "#${config.colorScheme.colors.base08}";
-          border = "#${config.colorScheme.colors.base08}";
-          childBorder = "#${config.colorScheme.colors.base08}";
-          indicator = "#${config.colorScheme.colors.base08}";
+          background = "#e06c75";
+          border = "#e06c75";
+          childBorder = "#e06c75";
+          indicator = "#e06c75";
           text = "#b7bcb9";
         };
       };

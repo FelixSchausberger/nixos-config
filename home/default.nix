@@ -1,19 +1,12 @@
-{ host
-, nix-colors
-, ...
-}: {
+{ host, ... }: {
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
     ./modules/graphical-applications
-    ./modules/hyprland
+    # ./modules/hyprland
     ./modules/sway
     ./modules/tty-applications
-    nix-colors.homeManagerModule
   ];
-
-  # Set color scheme
-  colorScheme = nix-colors.colorSchemes.onedark;
 
   # Specify Home Manager release version
   home.stateVersion = "23.11";

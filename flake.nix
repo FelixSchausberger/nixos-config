@@ -4,15 +4,12 @@
   inputs = {
     # External inputs for the flake
     devenv.url = "github:cachix/devenv";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-    nix-colors.url = "github:misterio77/nix-colors";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.05";
+    # hyprland.url = "github:hyprwm/Hyprland";
     nur.url = "github:nix-community/NUR";
   };
 
@@ -22,7 +19,15 @@
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { devenv, home-manager, hyprland, nix-colors, nixos-hardware, nixpkgs, nixpkgs-stable, nur, self, ... }@inputs:
+  outputs =
+    inputs@{ devenv
+    , home-manager
+      # , hyprland
+    , nixpkgs
+    , nur
+    , self
+    , ...
+    }:
     let
       # Helper function to create NixOS system configurations
       mkSystem = host:
@@ -30,34 +35,34 @@
           system = "x86_64-linux";
           specialArgs = {
             flake-inputs = inputs;
-            inherit home-manager host nixos-hardware;
+            inherit home-manager host; # nixos-hardware home-manager
           };
           modules = [
             nur.nixosModules.nur
             # Add the Microsoft Surface module only if the host is "surface"
-            (if host == "surface" then
-              nixos-hardware.nixosModules.microsoft-surface-pro-intel
-                {
-                  microsoft-surface.ipts.enable = true;
-                  config.microsoft-surface.surface-control.enable = true;
-                }
-            else { })
+            # (if host == "surface" then
+            #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            #     {
+            #       microsoft-surface.ipts.enable = true;
+            #       config.microsoft-surface.surface-control.enable = true;
+            #     }
+            # else { })
 
-            hyprland.homeManagerModules.default
-            { wayland.windowManager.hyprland.enable = true; }
+            # hyprland.homeManagerModules.default
+            # {wayland.windowManager.hyprland.enable = true;}
 
             # Include custom configurations
             ./configuration.nix
             ./hosts/${host}
             # Configure Home Manager
-            home-manager.nixosModules.home-manager.home-manager
+            home-manager.nixosModules.home-manager
             {
-              useGlobalPkgs = true;
-              extraSpecialArgs = {
+              home-manager.useGlobalPkgs = true;
+              home-manager.extraSpecialArgs = {
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixpkgs nixpkgs-stable nix-colors;
+                inherit host nixpkgs;
               };
             }
           ];

@@ -32,6 +32,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/fesch/gdrive" =
+    {
+      device = "gdrive:";
+      fsType = "fuse.rclone";
+    };
+
   swapDevices =
     [{ device = "/dev/disk/by-uuid/2a7d1fdc-839a-478c-89a7-86feb62971c8"; }];
 
