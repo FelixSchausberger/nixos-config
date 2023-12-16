@@ -15,6 +15,7 @@
       init.defaultBranch = "main";
       pull.rebase = false;
       config.credential.helper = "libsecret";
+      core.editor = "${pkgs.helix}/bin/hx";
       url = {
         "https://oauth2:${secrets.github.oauth_token}@github.com" = {
           insteadOf = "https://github.com";
