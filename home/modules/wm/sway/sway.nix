@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   audioControl = "${pkgs.wireplumber}/bin/wpctl";
@@ -112,7 +112,7 @@ in
       };
 
       output = {
-        "*" = { bg = "${../../wallpaper.jpg} fill"; };
+        "*" = { bg = "${../wallpaper.jpg} fill"; };
       };
 
       seat = {
