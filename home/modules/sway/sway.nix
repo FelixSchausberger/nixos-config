@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   audioControl = "${pkgs.wireplumber}/bin/wpctl";

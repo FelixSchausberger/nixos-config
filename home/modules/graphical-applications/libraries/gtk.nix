@@ -1,6 +1,13 @@
 { pkgs, ... }:
 
 {
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.breeze-gtk;
+    name = "breeze_cursors";
+    size = 16;
+  };
+
   gtk = {
     # Enable GTK configuration
     enable = true;

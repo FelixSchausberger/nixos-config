@@ -3,5 +3,6 @@
 
   imports = [
     ./hyprland.nix
+    ./tools
   ];
 }

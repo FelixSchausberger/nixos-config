@@ -9,7 +9,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland.url = "github:hyprwm/Hyprland";
     nur.url = "github:nix-community/NUR";
   };
 
@@ -22,7 +21,6 @@
   outputs =
     inputs@{ devenv
     , home-manager
-      # , hyprland
     , nixpkgs
     , nur
     , self
@@ -47,9 +45,6 @@
             #       config.microsoft-surface.surface-control.enable = true;
             #     }
             # else { })
-
-            # hyprland.homeManagerModules.default
-            # {wayland.windowManager.hyprland.enable = true;}
 
             # Include custom configurations
             ./configuration.nix

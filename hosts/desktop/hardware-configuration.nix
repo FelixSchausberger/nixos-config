@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" "amdgpu" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -30,12 +30,6 @@
     {
       device = "/dev/disk/by-uuid/315e4deb-50bb-4f36-89af-f9def614ed8d";
       fsType = "ext4";
-    };
-
-  fileSystems."/home/fesch/gdrive" =
-    {
-      device = "gdrive:";
-      fsType = "fuse.rclone";
     };
 
   swapDevices =

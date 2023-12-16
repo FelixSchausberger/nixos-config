@@ -23,8 +23,7 @@
     ];
   };
 
-  # Set the hostname
-  networking.hostName = "surface";
+  networking.hostName = "Surface";
 
   # Configure console keymap
   console.keyMap = "de";
