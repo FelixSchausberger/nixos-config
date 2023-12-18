@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -10,6 +10,8 @@
         "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
+      monitor = "HDMI-A-1,1920x1080@60,0x0,1"; # Desktop
+
       decoration = {
         shadow_offset = "0 5";
         "col.shadow" = "rgba(00000099)";
@@ -17,10 +19,13 @@
 
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+        };
+      };
 
-          vibrancy = 0.1696;
+      group = {
+        groupbar = {
+          font_family = "Fira Code NF";
+          font_size = 14;
         };
       };
 
@@ -30,12 +35,12 @@
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
-      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper";
+      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm.wallpaper.jpg'";
 
-      misc = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
-      };
+      # misc = {
+      #   # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      #   force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+      # };
 
       bindm = [
         # mouse movements    "$mod, mouse:272, movewindow"
@@ -88,28 +93,5 @@
           10)
       );
     };
-
-    # extraConfig = ''
-    #   # $mod = SUPER
-    #   # $terminal = wezterm
-
-    #   bind = $mod, F, exec, firefox
-    #   bind = , Print, exec, grimblast copy area
-
-    #   # workspaces
-    #   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-    #   ${builtins.concatStringsSep "\n" (builtins.genList (
-    #       x: let
-    #         ws = let
-    #           c = (x + 1) / 10;
-    #         in
-    #           builtins.toString (x + 1 - (c * 10));
-    #       in ''
-    #         bind = $mod, ${ws}, workspace, ${toString (x + 1)}
-    #         bind = $mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
-    #       ''
-    #     )
-    #     10)}
-    # '';
   };
 }
