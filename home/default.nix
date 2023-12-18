@@ -2,8 +2,8 @@
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
-    ./modules/cli
     ./modules/gui
+    ./modules/tui
     ./modules/wm
   ];
 

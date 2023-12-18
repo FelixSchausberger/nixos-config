@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   audioControl = "${pkgs.wireplumber}/bin/wpctl";
@@ -40,7 +40,7 @@ in
 
     config = rec {
       terminal = "${pkgs.wezterm}/bin/wezterm";
-      menu = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/launcher}";
+      menu = "exec ${terminal} start --class=floating-mode ${../scripts/result/bin/launcher}";
       modifier = "Mod4";
 
       startup = [
@@ -61,7 +61,7 @@ in
         "${modifier}+b" = "exec ${browser}";
 
         # Clipboard pickers
-        "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${scripts/result/bin/cliphist}";
+        "${modifier}+v" = "exec ${terminal} start --class=floating-mode ${../scripts/result/bin/cliphist}";
 
         # Cycle through workspaces
         "${modifier}+tab" = "workspace next_on_output";

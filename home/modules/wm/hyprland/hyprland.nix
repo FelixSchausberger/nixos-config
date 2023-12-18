@@ -28,7 +28,7 @@
       "$mod" = "SUPER";
       "$terminal" = "${pkgs.kitty}/bin/kitty";
       "$fileManager" = "spacedrive";
-      "$menu" = "exec $terminal start --class=floating-mode ${../sway/scripts/result/bin/launcher}";
+      "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
       exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper";
 
@@ -51,7 +51,7 @@
         "$mod, Q, killactive"
         "$mod, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
-        "$mod, V, exec, $terminal start --class=floating-mode ${../sway/scripts/result/bin/cliphist}"
+        "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
 
         # Move focus with mainMod + arrow keys
         "$mod, left, movefocus, l"
