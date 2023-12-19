@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   # Import configurations of graphical applications
   imports = [
@@ -18,14 +18,14 @@
   };
 
   home = {
-    packages = with pkgs; [
-      celeste
-      krita
-      obsidian
-      qbittorrent
-      rnote
-      spacedrive
-      upscayl
+    packages = [
+      pkgs.celeste
+      pkgs.krita
+      pkgs.obsidian
+      pkgs.qbittorrent
+      pkgs.rnote
+      pkgs-unstable.spacedrive
+      pkgs.upscayl
     ];
   };
 }

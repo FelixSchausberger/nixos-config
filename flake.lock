@@ -84,15 +84,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1702814335,
-        "narHash": "sha256-Qck7BAMi3eydzT1WFOzp/SgECetyPpOn1dLgmxH2ebQ=",
+        "lastModified": 1702814678,
+        "narHash": "sha256-zDtO0jV2QLoddUJinLlTQrQqCUW3dPiIWOSYgg98T7E=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e4dba0bd01956170667458be7b45f68170a63651",
+        "rev": "1488651d02c1a7a15e284210f0d380a62d8d8cef",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "release-23.11",
         "repo": "home-manager",
         "type": "github"
       }
@@ -185,13 +186,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1702312524,
-        "narHash": "sha256-gkZJRDBUCpTPBvQk25G0B7vfbpEYM5s5OZqghkjZsnE=",
+        "lastModified": 1702830618,
+        "narHash": "sha256-lvhwIvRwhOLgzbRuYkqHy4M5cQHYs4ktL6/hyuBS6II=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a9bf124c46ef298113270b1f84a164865987a91c",
+        "rev": "91a00709aebb3602f172a0bf47ba1ef013e34835",
         "type": "github"
       },
       "original": {
@@ -200,13 +201,28 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1702921762,
+        "narHash": "sha256-O/rP7gulApQAB47u6szEd8Pn8Biw0d84j5iuP2tcxzY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d02ffbbe834b5599fc5f134e644e49397eb07188",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-23.11",
+        "type": "indirect"
+      }
+    },
     "nur": {
       "locked": {
-        "lastModified": 1702919033,
-        "narHash": "sha256-uVzMTinnA0glleBbEPWLGtgK+96KsnTj5o7xL40EkHs=",
+        "lastModified": 1703018664,
+        "narHash": "sha256-4dg2al2i5zQAtdd2QzEJfnohskzE2CUQu730dR8710o=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f1427666b27e98e3852748dacbdc41f2586aa194",
+        "rev": "b495f96757696e896c541c7a3a69ca03d44ddae7",
         "type": "github"
       },
       "original": {
@@ -248,6 +264,7 @@
         "devenv": "devenv",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
       }
     },

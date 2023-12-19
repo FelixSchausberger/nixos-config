@@ -2,18 +2,17 @@
   description = "Personal NixOS config";
 
   inputs = {
-    # External inputs for the flake
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
   };
 
   nixConfig = {
-    # Nix configuration settings
     extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
     extra-trusted-substituters = "https://devenv.cachix.org";
   };
@@ -22,18 +21,18 @@
     inputs@{ devenv
     , home-manager
     , nixpkgs
+    , nixpkgs-unstable
     , nur
     , self
     , ...
     }:
     let
-      # Helper function to create NixOS system configurations
       mkSystem = host:
-        nixpkgs.lib.nixosSystem {
+        nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
             flake-inputs = inputs;
-            inherit home-manager host; # nixos-hardware home-manager
+            inherit home-manager host;
           };
           modules = [
             nur.nixosModules.nur
@@ -57,7 +56,8 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixpkgs;
+                inherit host nixpkgs nixpkgs-unstable;
+                pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
               };
             }
           ];

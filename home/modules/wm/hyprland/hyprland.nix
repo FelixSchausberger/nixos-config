@@ -17,9 +17,17 @@
         "col.shadow" = "rgba(00000099)";
         rounding = 10;
 
-        blur = {
-          enabled = true;
-        };
+        blur.enabled = true;
+
+        layerrule = [
+          "blur,gtk-layer-shell"
+          "blur,notifications"
+        ];
+
+        windowrule = [
+          "float,^(pavucontrol)$"
+          "float,^(Steam)$"
+        ];
       };
 
       group = {
@@ -35,7 +43,7 @@
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
-      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm.wallpaper.jpg'";
+      exec-once = "${pkgs.waybar}/bin/waybar & hyprctl exec ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm.wallpaper.jpg' & ${pkgs.udiskie}/bin/udiskie";
 
       # misc = {
       #   # See https://wiki.hyprland.org/Configuring/Variables/ for more
