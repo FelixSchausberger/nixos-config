@@ -10,7 +10,7 @@
         position = "bottom";
         height = 45;
 
-        modules-left = [ "sway/workspaces" ];
+        modules-left = [ "hyprland/workspaces" "sway/workspaces" ];
         modules-center = [ ];
         modules-right = [ "idle_inhibitor" "pulseaudio" "backlight" "battery" "network" "tray" "clock" ];
 
@@ -91,6 +91,13 @@
             default = [ "" "" "" ];
           };
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        };
+
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          disable-scroll = true;
+          all-outputs = true;
+          spacing = 10;
         };
 
         "sway/workspaces" = {
