@@ -9,7 +9,7 @@ in
       Description = "mount gdrive dirs";
       After = [ "network-online.target" ];
     };
-    Install.WantedBy = [ "sway-session.target" ];
+    # Install.WantedBy = [ "graphical-session.target" ]; # sway-session.target
     Service = {
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       ExecStart = ''
