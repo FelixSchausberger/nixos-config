@@ -44,15 +44,19 @@ fn main() -> io::Result<()> {
         String::from_utf8_lossy(&output.stdout).trim().to_string()
     };
 
-    // Execute swaymsg with the selected command
-    let swaymsg = std::process::Command::new("swaymsg")
-        .args(&["-q", &format!("exec {}", selected_command)])
+    let result = std::process::Command::new("sh")
+        .args(&["-c", &selected_command])
         .status()?;
 
-    if swaymsg.success() {
-        println!("swaymsg command executed successfully");
+    // Execute swaymsg with the selected command
+    // let result = std::process::Command::new("swaymsg")
+    //     .args(&["-q", &format!("exec {}", selected_command)])
+    //     .status()?;
+    
+    if result.success() {
+        println!("Command executed successfully");
     } else {
-        eprintln!("swaymsg command failed to execute");
+        eprintln!("Command failed to execute");
     }
 
     Ok(())

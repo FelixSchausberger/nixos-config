@@ -4,7 +4,6 @@
   imports = [
     ./bat.nix
     ./broot.nix
-    ./cliphist.nix
     ./direnv.nix
     ./fzf.nix
     ./git.nix
@@ -44,7 +43,8 @@
   };
 
   services = {
+    cliphist.enable = true;
     lorri.enable = true;
-    playerctld.enable = true; # Custom services with comments
+    playerctld.enable = true;
   };
 }
