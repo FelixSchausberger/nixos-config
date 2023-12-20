@@ -1,4 +1,9 @@
-{ host, ... }: {
+{ host, ... }: 
+
+let
+  editor = "${pkgs.helix}/bin/hx";
+in  
+{
   # Import system-specific and module configurations
   imports = [
     ./hosts/${host}.nix
@@ -6,6 +11,13 @@
     ./modules/tui
     ./modules/wm
   ];
+
+  home.sessionVariables = {
+    EDITOR = "${editor}";
+    SUDO_EDITOR = "${editor}";
+    VISUAL = "${editor}";
+    NIXOS_OZONE_WL = "1"; # For electron apps
+  };
 
   # Specify Home Manager release version
   home.stateVersion = "23.11";

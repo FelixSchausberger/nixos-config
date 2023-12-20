@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 
+let
+  # audioControl = "${pkgs.wireplumber}/bin/wpctl";
+  # playerctl = "${pkgs.playerctl}/bin/playerctl";
+  # gnomeSettings = "${pkgs.glib}/bin/gsettings";
+  dunst = "${pkgs.dunst}/bin/dunstctl";
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -43,7 +49,7 @@
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
-      exec-once = "${pkgs.waybar}/bin/waybar & hyprctl exec ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm.wallpaper.jpg' & ${pkgs.udiskie}/bin/udiskie";
+      exec-once = "${pkgs.waybar}/bin/waybar & hyprctl exec ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm/wallpaper.jpg' & ${pkgs.udiskie}/bin/udiskie";
 
       # misc = {
       #   # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -61,16 +67,37 @@
         "$mod, Return, exec, $terminal"
         "$mod, F, exec, firefox"
         ", Print, exec, ${pkgs.shotman}/bin/shotman --capture region --copy"
-        "$mod, Q, killactive"
-        "$mod, E, exit"
+        "$mod SHIFT, Q, killactive"
+        "$mod SHIFT, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
         "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
 
-        # Move focus with mainMod + arrow keys
+        # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        "$mod SHIFT, left, move left";
+        "$mod SHIFT, right, move right";
+        "$mod SHIFT, up, move up";
+        "$mod SHIFT, down, move down";
+
+        # "$mod, R, submap, resize";
+        # submap = "resize";
+        # binde = [
+        #   ",right,resizeactive,10 0";
+        #   ",left,resizeactive,-10 0";
+        #   ",up,resizeactive,0 -10";
+        #   ",down,resizeactive,0 10";
+        # ];
+        # ", escape, submap, reset";
+        # submap = "reset";
+
+        # Notification daemon
+        "Control, Space, exec ${dunst} close";
+        "Control SHIFT, Space, exec ${dunst} close-all";
+        "Control, m, exec ${dunst} set-paused toggle";
 
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
@@ -79,6 +106,9 @@
         # Scroll through existing workspaces with mainMod + scroll
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
+        
+        # Show waybar
+        "$mod, hyprctl bar hidden_state show";
       ]
       ++ (
         # workspaces
@@ -101,5 +131,17 @@
           10)
       );
     };
+
+    extraConfig = ''
+      # window resize
+      bind = $mod, S, submap, resize
+      submap = resize
+      binde = , right, resizeactive, 10 0
+      binde = , left, resizeactive, -10 0
+      binde = , up, resizeactive, 0 -10
+      binde = , down, resizeactive, 0 10
+      bind = , escape, submap, reset
+      submap = reset
+    '';
   };
 }
