@@ -36,13 +36,6 @@ in
         ];
       };
 
-      group = {
-        groupbar = {
-          font_family = "Fira Code NF";
-          font_size = 14;
-        };
-      };
-
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mod" = "SUPER";
       "$terminal" = "${pkgs.kitty}/bin/kitty";
@@ -61,6 +54,9 @@ in
         "$mod, mouse:273, resizewindow"
         "$mod ALT, mouse:272, resizewindow"
       ];
+
+      bindt = "$mod, exec, pkill -SIGUSR1 waybar";
+      bindrt = "SUPER, $mod, exec, pkill -SIGUSR1 waybar";
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -108,7 +104,7 @@ in
         "$mod, mouse_up, workspace, e-1"
         
         # Show waybar
-        "$mod, hyprctl bar hidden_state show";
+        # "$mod, hyprctl bar hidden_state show";
       ]
       ++ (
         # workspaces

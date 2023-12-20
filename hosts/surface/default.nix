@@ -13,18 +13,15 @@
   hardware.opengl = {
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      # vaapiIntel          # LIBVA_DRIVER_NAME=i965 (older, better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
       libcamera # Camera support
       libwacom-surface # Better stylus and touch support
-      linux-firmware # Necessary?
-      microcodeIntel # Necessary?
+      linux-firmware
+      microcodeIntel
     ];
   };
 
   networking.hostName = "Surface";
-
-  # Configure console keymap
   console.keyMap = "de";
 }
