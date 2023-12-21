@@ -2,6 +2,10 @@
   description = "Personal NixOS config";
 
   inputs = {
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     devenv.url = "github:cachix/devenv";
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
@@ -18,7 +22,8 @@
   };
 
   outputs =
-    inputs@{ devenv
+    inputs@{ anyrun
+    , devenv
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -58,6 +63,8 @@
                 flake-inputs = inputs;
                 inherit host nixpkgs nixpkgs-unstable;
                 pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+                # anyrun = anyrun.packages.${system}.anyrun;
+                system.packages = [ anyrun.packages.${system}.anyrun ];
               };
             }
           ];

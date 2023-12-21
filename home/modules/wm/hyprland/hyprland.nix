@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
-let
-  #   audioControl = "${pkgs.wireplumber}/bin/wpctl";
-  #   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  #   gnomeSettings = "${pkgs.glib}/bin/gsettings";
-  dunst = "${pkgs.dunst}/bin/dunstctl";
-in
+# let
+#   audioControl = "${pkgs.wireplumber}/bin/wpctl";
+#   playerctl = "${pkgs.playerctl}/bin/playerctl";
+#   gnomeSettings = "${pkgs.glib}/bin/gsettings";
+# dunst = "${pkgs.dunst}/bin/dunstctl";
+# in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -33,6 +33,11 @@ in
         windowrule = [
           "float,^(pavucontrol)$"
           "float,^(Steam)$"
+
+          # Idle inhibit while watching videos
+          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+          "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
+          "idleinhibit fullscreen, class:^(firefox)$"
         ];
       };
 
@@ -59,8 +64,9 @@ in
         "$mod ALT, mouse:272, resizewindow"
       ];
 
-      # bindt = [ "$mod, exec, pkill -SIGUSR1 waybar" ];
-      # bindrt = [ "SUPER, $mod, exec, pkill -SIGUSR1 waybar" ];
+      # Show waybar when mod is pressed
+      bindt = ", Super_L, exec, pkill -SIGUSR1 waybar";
+      bindrt = "SUPER, Super_L, exec, pkill -SIGUSR1 waybar";
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -79,12 +85,12 @@ in
         "$mod, down, movefocus, d"
 
         "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, rt"
+        "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
 
         # Notification daemon
-        "CTRL, exec ${dunst} close"
+        # "CTRL, exec ${dunst} close"
         # "Control SHIFT, Space, exec ${dunst} close-all"
         # "Control, m, exec ${dunst} set-paused toggle"
 
@@ -95,9 +101,6 @@ in
         # Scroll through existing workspaces with mainMod + scroll
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
-
-        # Show waybar
-        # "$mod, hyprctl bar hidden_state show";
       ]
       ++ (
         # workspaces
