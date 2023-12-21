@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
-# let
-#   audioControl = "${pkgs.wireplumber}/bin/wpctl";
-#   playerctl = "${pkgs.playerctl}/bin/playerctl";
-#   gnomeSettings = "${pkgs.glib}/bin/gsettings";
-#   dunst = "${pkgs.dunst}/bin/dunstctl";
-# in
+let
+  #   audioControl = "${pkgs.wireplumber}/bin/wpctl";
+  #   playerctl = "${pkgs.playerctl}/bin/playerctl";
+  #   gnomeSettings = "${pkgs.glib}/bin/gsettings";
+  dunst = "${pkgs.dunst}/bin/dunstctl";
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -42,12 +42,16 @@
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
-      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper & ${pkgs.udiskie}/bin/udiskie";
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${pkgs.udiskie}/bin/udiskie"
+      ];
 
-      # misc = {
-      #   # See https://wiki.hyprland.org/Configuring/Variables/ for more
-      #   force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
-      # };
+      misc = {
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+      };
 
       bindm = [
         # mouse movements    "$mod, mouse:272, movewindow"
@@ -74,24 +78,13 @@
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        # "$mod SHIFT, left, move left"
-        # "$mod SHIFT, right, move right"
-        # "$mod SHIFT, up, move up"
-        # "$mod SHIFT, down, move down"
-
-        # "$mod, R, submap, resize";
-        # submap = "resize";
-        # binde = [
-        #   ",right,resizeactive,10 0";
-        #   ",left,resizeactive,-10 0";
-        #   ",up,resizeactive,0 -10";
-        #   ",down,resizeactive,0 10";
-        # ];
-        # ", escape, submap, reset";
-        # submap = "reset";
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, rt"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
 
         # Notification daemon
-        # "Control, Space, exec ${dunst} close"
+        "CTRL, exec ${dunst} close"
         # "Control SHIFT, Space, exec ${dunst} close-all"
         # "Control, m, exec ${dunst} set-paused toggle"
 
@@ -130,7 +123,7 @@
 
     extraConfig = ''
       # window resize
-      bind = $mod, S, submap, resize
+      bind = $mod, R, submap, resize
       submap = resize
       binde = , right, resizeactive, 10 0
       binde = , left, resizeactive, -10 0
