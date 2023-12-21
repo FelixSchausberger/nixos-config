@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  # audioControl = "${pkgs.wireplumber}/bin/wpctl";
-  # playerctl = "${pkgs.playerctl}/bin/playerctl";
-  # gnomeSettings = "${pkgs.glib}/bin/gsettings";
-  dunst = "${pkgs.dunst}/bin/dunstctl";
-in
+# let
+#   audioControl = "${pkgs.wireplumber}/bin/wpctl";
+#   playerctl = "${pkgs.playerctl}/bin/playerctl";
+#   gnomeSettings = "${pkgs.glib}/bin/gsettings";
+#   dunst = "${pkgs.dunst}/bin/dunstctl";
+# in
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -38,11 +38,11 @@ in
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mod" = "SUPER";
-      "$terminal" = "${pkgs.kitty}/bin/kitty";
+      "$terminal" = "${pkgs.wezterm}/bin/wezterm";
       "$fileManager" = "spacedrive";
       "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
 
-      exec-once = "${pkgs.waybar}/bin/waybar & hyprctl exec ${pkgs.hyprpaper}/bin/hyprpaper wallpaper ',${config.home.homeDirectory}/.nixos/home/modules/wm/wallpaper.jpg' & ${pkgs.udiskie}/bin/udiskie";
+      exec-once = "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper & ${pkgs.udiskie}/bin/udiskie";
 
       # misc = {
       #   # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -55,8 +55,8 @@ in
         "$mod ALT, mouse:272, resizewindow"
       ];
 
-      bindt = "$mod, exec, pkill -SIGUSR1 waybar";
-      bindrt = "SUPER, $mod, exec, pkill -SIGUSR1 waybar";
+      # bindt = [ "$mod, exec, pkill -SIGUSR1 waybar" ];
+      # bindrt = [ "SUPER, $mod, exec, pkill -SIGUSR1 waybar" ];
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -74,10 +74,10 @@ in
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        "$mod SHIFT, left, move left";
-        "$mod SHIFT, right, move right";
-        "$mod SHIFT, up, move up";
-        "$mod SHIFT, down, move down";
+        # "$mod SHIFT, left, move left"
+        # "$mod SHIFT, right, move right"
+        # "$mod SHIFT, up, move up"
+        # "$mod SHIFT, down, move down"
 
         # "$mod, R, submap, resize";
         # submap = "resize";
@@ -91,9 +91,9 @@ in
         # submap = "reset";
 
         # Notification daemon
-        "Control, Space, exec ${dunst} close";
-        "Control SHIFT, Space, exec ${dunst} close-all";
-        "Control, m, exec ${dunst} set-paused toggle";
+        # "Control, Space, exec ${dunst} close"
+        # "Control SHIFT, Space, exec ${dunst} close-all"
+        # "Control, m, exec ${dunst} set-paused toggle"
 
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
@@ -102,7 +102,7 @@ in
         # Scroll through existing workspaces with mainMod + scroll
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
-        
+
         # Show waybar
         # "$mod, hyprctl bar hidden_state show";
       ]

@@ -11,9 +11,9 @@
 
   networking.hostName = "Desktop";
 
-  environment.etc."vconsole.conf".text = ''
-    KEYMAP=eu
-  '';
-  console.keyMap = "eu";
+  # environment.etc."vconsole.conf".text = ''
+  #   KEYMAP=eu
+  # '';
+  # console.keyMap = "eu";
 }
 

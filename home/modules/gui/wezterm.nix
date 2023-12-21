@@ -18,6 +18,9 @@
 
         -- Adjust the window background opacity (0.0 to 1.0)
         window_background_opacity = 0.3,
+
+        -- temporary fix for Hyprland
+        enable_wayland = false,
       }
     '';
   };

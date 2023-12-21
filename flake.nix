@@ -1,15 +1,12 @@
-let
-  nix-version = "23.05";
-in
 {
   description = "Personal NixOS config";
 
   inputs = {
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "nixpkgs/nixos-${nix-version}"; # 23.11
+    nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-${nix-version}"; # 23.11
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
@@ -35,7 +32,7 @@ in
           system = "x86_64-linux";
           specialArgs = {
             flake-inputs = inputs;
-            inherit home-manager host nix-version;
+            inherit home-manager host;
           };
           modules = [
             nur.nixosModules.nur

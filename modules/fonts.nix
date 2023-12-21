@@ -6,18 +6,18 @@
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
       font-awesome
-      # roboto
-      # roboto-mono
+      roboto
+      roboto-mono
       source-serif-pro
       # meslo-lgs-nf
     ];
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "FiraCode Mono" ];
-        sansSerif = [ "FiraCode" ];
-        # monospace = [ "Roboto Mono" ];
-        # sansSerif = [ "Roboto" ];
+        # monospace = [ "FiraCode Mono" ];
+        # sansSerif = [ "FiraCode" ];
+        monospace = [ "Roboto Mono" ];
+        sansSerif = [ "Roboto" ];
         serif = [ "Source Serif Pro" ];
       };
     };

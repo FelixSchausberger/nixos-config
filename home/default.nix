@@ -1,8 +1,8 @@
-{ host, nix-version, ... }: 
+{ host, pkgs, ... }:
 
 let
   editor = "${pkgs.helix}/bin/hx";
-in  
+in
 {
   # Import system-specific and module configurations
   imports = [
@@ -20,7 +20,7 @@ in
   };
 
   # Specify Home Manager release version
-  home.stateVersion = "${nix-version}"; # "23.11";
+  home.stateVersion = "23.11";
 
   # Nicely reload system units when changing configs.
   systemd.user.startServices = "sd-switch";
