@@ -11,7 +11,7 @@
     ./i2p.nix
     ./nushell.nix
     ./rbw.nix
-    ./rclone.nix
+    # ./rclone.nix
     ./starship.nix
     ./tealdeer.nix
     ./topgrade.nix

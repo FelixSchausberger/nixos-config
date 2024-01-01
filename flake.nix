@@ -31,83 +31,16 @@
     ];
   };
 
-  outputs =
-    inputs@{
-      # anyrun
-      devenv
-      # , flake-parts
-    , home-manager
-    , nixpkgs
-    , nixpkgs-unstable
-    , nur
-    , self
-    , ...
-    }:
-    let
-      mkSystem = host:
-        nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = {
-            flake-inputs = inputs;
-            inherit home-manager host;
-          };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-          modules = [
-            nur.nixosModules.nur
-            # Add the Microsoft Surface module only if the host is "surface"
-            # (if host == "surface" then
-            #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            #     {
-            #       microsoft-surface.ipts.enable = true;
-            #       config.microsoft-surface.surface-control.enable = true;
-            #     }
-            # else { })
-
-            # Include custom configurations
-            ./configuration.nix
-            ./hosts/${host}
-            # Configure Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.extraSpecialArgs = {
-                # Read secrets from a JSON file
-                secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-                flake-inputs = inputs;
-                inherit host nixpkgs nixpkgs-unstable;
-                pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-              };
-            }
-          ];
-        };
-
-      # Use stable packages for a specific architecture
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-    in
-    {
-      # Development shell configuration
-      devShell.x86_64-linux = devenv.lib.mkShell {
-        inherit inputs pkgs;
-        modules = [{
-          # Enable pre-commit hooks for various languages/tools
-          pre-commit.hooks = {
-            black.enable = true; # Python
-            clang-format.enable = true; # C
-            deadnix.enable = true; # Nix
-            markdownlint.enable = true; # Markdown
-            nil.enable = true; # Nix
-            nixpkgs-fmt.enable = true; # Nix
-            shellcheck.enable = true; # Shell
-            taplo.enable = true; # Rust
-            yamllint.enable = true; # YAML
-          };
-        }];
+      flake = {
+        imports = [
+          ./flake.nix.backup
+        ];
       };
 
-      # NixOS system configurations
-      nixosConfigurations = {
-        desktop = mkSystem "desktop";
-        surface = mkSystem "surface";
-      };
+      # perSystem = { config, ... }: { };
     };
 }
