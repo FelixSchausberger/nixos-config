@@ -22,6 +22,7 @@
       pkgs.celeste
       pkgs.krita
       pkgs.obsidian
+      pkgs-unstable.overskride
       pkgs.qbittorrent
       pkgs.rnote
       pkgs-unstable.spacedrive
