@@ -1,10 +1,9 @@
-# {
-# , pkgs
-# , inputs
+# { pkgs
+#   , inputs
 # , config
 # , self
 # , ...
-# }: 
+# }:
 {
   programs.anyrun = {
     enable = true;

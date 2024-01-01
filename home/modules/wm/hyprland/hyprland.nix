@@ -14,6 +14,9 @@
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+        "MOZ_ENABLE_WAYLAND,1"
+        "MOZ_WEBRENDER,1"
+        "MOZ_ACCELERATED,1"
       ];
 
       monitor = "HDMI-A-1,1920x1080@60,0x0,1"; # Desktop
@@ -33,6 +36,7 @@
         windowrule = [
           "float,^(pavucontrol)$"
           "float,^(Steam)$"
+          "float, app_id='floating-mode'"
 
           # Idle inhibit while watching videos
           "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
