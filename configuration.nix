@@ -36,6 +36,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # anyrun.packages.${pkgs.system}.anyrun
     wayland
     xdg-utils
   ];
@@ -82,6 +83,9 @@
       # the 'login' configuration file (see /etc/pam.d/login)
       auth include login
     '';
+
+    # Don't ask for password for wheel group
+    sudo.wheelNeedsPassword = false;
 
     wrappers = {
       fusermount.source = "${pkgs.fuse}/bin/fusermount";

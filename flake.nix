@@ -7,6 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     home-manager = {
@@ -17,13 +18,24 @@
   };
 
   nixConfig = {
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-    extra-trusted-substituters = "https://devenv.cachix.org";
+    extra-trusted-substituters = [
+      "https://nix-community.cachix.org"
+      "https://devenv.cachix.org"
+      "https://anyrun.cachix.org"
+    ];
+
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
   };
 
   outputs =
-    inputs@{ anyrun
-    , devenv
+    inputs@{
+      # anyrun
+      devenv
+      # , flake-parts
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -39,6 +51,7 @@
             flake-inputs = inputs;
             inherit home-manager host;
           };
+
           modules = [
             nur.nixosModules.nur
             # Add the Microsoft Surface module only if the host is "surface"
@@ -63,8 +76,6 @@
                 flake-inputs = inputs;
                 inherit host nixpkgs nixpkgs-unstable;
                 pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-                # anyrun = anyrun.packages.${system}.anyrun;
-                system.packages = [ anyrun.packages.${system}.anyrun ];
               };
             }
           ];

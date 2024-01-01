@@ -18,7 +18,7 @@
       cat = "bat";
       cd = "z";
       clone = "git clone";
-      cleanup = "sudo nix-collect-garbage";
+      cleanup = "sudo nix store gc --debug"; # "sudo nix-collect-garbage";
       cp = "cp -rpv";
       fetch = "git fetch";
       gaa = "git add .";
