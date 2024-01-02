@@ -31,8 +31,7 @@
   };
 
   outputs =
-    inputs@{ anyrun
-    , devenv
+    inputs@{ devenv
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -45,8 +44,9 @@
         nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
+            secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
             flake-inputs = inputs;
-            inherit anyrun home-manager host;
+            inherit home-manager host;
           };
 
           modules = [
