@@ -3,7 +3,6 @@
   # Import configurations of graphical applications
   imports = [
     ./firefox
-    ./configs
     ./libraries
     ./dunst.nix
     ./mpv.nix

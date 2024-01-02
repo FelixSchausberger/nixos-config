@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   imports = [
     ./extra-config.nix

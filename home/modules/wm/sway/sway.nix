@@ -40,8 +40,8 @@ in
 
     config = rec {
       terminal = "${pkgs.wezterm}/bin/wezterm";
-      menu = "exec ${terminal} start --class=floating-mode ${../scripts/result/bin/launcher}";
       modifier = "Mod4";
+      # menu = "exec anyrun";
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }

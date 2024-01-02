@@ -49,7 +49,7 @@
       "$mod" = "SUPER";
       "$terminal" = "${pkgs.wezterm}/bin/wezterm";
       "$fileManager" = "spacedrive";
-      "$menu" = "exec $terminal start --class=floating-mode ${../scripts/result/bin/launcher}";
+      # "$menu" = "exec anyrun";
 
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
