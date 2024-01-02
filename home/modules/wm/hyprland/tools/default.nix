@@ -1,6 +1,6 @@
 {
   imports = [
-    ./anyrun.nix
+    # ./anyrun.nix
     ./hyprpaper.nix
   ];
 }
