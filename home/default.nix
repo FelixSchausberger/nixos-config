@@ -10,6 +10,7 @@ in
     ./modules/gui
     ./modules/tui
     ./modules/wm
+    ./xdg.nix
   ];
 
   home.sessionVariables = {

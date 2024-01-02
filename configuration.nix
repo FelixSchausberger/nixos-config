@@ -15,7 +15,6 @@
     ./modules/sound.nix
     ./modules/users.nix
     ./modules/wifi.nix
-    ./modules/xdg.nix
   ];
 
   # Set your time zone.

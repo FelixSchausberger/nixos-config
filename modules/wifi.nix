@@ -1,17 +1,21 @@
 { secrets, ... }:
 
 {
-  networking.networkmanager = {
-    enable = true;
-    # wireless.enable = true;  # Enable wireless support
+  networking = {
+    networkmanager.enable = true;
 
     # WiFi configuration
-    wireless.networks = {
-      Pretty-Fly-For-A-WiFi = {
-        key = "${secrets.pretty-fly-for-a-wifi.password}";
-      };
-      Hochbau-Talstation = {
-        key = "${secrets.hochbau-talstation.password}";
+    wireless = {
+      enable = true;
+
+      networks = {
+        Pretty-Fly-For-A-WiFi = {
+          key = "${secrets.wifi.pretty-fly-for-a-wifi}";
+        };
+
+        Hochbau-Talstation = {
+          key = "${secrets.wifi.hochbau-talstation}";
+        };
       };
     };
   };
