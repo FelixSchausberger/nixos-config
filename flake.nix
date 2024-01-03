@@ -31,7 +31,8 @@
   };
 
   outputs =
-    inputs@{ devenv
+    inputs@{ anyrun
+    , devenv
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -46,7 +47,7 @@
           specialArgs = {
             secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
             flake-inputs = inputs;
-            inherit home-manager host;
+            inherit anyrun home-manager host;
           };
 
           modules = [
@@ -71,7 +72,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixpkgs nixpkgs-unstable;
+                inherit anyrun host nixpkgs nixpkgs-unstable;
                 pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
               };
             }

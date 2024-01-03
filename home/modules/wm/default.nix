@@ -8,7 +8,7 @@
   ];
 
   home.packages = with pkgs; [
-    ironbar
+    workstyle
     slurp
     swayimg
   ];

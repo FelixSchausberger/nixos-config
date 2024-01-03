@@ -41,7 +41,7 @@ in
     config = rec {
       terminal = "${pkgs.wezterm}/bin/wezterm";
       modifier = "Mod4";
-      # menu = "exec anyrun";
+      menu = "anyrun";
 
       startup = [
         { command = "${pkgs.autotiling}/bin/autotiling"; }
@@ -71,7 +71,7 @@ in
         "${modifier}+e" = "exec ${terminal} start --class=floating-mode ${pkgs.broot}/bin/broot";
 
         # Find
-        "${modifier}+space" = "exec ${terminal} start --class=floating-mode ${pkgs.ripgrep-all}/bin/rga-fzf";
+        "${modifier}+space" = "exec ${menu}";
 
         # Manual lock
         "--release ${modifier}+l" = "exec loginctl lock-session";

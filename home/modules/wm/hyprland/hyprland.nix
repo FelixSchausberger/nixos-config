@@ -49,12 +49,13 @@
       "$mod" = "SUPER";
       "$terminal" = "${pkgs.wezterm}/bin/wezterm";
       "$fileManager" = "spacedrive";
-      # "$menu" = "exec anyrun";
+      "$menu" = "anyrun";
 
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
+        "${pkgs.workstyle}/bin/workstyle &> /tmp/workstyle.log"
       ];
 
       misc = {
@@ -69,12 +70,13 @@
       ];
 
       # Show waybar when mod is pressed
-      bindt = ", Super_L, exec, pkill -SIGUSR1 waybar";
-      bindrt = "SUPER, Super_L, exec, pkill -SIGUSR1 waybar";
+      # bindt = ", Super_L, exec, pkill -SIGUSR1 waybar";
+      # bindrt = "SUPER, Super_L, exec, pkill -SIGUSR1 waybar";
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mod, Return, exec, $terminal"
+        "$mod, Space, exec, $menu"
         "$mod, F, exec, firefox"
         ", Print, exec, ${pkgs.shotman}/bin/shotman --capture region --copy"
         "$mod SHIFT, Q, killactive"

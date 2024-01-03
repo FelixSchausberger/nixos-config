@@ -93,7 +93,7 @@
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
 
-        "hyprland/workspaces" = {
+        "wlr/workspaces" = {
           format = "{icon}";
           disable-scroll = true;
           all-outputs = true;
