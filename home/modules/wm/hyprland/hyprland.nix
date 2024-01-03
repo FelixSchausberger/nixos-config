@@ -1,22 +1,32 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
-# let
-#   audioControl = "${pkgs.wireplumber}/bin/wpctl";
-#   playerctl = "${pkgs.playerctl}/bin/playerctl";
-#   gnomeSettings = "${pkgs.glib}/bin/gsettings";
-# dunst = "${pkgs.dunst}/bin/dunstctl";
-# in
+let
+  #   audioControl = "${pkgs.wireplumber}/bin/wpctl";
+  #   playerctl = "${pkgs.playerctl}/bin/playerctl";
+  browser = "${pkgs.firefox}/bin/firefox";
+  dunst = "${pkgs.dunst}/bin/dunstctl";
+  editor = "${pkgs.helix}/bin/hx";
+  terminal = "${pkgs.foot}/bin/footclient"; # "${pkgs.wezterm}/bin/wezterm";
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
       env = [
         "QT_QPA_PLATFORM,wayland"
+
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+
         "MOZ_ENABLE_WAYLAND,1"
         "MOZ_WEBRENDER,1"
         "MOZ_ACCELERATED,1"
+
+        "TERMINAL,${terminal}"
+        "BROWSER,${browser}"
+        "EDITOR,${editor}"
+        "SUDO_EDITOR,${editor}"
+        "VISUAL,${editor}"
       ];
 
       monitor = "HDMI-A-1,1920x1080@60,0x0,1"; # Desktop
@@ -36,7 +46,7 @@
         windowrule = [
           "float,^(pavucontrol)$"
           "float,^(Steam)$"
-          "float, app_id='floating-mode'"
+          "float,^(floating-mode)$"
 
           # Idle inhibit while watching videos
           "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
@@ -47,15 +57,15 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mod" = "SUPER";
-      "$terminal" = "${pkgs.wezterm}/bin/wezterm";
-      "$fileManager" = "spacedrive";
-      "$menu" = "anyrun";
+      "$terminal" = "${terminal}";
+      "$fileManager" = "${pkgs-unstable.spacedrive}/bin/spacedrive";
 
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
-        "${pkgs.workstyle}/bin/workstyle &> /tmp/workstyle.log"
+        "${pkgs.foot}/bin/foot --server"
+        # "${pkgs.workstyle}/bin/workstyle &> /tmp/workstyle.log"
       ];
 
       misc = {
@@ -69,20 +79,20 @@
         "$mod ALT, mouse:272, resizewindow"
       ];
 
-      # Show waybar when mod is pressed
-      # bindt = ", Super_L, exec, pkill -SIGUSR1 waybar";
-      # bindrt = "SUPER, Super_L, exec, pkill -SIGUSR1 waybar";
+      bindr = [
+        "$mod, l, exec, loginctl lock-session"
+      ];
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mod, Return, exec, $terminal"
-        "$mod, Space, exec, $menu"
-        "$mod, F, exec, firefox"
-        ", Print, exec, ${pkgs.shotman}/bin/shotman --capture region --copy"
+        "$mod, F, exec, ${browser}"
+        ", Print, exec, ${pkgs.shotman}/bin/shotman --copy --capture region"
         "$mod SHIFT, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
-        "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
+        # "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
+        "$mod, V, exec, $terminal --app-id=floating-mode ${../scripts/result/bin/cliphist}"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
@@ -96,17 +106,19 @@
         "$mod SHIFT, down, movewindow, d"
 
         # Notification daemon
-        # "CTRL, exec ${dunst} close"
-        # "Control SHIFT, Space, exec ${dunst} close-all"
-        # "Control, m, exec ${dunst} set-paused toggle"
+        "CTRL, Space, exec, ${dunst} close"
+        "CTRL SHIFT, Space, exec, ${dunst} close-all"
+        "CTRL, m, exec, ${dunst} set-paused, toggle"
 
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
         "$mod SHIFT, S, movetoworkspace, special:magic"
 
-        # Scroll through existing workspaces with mainMod + scroll
+        # Cycle through workspaces
         "$mod, mouse_down, workspace, e+1"
+        "$mod, tab, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
+        "$mod Shift, tab, workspace, e-1"
       ]
       ++ (
         # workspaces

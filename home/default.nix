@@ -1,8 +1,5 @@
-{ host, pkgs, ... }:
+{ host, ... }:
 
-let
-  editor = "${pkgs.helix}/bin/hx";
-in
 {
   # Import system-specific and module configurations
   imports = [
@@ -14,9 +11,6 @@ in
   ];
 
   home.sessionVariables = {
-    EDITOR = "${editor}";
-    SUDO_EDITOR = "${editor}";
-    VISUAL = "${editor}";
     NIXOS_OZONE_WL = "1"; # For electron apps
   };
 

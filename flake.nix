@@ -2,10 +2,6 @@
   description = "Personal NixOS config";
 
   inputs = {
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     devenv.url = "github:cachix/devenv";
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
@@ -20,19 +16,16 @@
     extra-trusted-substituters = [
       "https://nix-community.cachix.org"
       "https://devenv.cachix.org"
-      "https://anyrun.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
 
   outputs =
-    inputs@{ anyrun
-    , devenv
+    inputs@{ devenv
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -47,7 +40,7 @@
           specialArgs = {
             secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
             flake-inputs = inputs;
-            inherit anyrun home-manager host;
+            inherit home-manager host;
           };
 
           modules = [
@@ -72,7 +65,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit anyrun host nixpkgs nixpkgs-unstable;
+                inherit host nixpkgs nixpkgs-unstable;
                 pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
               };
             }

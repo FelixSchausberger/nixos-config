@@ -1,8 +1,7 @@
 {
   imports = [
-    ./anyrun.nix
     ./gammastep.nix
-    # ./swayidle.nix
+    ./swayidle.nix
     ./waybar.nix
     ./wlsunset.nix
   ];
