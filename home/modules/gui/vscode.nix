@@ -10,7 +10,7 @@
       tomoki1207.pdf
       esbenp.prettier-vscode
       rust-lang.rust-analyzer
-      # nvarner.typst-lsp
+      nvarner.typst-lsp
       redhat.vscode-yaml
     ];
   };

@@ -2,6 +2,7 @@
 {
   # Import configurations of graphical applications
   imports = [
+    ./foot.nix
     ./firefox
     ./libraries
     ./dunst.nix
