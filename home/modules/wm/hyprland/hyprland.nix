@@ -1,8 +1,6 @@
 { hycov, pkgs, ... }: # pkgs-unstable, ... }:
 
 let
-  #   audioControl = "${pkgs.wireplumber}/bin/wpctl";
-  #   playerctl = "${pkgs.playerctl}/bin/playerctl";
   browser = "${pkgs.firefox}/bin/firefox";
   dunst = "${pkgs.dunst}/bin/dunstctl";
   editor = "${pkgs.helix}/bin/hx";
@@ -57,7 +55,7 @@ in
           # Idle inhibit while watching videos
           "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
           "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
-          "idleinhibit fullscreen, class:^(firefox)$"
+          "idleinhibit fullscreen, class:^(*)$"
         ];
       };
 
@@ -71,13 +69,25 @@ in
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.foot}/bin/foot --server"
-        # "${pkgs.workstyle}/bin/workstyle &> /tmp/workstyle.log"
+        "${pkgs.swayosd}/bin/swayosd-server"
+        "${pkgs.hyprland-autoname-workspaces}/bin/hyprland-autoname-workspaces"
       ];
 
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
       };
+
+      binde = [
+        ", XF86AudioRaiseVolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise --max-volume 150"
+        ", XF86AudioLowerVolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume lower --max-volume 150"
+
+        ", XF86MonBrightnessUp, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness raise"
+        ", XF86MonBrightnessDown, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness lower"
+
+        # ", XF86MonBrightnessDown, exec, ${pkgs.light}/bin/light -U 10"
+        # ", XF86MonBrightnessUp, exec, ${pkgs.light}/bin/light -A 10"
+      ];
 
       bindm = [
         # mouse movements    "$mod, mouse:272, movewindow"
@@ -87,6 +97,7 @@ in
 
       bindr = [
         "$mod, l, exec, loginctl lock-session"
+        ", Caps_Lock, exec, ${pkgs.swayosd}/bin/swayosd-client --caps-lock"
       ];
 
       bind = [

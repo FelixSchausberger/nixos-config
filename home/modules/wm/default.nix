@@ -8,6 +8,7 @@
   ];
 
   home.packages = with pkgs; [
+    light
     workstyle
     slurp
     swayimg
