@@ -3,11 +3,17 @@
 
   inputs = {
     devenv.url = "github:cachix/devenv";
-    nixpkgs.url = "nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-23.11";
+    # nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager"; # /release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland.url = "github:hyprwm/Hyprland";
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
     };
     nur.url = "github:nix-community/NUR";
   };
@@ -27,15 +33,17 @@
   outputs =
     inputs@{ devenv
     , home-manager
+    , hycov
     , nixpkgs
-    , nixpkgs-unstable
+      # , nixpkgs-unstable
     , nur
     , self
     , ...
     }:
     let
       mkSystem = host:
-        nixpkgs.lib.nixosSystem rec {
+        nixpkgs.lib.nixosSystem {
+          # rec {
           system = "x86_64-linux";
           specialArgs = {
             secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
@@ -65,8 +73,8 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host nixpkgs nixpkgs-unstable;
-                pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+                inherit host hycov nixpkgs; # nixpkgs-unstable;
+                # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
               };
             }
           ];

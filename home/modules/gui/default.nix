@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }: # pkgs-unstable, ... }:
 {
   # Import configurations of graphical applications
   imports = [
@@ -22,10 +22,10 @@
       pkgs.celeste
       pkgs.krita
       pkgs.obsidian
-      pkgs-unstable.overskride
+      pkgs.overskride
       pkgs.qbittorrent
       pkgs.rnote
-      pkgs-unstable.spacedrive
+      pkgs.spacedrive
       pkgs.upscayl
     ];
   };

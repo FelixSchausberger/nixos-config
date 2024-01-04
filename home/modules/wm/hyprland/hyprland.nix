@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ hycov, pkgs, ... }: # pkgs-unstable, ... }:
 
 let
   #   audioControl = "${pkgs.wireplumber}/bin/wpctl";
@@ -10,6 +10,12 @@ let
 in
 {
   wayland.windowManager.hyprland = {
+    enable = true;
+
+    plugins = [
+      hycov.packages.${pkgs.system}.hycov
+    ];
+
     settings = {
       env = [
         "QT_QPA_PLATFORM,wayland"
@@ -58,7 +64,7 @@ in
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mod" = "SUPER";
       "$terminal" = "${terminal}";
-      "$fileManager" = "${pkgs-unstable.spacedrive}/bin/spacedrive";
+      "$fileManager" = "${pkgs.spacedrive}/bin/spacedrive";
 
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
@@ -116,9 +122,10 @@ in
 
         # Cycle through workspaces
         "$mod, mouse_down, workspace, e+1"
-        "$mod, tab, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
-        "$mod Shift, tab, workspace, e-1"
+
+        "$mod, n, workspace, e+1"
+        "$mod, p, workspace, e-1"
       ]
       ++ (
         # workspaces
@@ -152,6 +159,18 @@ in
       binde = , down, resizeactive, 0 10
       bind = , escape, submap, reset
       submap = reset
+    '' + ''
+      # hycov plugin
+      bind = $mod, tab, hycov:toggleoverview
+      
+      plugin {
+          hycov {
+            overview_gappo = 60 # gaps width from screen
+            overview_gappi = 24 # gaps width from clients
+      	    hotarea_size = 10 # hotarea size in bottom left,10x10
+      	    enable_hotarea = 1 # enable mouse cursor hotarea
+          }
+      }
     '';
   };
 }

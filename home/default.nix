@@ -15,7 +15,7 @@
   };
 
   # Specify Home Manager release version
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Nicely reload system units when changing configs.
   systemd.user.startServices = "sd-switch";
