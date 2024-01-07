@@ -2,14 +2,13 @@
 {
   # Import configurations of graphical applications
   imports = [
-    ./foot.nix
     ./firefox
     ./libraries
     ./dunst.nix
     ./mpv.nix
     ./nwg-drawer.nix
+    ./terminals
     ./vscode.nix
-    ./wezterm.nix
   ];
 
   # Enabled graphical applications

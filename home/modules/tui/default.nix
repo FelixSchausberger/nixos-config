@@ -5,9 +5,9 @@
     ./bat.nix
     ./broot.nix
     ./direnv.nix
+    ./editors
     ./fzf.nix
     ./git.nix
-    ./helix.nix
     ./i2p.nix
     ./nushell.nix
     ./rbw.nix

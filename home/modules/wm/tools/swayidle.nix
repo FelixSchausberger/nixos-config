@@ -1,10 +1,8 @@
 { pkgs, ... }:
 
 let
-  swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10";
+  swaylock = "${pkgs.swaylock-effects}/bin/swaylock -f --screenshots --indicator-radius 0 --effect-blur 4x5 --grace 10 --fade-in 8";
 
-  # dpmsOffCommand = "swaymsg 'output * dpms off'";
-  # dpmsOnCommand = "swaymsg 'output * dpms on'";
   dpmsOffCommand = "hyprctl dispatch dpms off";
   dpmsOnCommand = "hyprctl dispatch dpms on";
 in

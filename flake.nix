@@ -3,11 +3,9 @@
 
   inputs = {
     devenv.url = "github:cachix/devenv";
-    # nixpkgs.url = "nixpkgs/nixos-23.11";
-    # nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager"; # /release-23.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
@@ -35,7 +33,6 @@
     , home-manager
     , hycov
     , nixpkgs
-      # , nixpkgs-unstable
     , nur
     , self
     , ...
@@ -73,8 +70,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host hycov nixpkgs; # nixpkgs-unstable;
-                # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+                inherit host hycov nixpkgs;
               };
             }
           ];
