@@ -1,6 +1,6 @@
 {
   imports = [
     ./helix.nix
-    ./nvim.nix
+    ./neovim.nix
   ];
 }
