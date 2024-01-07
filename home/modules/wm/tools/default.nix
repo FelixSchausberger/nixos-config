@@ -2,8 +2,7 @@
   imports = [
     ./gammastep.nix
     ./swayidle.nix
-    ./swayosd.nix
-    ./waybar.nix
+    # ./swayosd.nix
     ./wlsunset.nix
   ];
 }

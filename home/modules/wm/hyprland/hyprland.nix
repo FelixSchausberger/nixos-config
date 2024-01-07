@@ -48,14 +48,9 @@ in
         ];
 
         windowrule = [
-          "float,^(pavucontrol)$"
-          "float,^(Steam)$"
-          "float,^(floating-mode)$"
-
-          # Idle inhibit while watching videos
-          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-          "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
-          "idleinhibit fullscreen, class:^(*)$"
+          "float, ^(pavucontrol)$"
+          "float, ^(Steam)$"
+          "float, ^(floating-mode)$"
         ];
       };
 
@@ -65,12 +60,12 @@ in
       "$fileManager" = "${pkgs.spacedrive}/bin/spacedrive";
 
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.foot}/bin/foot --server"
         "${pkgs.swayosd}/bin/swayosd-server"
-        "${pkgs.hyprland-autoname-workspaces}/bin/hyprland-autoname-workspaces"
+        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
+        "[workspace special:magic silent] foot --app-id=floating-mode"
       ];
 
       misc = {
@@ -81,12 +76,6 @@ in
       binde = [
         ", XF86AudioRaiseVolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise --max-volume 150"
         ", XF86AudioLowerVolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume lower --max-volume 150"
-
-        ", XF86MonBrightnessUp, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness raise"
-        ", XF86MonBrightnessDown, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness lower"
-
-        # ", XF86MonBrightnessDown, exec, ${pkgs.light}/bin/light -U 10"
-        # ", XF86MonBrightnessUp, exec, ${pkgs.light}/bin/light -A 10"
       ];
 
       bindm = [
@@ -97,19 +86,20 @@ in
 
       bindr = [
         "$mod, l, exec, loginctl lock-session"
-        ", Caps_Lock, exec, ${pkgs.swayosd}/bin/swayosd-client --caps-lock"
+        "CAPS, Caps_Lock, exec, ${pkgs.swayosd}/bin/swayosd-client --caps-lock"
       ];
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mod, Return, exec, $terminal"
         "$mod, F, exec, ${browser}"
-        ", Print, exec, ${pkgs.shotman}/bin/shotman --copy --capture region"
+        ", Print, exec, ${pkgs.shotman}/bin/shotman --capture region"
         "$mod SHIFT, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
         # "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
         "$mod, V, exec, $terminal --app-id=floating-mode ${../scripts/result/bin/cliphist}"
+        "ALT, SPACE, togglefloating"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
