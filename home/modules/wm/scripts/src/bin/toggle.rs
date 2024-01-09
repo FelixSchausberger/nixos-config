@@ -34,7 +34,7 @@ fn main() {
 
 fn widget(widget_name: &str) {
     let lock_file = format!("{}/.cache/{}.lock", std::env::var("HOME").unwrap(), widget_name);
-    let eww_config = format!("{}/.nixos/home/modules/eww", std::env::var("HOME").unwrap());
+    let eww_config = format!("{}/.nixos/home/modules/gui/eww", std::env::var("HOME").unwrap());
 
     if !fs::metadata(&lock_file).is_ok() {
         match fs::File::create(&lock_file) {
