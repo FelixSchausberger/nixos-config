@@ -24,6 +24,7 @@
       gaa = "git add .";
       gcm = "git commit -m";
       gst = "git status";
+      guiconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/gui/";
       homeconfig = "hx ${config.home.homeDirectory}/.nixos/home/default.nix";
       ll = "br -sdp";
       merge = "rsync -avhu --progress";
@@ -33,7 +34,8 @@
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
-      hyprconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/wm/hyprland/";
+      tuiconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/tui/";
+      wmconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/wm/";
       update = "nix flake update ${config.home.homeDirectory}/.nixos"; # -I
       upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };

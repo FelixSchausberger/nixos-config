@@ -3,34 +3,27 @@
     enable = true;
     mime.enable = true;
 
-    configFile = {
-      "mimeapps.list".text = ''
-        [Default Applications]
-        text/html=firefox.desktop
-        text/plain=Helix.desktop
-        
-        x-scheme-handler/http=firefox.desktop
-        x-scheme-handler/https=firefox.desktop
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        # "mimetype1" = [ "default1.desktop" "default2.desktop" ];
+        "text/html" = "firefox.desktop";
+        "text/plain" = "Helix.desktop";
 
-        image/gif=swayimg.desktop
-        image/jpeg=swayimg.desktop
-        image/png=swayimg.desktop
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
 
-        video/mp4=mpv.desktop
-        video/quicktime=mpv.desktop
-      '';
+        "image/gif" = "swayimg.desktop";
+        "image/jpeg" = "swayimg.desktop";
+        "image/png" = "swayimg.desktop";
 
-      "user-dirs.dirs".text = ''
-        # User directories
-        XDG_DESKTOP_DIR="$HOME/Desktop"
-        XDG_DOCUMENTS_DIR="$HOME/Documents"
-        XDG_DOWNLOAD_DIR="$HOME/Downloads"
-        XDG_MUSIC_DIR="$HOME/Music"
-        XDG_PICTURES_DIR="$HOME/Pictures"
-        XDG_PUBLICSHARE_DIR="$HOME/Public"
-        XDG_TEMPLATES_DIR="$HOME/Templates"
-        XDG_VIDEOS_DIR="$HOME/Videos"
-      '';
+        "video/mp4" = "mpv.desktop";
+        "video/quicktime" = "mpv.desktop";
+      };
+    };
+
+    userDirs = {
+      enable = true;
     };
   };
 }

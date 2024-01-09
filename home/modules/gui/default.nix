@@ -2,6 +2,7 @@
 {
   # Import configurations of graphical applications
   imports = [
+    ./eww
     ./firefox
     ./libraries
     ./dunst.nix

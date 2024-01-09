@@ -1,10 +1,10 @@
-{ hycov, pkgs, ... }: # pkgs-unstable, ... }:
+{ hycov, pkgs, ... }:
 
 let
   browser = "${pkgs.firefox}/bin/firefox";
   dunst = "${pkgs.dunst}/bin/dunstctl";
   editor = "${pkgs.helix}/bin/hx";
-  terminal = "${pkgs.wezterm}/bin/wezterm"; # "${pkgs.foot}/bin/footclient";
+  terminal = "${pkgs.wezterm}/bin/wezterm";
 in
 {
   wayland.windowManager.hyprland = {
@@ -62,11 +62,9 @@ in
       exec-once = [
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
-        # "${pkgs.foot}/bin/foot --server"
         "${pkgs.swayosd}/bin/swayosd-server"
         "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
-        # "[workspace special:magic silent] foot --app-id=floating-mode"
-        "[workspace special:magic silent] $terminal --class=floating-mode"
+        "[workspace special:magic silent] wezterm start --class=floating-mode"
       ];
 
       misc = {
@@ -94,13 +92,11 @@ in
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mod, Return, exec, $terminal"
         "$mod, F, exec, ${browser}"
-        # ", Print, exec, ${pkgs.shotman}/bin/shotman --capture region --copy"
-        ", Print, exec, ${pkgs.watershot}/bin/watershot -c -g ${pkgs.grim}/bin/grim directory ~/screenshots"
+        ", Print, exec, ${pkgs.wl-clipboard}/bin/wl-copy < <(${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" -)"
         "$mod SHIFT, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
-        "$mod, V, exec, $terminal start --class=floating-mode ${../scripts/result/bin/cliphist}"
-        # "$mod, V, exec, $terminal --app-id=floating-mode ${../scripts/result/bin/cliphist}"
+        "$mod, V, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
         "ALT, SPACE, togglefloating"
 
         # Move focus with mod + arrow keys
@@ -129,6 +125,8 @@ in
 
         "$mod, n, workspace, e+1"
         "$mod, p, workspace, e-1"
+
+        # "CTRL, Return, exec. ${config.home.homeDirectory}/.nixos/home/modules/wm/scripts/eww/widgets/result/bin/toggle bar"
       ]
       ++ (
         # workspaces

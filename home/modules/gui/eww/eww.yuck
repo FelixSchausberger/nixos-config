@@ -1,0 +1,62 @@
+;; Variables
+(defpoll battery :interval "15s" "../../wm/scripts/result/bin/battery")
+
+(deflisten workspaces_listen "../../wm/scripts/result/bin/workspaces")
+
+(defpoll time :interval "10s" "date '+%H:%M %b %d | '")
+(defpoll calendar_day :interval "20h" "date '+%d'")
+(defpoll calendar_year :interval "20h" "date '+%Y'")
+
+(defvar eww "eww -c $HOME/.nixos/home/modules/gui/eww")
+
+;; widgets
+(defwidget bat []
+  (box 	:orientation "h" 
+				:space-evenly false 
+				:halign "end"
+    battery))								
+		
+(defwidget time []
+  (box 	:orientation "h" 
+				:space-evenly false 
+				:halign "end"
+    time))
+		
+(defwidget workspaces []
+	(literal :content workspaces_listen))
+	
+(defwidget center []
+	(box 	:class "bar_class"
+				:orientation "h" 
+		 		:space-evenly false  
+        :halign "center"
+(bat)
+(time)
+(workspaces)))
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "90%"
+                      :height "10px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+	(center))
+
+(defwidget cal []
+	(box :class "cal" :orientation "v"
+	(box :class "cal-in"
+	(calendar :class "cal" 
+			      :day calendar_day 
+			      :year calendar_year))))
+
+(defwindow calendar
+	:monitor 0
+	:geometry (geometry :x "-20px" 
+						          :y "7%" 
+                      :anchor "top right"
+						          :width "270px" 
+						          :height "60px")
+  (cal))
