@@ -73,7 +73,10 @@
     config.common.default = "*";
     wlr.enable = true;
     # Needed to make gtk apps happy.
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   # Configure system-wide privileges.
