@@ -19,7 +19,7 @@
 
   home = {
     packages = [
-      pkgs.celeste
+      # pkgs.celeste
       pkgs.krita
       pkgs.obsidian
       pkgs.overskride

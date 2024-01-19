@@ -12,6 +12,7 @@
     ./nushell.nix
     ./rbw.nix
     ./starship.nix
+    ./rclone.nix
     ./tealdeer.nix
     ./topgrade.nix
     ./zoxide.nix
