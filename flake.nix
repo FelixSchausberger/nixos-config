@@ -14,7 +14,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     nur.url = "github:nix-community/NUR";
-    scripts.url = "./scripts";
+    scripts.url = "./home/modules/wm/scripts";
   };
 
   nixConfig = {
@@ -52,7 +52,7 @@
 
           modules = [
             nur.nixosModules.nur
-            scripts.nixosModule
+            scripts.nixosModules
             # Add the Microsoft Surface module only if the host is "surface"
             # (if host == "surface" then
             #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
