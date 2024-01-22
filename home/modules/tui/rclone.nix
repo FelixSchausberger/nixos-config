@@ -13,13 +13,17 @@ in
     Service = {
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       ExecStart = ''
-        ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
-            --dir-cache-time 48h \
-            --vfs-cache-mode full \
-            --vfs-cache-max-age 48h \
-            --vfs-read-chunk-size 10M \
-            --vfs-read-chunk-size-limit 512M \
-            --buffer-size 512M
+        ${pkgs.rclone}/bin/rclone --drive-client-id ${secrets.drive.client-id} \ 
+                                  --drive-client-secret ${secrets.drive.client-secret} \
+                                  mount gdrive: ${mountdir} \
+                                    --allow-root \
+                                    --daemon \
+                                    --dir-cache-time 48h \
+                                    --vfs-cache-mode full \
+                                    --vfs-cache-max-age 48h \
+                                    --vfs-read-chunk-size 10M \
+                                    --vfs-read-chunk-size-limit 512M \
+                                    --buffer-size 512M
       '';
       ExecStop = "/run/wrappers/bin/fusermount -u ${mountdir}";
       Type = "notify";
