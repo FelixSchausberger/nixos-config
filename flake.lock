@@ -437,11 +437,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-zpLyFV9zbjmu2oFu9XRmz+oXk9cfhNqygwOQxZNSdq4=",
-        "path": "/nix/store/mkx5jrjmjvd88bnrcz9cd5k69cwnl4sy-source/home/modules/wm/scripts",
+        "path": "/nix/store/94g99ny4n8xs0dmimicn9qi1p00a4jkx-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mkx5jrjmjvd88bnrcz9cd5k69cwnl4sy-source/home/modules/wm/scripts",
+        "path": "/nix/store/94g99ny4n8xs0dmimicn9qi1p00a4jkx-source/home/modules/wm/scripts",
         "type": "path"
       }
     },
