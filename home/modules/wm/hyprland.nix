@@ -96,6 +96,7 @@ in
         "$mod SHIFT, Q, killactive"
         "$mod SHIFT, E, exit"
         "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
+        "$mod, P, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
         "$mod, V, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
         "ALT, SPACE, togglefloating"
 
