@@ -63,7 +63,7 @@ in
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.swayosd}/bin/swayosd-server"
-        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
+        # "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
         "[workspace special:magic silent] wezterm start --class=floating-mode"
       ];
 
@@ -80,25 +80,25 @@ in
       bindm = [
         # mouse movements    "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
-        "$mod ALT, mouse:272, resizewindow"
+        "$mod alt, mouse:272, resizewindow"
       ];
 
       bindr = [
         "$mod, l, exec, loginctl lock-session"
-        "CAPS, Caps_Lock, exec, ${pkgs.swayosd}/bin/swayosd-client --caps-lock"
+        "caps, caps_lock, exec, ${pkgs.swayosd}/bin/swayosd-client --caps-lock"
       ];
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mod, Return, exec, $terminal"
-        "$mod, F, exec, ${browser}"
-        ", Print, exec, ${pkgs.wl-clipboard}/bin/wl-copy < <(${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" -)"
-        "$mod SHIFT, Q, killactive"
-        "$mod SHIFT, E, exit"
-        "$mod, A, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
-        "$mod, P, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
-        "$mod, V, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
-        "ALT, SPACE, togglefloating"
+        "$mod, return, exec, $terminal"
+        "$mod, f, exec, ${browser}"
+        ", print, exec, ${pkgs.wl-clipboard}/bin/wl-copy < <(${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" -)"
+        "$mod shift, q, killactive"
+        "$mod shift, e, exit"
+        "$mod, a, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
+        "$mod, p, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
+        "$mod, v, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
+        "alt, space, togglefloating"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
@@ -106,26 +106,26 @@ in
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
+        "$mod shift, left, movewindow, l"
+        "$mod shift, right, movewindow, r"
+        "$mod shift, up, movewindow, u"
+        "$mod shift, down, movewindow, d"
 
         # Notification daemon
-        "CTRL, Space, exec, ${dunst} close"
-        "CTRL SHIFT, Space, exec, ${dunst} close-all"
-        "CTRL, m, exec, ${dunst} set-paused, toggle"
+        "ctrl, space, exec, ${dunst} close"
+        "ctrl shift, space, exec, ${dunst} close-all"
+        "ctrl, m, exec, ${dunst} set-paused, toggle"
 
         # Example special workspace (scratchpad)
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, s, togglespecialworkspace, magic"
+        "$mod shift, s, movetoworkspace, special:magic"
 
         # Cycle through workspaces
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
 
-        "$mod, n, workspace, e+1"
-        "$mod, p, workspace, e-1"
+        "$mod shift, right, workspace, e+1"
+        "$mod shift, left, workspace, e-1"
 
         # "CTRL, Return, exec. ${config.home.homeDirectory}/.nixos/home/modules/wm/scripts/eww/widgets/result/bin/toggle bar"
       ]

@@ -15,6 +15,10 @@
     };
     nur.url = "github:nix-community/NUR";
     scripts.url = "./home/modules/wm/scripts";
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
