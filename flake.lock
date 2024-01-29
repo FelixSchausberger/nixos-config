@@ -569,11 +569,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-rvQYfmROV6yBnBC6NX3uJzuVVgDjqgsxuYdKTzaJymc=",
-        "path": "/nix/store/6p2wzz4a7rljvw4cdc0prddgm4wxmljh-source/home/modules/wm/scripts",
+        "path": "/nix/store/wsj6z1x426lszikmfnfsr3divpfxgd0p-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/6p2wzz4a7rljvw4cdc0prddgm4wxmljh-source/home/modules/wm/scripts",
+        "path": "/nix/store/wsj6z1x426lszikmfnfsr3divpfxgd0p-source/home/modules/wm/scripts",
         "type": "path"
       }
     },
