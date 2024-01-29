@@ -41,6 +41,7 @@
     , nur
     , self
     , scripts
+    , wayland-pipewire-idle-inhibit
     , ...
     }:
     let
@@ -77,7 +78,7 @@
                 # Read secrets from a JSON file
                 secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
                 flake-inputs = inputs;
-                inherit host hycov nixpkgs;
+                inherit host hycov nixpkgs wayland-pipewire-idle-inhibit;
               };
             }
           ];

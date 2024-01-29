@@ -1,5 +1,3 @@
-{ inputs, ... }:
-
 {
   home-manager = {
     useUserPackages = true;
@@ -7,7 +5,6 @@
     users.fesch = {
       imports = [
         ../home
-        inputs.wayland-pipewire-idle-inhibit.homeModules.default
       ];
 
       home = {
