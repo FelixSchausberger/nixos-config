@@ -2,6 +2,10 @@
   description = "Personal NixOS config";
 
   inputs = {
+    alejandra = { 
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     devenv.url = "github:cachix/devenv";
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     home-manager = {
@@ -35,6 +39,7 @@
 
   outputs =
     inputs@{ devenv
+    , alejandra
     , home-manager
     , hycov
     , nixpkgs
@@ -93,12 +98,14 @@
         modules = [{
           # Enable pre-commit hooks for various languages/tools
           pre-commit.hooks = {
+            alejandra.enable = true; # Nix: Rust, opinionated
             black.enable = true; # Python
             clang-format.enable = true; # C
             deadnix.enable = true; # Nix
             markdownlint.enable = true; # Markdown
             nil.enable = true; # Nix
-            nixpkgs-fmt.enable = true; # Nix
+            # nixfmt.enable = true; # Nix: Haskell, will probably become standard
+            # nixpkgs-fmt.enable = true; # Nix: Rust, de-facto default formatter
             shellcheck.enable = true; # Shell
             taplo.enable = true; # Rust
             yamllint.enable = true; # YAML

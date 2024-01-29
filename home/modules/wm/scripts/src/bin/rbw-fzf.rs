@@ -12,10 +12,16 @@ fn main() {
         }
     }
 
-    // Unlock the vault before running the script
+    // Check if the vault is unlocked
     if Command::new("rbw").arg("unlocked").output().is_ok() {
         get_entry();
-    } else if Command::new("rbw").arg("unlock").output().is_ok() {
+    } else {
+        unlock_vault();
+    }
+}
+
+fn unlock_vault() {
+    if Command::new("rbw").arg("unlock").status().is_ok() {
         get_entry();
     } else {
         eprintln!("Failed to unlock the vault");
@@ -24,8 +30,8 @@ fn main() {
 }
 
 fn get_entry() {
-    let binding = Command::new("rbw").arg("ls").output().unwrap();
-    let name = String::from_utf8_lossy(&binding.stdout);
+    let output = Command::new("rbw").arg("ls").output().unwrap();
+    let name = String::from_utf8_lossy(&output.stdout);
 
     if name.is_empty() {
         println!("No entries found, quitting.");
@@ -95,4 +101,3 @@ fn get_notes(name: &str) {
         exit(0);
     }
 }
-
