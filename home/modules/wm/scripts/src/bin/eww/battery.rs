@@ -50,15 +50,15 @@ fn main() -> io::Result<()> {
     let capacity: i32 = capacity_content.trim().parse().unwrap_or(-1);
     let online: i32 = charging_content.trim().parse().unwrap_or(0);
 
-    // Determine the battery symbol based on charging status
-    let battery_symbol = if online == 1 {
-        "+" // Charging symbol
+    // Determine the charging symbol based on charging status
+    let charging_symbol = if online == 1 {
+        "↑" // Charging
     } else {
-        "-" // Battery symbol
+        "↓" // Discharging
     };
 
     // Print the capacity and the appropriate battery symbol
-    println!("{}{}% | ", battery_symbol, capacity);
+    println!("{}{}% | ", charging_symbol, capacity);
 
     Ok(())
 }
