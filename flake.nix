@@ -2,7 +2,8 @@
   description = "Personal NixOS config";
 
   inputs = {
-    alejandra = { 
+    ags.url = "github:Aylur/ags";
+    alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,75 +29,75 @@
   nixConfig = {
     extra-trusted-substituters = [
       "https://nix-community.cachix.org"
-      "https://devenv.cachix.org"
+      # "https://devenv.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      # "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     ];
   };
 
-  outputs =
-    inputs@{ devenv
-    , alejandra
-    , home-manager
-    , hycov
-    , nixpkgs
-    , nur
-    , self
-    , scripts
-    , wayland-pipewire-idle-inhibit
-    , ...
-    }:
-    let
-      mkSystem = host:
-        nixpkgs.lib.nixosSystem {
-          # rec {
-          system = "x86_64-linux";
-          specialArgs = {
-            secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-            flake-inputs = inputs;
-            inherit home-manager host;
-          };
-
-          modules = [
-            nur.nixosModules.nur
-            scripts.nixosModules
-            # Add the Microsoft Surface module only if the host is "surface"
-            # (if host == "surface" then
-            #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
-            #     {
-            #       microsoft-surface.ipts.enable = true;
-            #       config.microsoft-surface.surface-control.enable = true;
-            #     }
-            # else { })
-
-            # Include custom configurations
-            ./configuration.nix
-            ./hosts/${host}
-            # Configure Home Manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.extraSpecialArgs = {
-                # Read secrets from a JSON file
-                secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-                flake-inputs = inputs;
-                inherit host hycov nixpkgs wayland-pipewire-idle-inhibit;
-              };
-            }
-          ];
+  outputs = inputs @ {
+    ags,
+    alejandra,
+    devenv,
+    home-manager,
+    hycov,
+    nixpkgs,
+    nur,
+    self,
+    scripts,
+    wayland-pipewire-idle-inhibit,
+    ...
+  }: let
+    mkSystem = host:
+      nixpkgs.lib.nixosSystem {
+        # rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+          flake-inputs = inputs;
+          inherit home-manager host;
         };
 
-      # Use stable packages for a specific architecture
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-    in
-    {
-      # Development shell configuration
-      devShell.x86_64-linux = devenv.lib.mkShell {
-        inherit inputs pkgs;
-        modules = [{
+        modules = [
+          nur.nixosModules.nur
+          scripts.nixosModules
+          # Add the Microsoft Surface module only if the host is "surface"
+          # (if host == "surface" then
+          #   nixos-hardware.nixosModules.microsoft-surface-pro-intel
+          #     {
+          #       microsoft-surface.ipts.enable = true;
+          #       config.microsoft-surface.surface-control.enable = true;
+          #     }
+          # else { })
+
+          # Include custom configurations
+          ./configuration.nix
+          ./hosts/${host}
+          # Configure Home Manager
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.extraSpecialArgs = {
+              # Read secrets from a JSON file
+              secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+              flake-inputs = inputs;
+              inherit ags host hycov nixpkgs wayland-pipewire-idle-inhibit;
+            };
+          }
+        ];
+      };
+
+    # Use stable packages for a specific architecture
+    pkgs = nixpkgs.legacyPackages."x86_64-linux";
+  in {
+    # Development shell configuration
+    devShell.x86_64-linux = devenv.lib.mkShell {
+      inherit inputs pkgs;
+      modules = [
+        {
           # Enable pre-commit hooks for various languages/tools
           pre-commit.hooks = {
             alejandra.enable = true; # Nix: Rust, opinionated
@@ -111,13 +112,14 @@
             taplo.enable = true; # Rust
             yamllint.enable = true; # YAML
           };
-        }];
-      };
-
-      # NixOS system configurations
-      nixosConfigurations = {
-        desktop = mkSystem "desktop";
-        surface = mkSystem "surface";
-      };
+        }
+      ];
     };
+
+    # NixOS system configurations
+    nixosConfigurations = {
+      desktop = mkSystem "desktop";
+      surface = mkSystem "surface";
+    };
+  };
 }

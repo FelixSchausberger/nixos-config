@@ -1,7 +1,9 @@
-{ pkgs, ... }: # pkgs-unstable, ... }:
+{pkgs, ...}:
+# pkgs-unstable, ... }:
 {
   # Import configurations of graphical applications
   imports = [
+    ./ags.nix
     ./eww
     ./firefox
     ./libraries

@@ -64,7 +64,7 @@ in {
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.swayosd}/bin/swayosd-server"
-        # "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
+        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
         # "wayland-pipewire-idle-inhibit"
         "[workspace special:magic silent] wezterm start --class=floating-mode"
       ];
@@ -72,6 +72,8 @@ in {
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
 
       binde = [
