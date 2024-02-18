@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Import configurations of tty applications
   imports = [
     ./bat.nix
@@ -15,6 +14,7 @@
     ./rclone.nix
     ./tealdeer.nix
     ./topgrade.nix
+    ./wayland-pipewire-idle-inhibit.nix
     ./zoxide.nix
   ];
 

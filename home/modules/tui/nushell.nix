@@ -1,6 +1,8 @@
-{ config, host, ... }:
-
 {
+  config,
+  host,
+  ...
+}: {
   programs.nushell = {
     enable = true;
     envFile.text = ''
@@ -11,7 +13,7 @@
       if (tty) == "/dev/tty1" { Hyprland };
     '';
 
-    # Move to home config once https://github.com/nushell/nushell/issues/10088 is closed 
+    # Move to home config once https://github.com/nushell/nushell/issues/10088 is closed
     shellAliases = {
       build = "nix build -L";
       br = "broot";
@@ -33,6 +35,7 @@
       pull = "git pull";
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
+      repair = "nix-store --verify --check-contents --repair";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
       tuiconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/tui/";
       wmconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/wm/";

@@ -3,7 +3,7 @@
 {
   # Import configurations of graphical applications
   imports = [
-    ./ags.nix
+    # ./ags.nix
     ./eww
     ./firefox
     ./libraries

@@ -1,15 +1,16 @@
-{ pkgs, secrets, ... }:
-
-let
-  mountdir = "/mnt/gdrive";
-in
 {
+  pkgs,
+  secrets,
+  ...
+}: let
+  mountdir = "/mnt/gdrive";
+in {
   systemd.user.services.gdrive_mount = {
     Unit = {
       Description = "mount gdrive dirs";
-      After = [ "network-online.target" ];
+      After = ["network-online.target"];
     };
-    Install.WantedBy = [ "multi-user.target" ];
+    Install.WantedBy = ["graphical-session.target"];
     Service = {
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
       ExecStart = ''
@@ -27,7 +28,7 @@ in
       Type = "notify";
       Restart = "always";
       RestartSec = "10s";
-      Environment = [ "PATH=/run/wrappers/bin/:$PATH" ];
+      Environment = ["PATH=/run/wrappers/bin/:$PATH"];
     };
   };
 }

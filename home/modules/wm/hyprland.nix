@@ -64,8 +64,7 @@ in {
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.swayosd}/bin/swayosd-server"
-        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
-        # "wayland-pipewire-idle-inhibit"
+        # "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
         "[workspace special:magic silent] wezterm start --class=floating-mode"
       ];
 
