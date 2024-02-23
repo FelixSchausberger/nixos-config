@@ -1,7 +1,9 @@
-{ pkgs, ... }: # pkgs-unstable, ... }:
+{pkgs, ...}:
+# pkgs-unstable, ... }:
 {
   # Import configurations of graphical applications
   imports = [
+    # ./ags.nix
     ./eww
     ./firefox
     ./libraries
@@ -19,7 +21,7 @@
 
   home = {
     packages = [
-      pkgs.celeste
+      # pkgs.celeste
       pkgs.krita
       pkgs.obsidian
       pkgs.overskride

@@ -9,6 +9,10 @@
         true-color = true;
         lsp.display-messages = true;
         mouse = false;
+        soft-wrap = {
+          enable = true;
+          wrap-indicator = "";
+        };
       };
       theme = "charm";
       keys = {

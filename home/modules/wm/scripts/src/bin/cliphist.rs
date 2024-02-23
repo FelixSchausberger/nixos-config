@@ -1,6 +1,27 @@
 use std::process::{Command, Stdio};
 
 fn main() {
+    // Check if cliphist, fzf, and wl-copy exist in $PATH
+    let binaries = ["cliphist", "fzf", "wl-copy"];
+
+    // Check if each binary exists in $PATH
+    for binary in &binaries {
+        if !is_binary_in_path(binary) {
+            eprintln!("{} not found in $PATH, make sure to install it before running this script", binary);
+            std::process::exit(1);
+        }
+    }
+
+    fn is_binary_in_path(binary: &str) -> bool {
+    Command::new("which")
+        .arg(binary)
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status()
+        .map(|status| status.success())
+        .unwrap_or(false)
+    }
+ 
     // Execute 'cliphist list' and capture its output
     let cliphist_list = Command::new("cliphist")
         .arg("list")

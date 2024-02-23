@@ -90,9 +90,9 @@
     # Don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
 
-    wrappers = {
-      fusermount.source = "${pkgs.fuse}/bin/fusermount";
-    };
+    # wrappers = {
+    #   fusermount.source = "${pkgs.fuse}/bin/fusermount";
+    # };
   };
 
   # Auto upgrade settings.
