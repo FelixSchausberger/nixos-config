@@ -604,11 +604,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-5PuhKX1WsqPyU5Ym5P8O3oLq29M69Yy+OxaiAn2XsQs=",
-        "path": "/nix/store/3fih40y9wbdw37cz2d05dhgljqpjjh4m-source/home/modules/wm/scripts",
+        "path": "/nix/store/h9h13z3x8z5p1q73r5ax3bb5c3hi0rlp-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/3fih40y9wbdw37cz2d05dhgljqpjjh4m-source/home/modules/wm/scripts",
+        "path": "/nix/store/h9h13z3x8z5p1q73r5ax3bb5c3hi0rlp-source/home/modules/wm/scripts",
         "type": "path"
       }
     },

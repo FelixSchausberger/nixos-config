@@ -29,6 +29,7 @@
       pkgs.rnote
       pkgs.spacedrive
       pkgs.upscayl
+      pkgs.warp-terminal
     ];
   };
 }
