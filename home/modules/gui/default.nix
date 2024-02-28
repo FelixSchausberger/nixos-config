@@ -27,7 +27,7 @@
       pkgs.qbittorrent
       pkgs.rnote
       pkgs.spacedrive
-      pkgs.upscayl
+      # pkgs.upscayl
       # pkgs.warp-terminal
     ];
   };
