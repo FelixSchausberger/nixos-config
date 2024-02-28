@@ -4,7 +4,6 @@
   # Import configurations of graphical applications
   imports = [
     # ./ags.nix
-    ./eww
     ./firefox
     ./libraries
     ./dunst.nix
@@ -29,7 +28,7 @@
       pkgs.rnote
       pkgs.spacedrive
       pkgs.upscayl
-      pkgs.warp-terminal
+      # pkgs.warp-terminal
     ];
   };
 }
