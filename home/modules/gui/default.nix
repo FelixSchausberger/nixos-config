@@ -20,6 +20,7 @@
 
   home = {
     packages = [
+      pkgs.blender
       # pkgs.celeste
       pkgs.krita
       pkgs.obsidian
