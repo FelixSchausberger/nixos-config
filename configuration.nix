@@ -8,7 +8,7 @@
 }: {
   imports = [
     ./hosts/${host}/hardware-configuration.nix
-    ./modules/ags
+    # ./modules/ags
     ./modules/bluetooth.nix
     ./modules/bootloader.nix
     ./modules/development.nix
