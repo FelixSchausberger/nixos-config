@@ -1,6 +1,6 @@
-# { pkgs, ... }:
+# { ags, ... }:
 {
-  programs.ags = {
+  ags = {
     enable = true;
 
     # null or path, leave as null if you don't want hm to manage the config

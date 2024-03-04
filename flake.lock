@@ -608,11 +608,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-gX/K5muARrZ2ilqJgk86rB5/Rf5aZjPLlYSUCh9CnGE=",
-        "path": "/nix/store/q5lrs7pv48x1fpx9d7xwyclzz08zx6ma-source/home/modules/wm/scripts",
+        "path": "/nix/store/i6w8q20ghic5anz2rh8zqwkqpsfbdij7-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/q5lrs7pv48x1fpx9d7xwyclzz08zx6ma-source/home/modules/wm/scripts",
+        "path": "/nix/store/i6w8q20ghic5anz2rh8zqwkqpsfbdij7-source/home/modules/wm/scripts",
         "type": "path"
       }
     },

@@ -58,7 +58,7 @@
         specialArgs = {
           secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
           flake-inputs = inputs;
-          inherit home-manager host wayland-pipewire-idle-inhibit;
+          inherit ags home-manager host wayland-pipewire-idle-inhibit;
         };
 
         modules = [
