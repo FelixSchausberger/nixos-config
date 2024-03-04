@@ -242,11 +242,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1709491298,
-        "narHash": "sha256-GO98QYKyURXyxxps4RlXoLXaankHWfg7sVL4xItkYt4=",
+        "lastModified": 1709548598,
+        "narHash": "sha256-Y0IajUYED04fECuLEy0Ao+VPK3FBN11OQ46eYiXMfM4=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "063708df26e8b930f492200e1907eb47950f50e6",
+        "rev": "12da0fc84f8b084f7b13702b811cbed7dae9854c",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1709492333,
-        "narHash": "sha256-yYjL/HcTnwesM+zWdvDKEGdLDZmrl6P91nr9ilWSLlo=",
+        "lastModified": 1709567103,
+        "narHash": "sha256-1obAvL87qIhQUxHacf7aoGKzn2P+2oL/uOzhoEIj1Ds=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3896e559f74591f9ab27791d4e56080e241de319",
+        "rev": "85790ea8d4a609075f0af8b9ff56cf181c33048f",
         "type": "github"
       },
       "original": {
@@ -607,12 +607,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-AcCE0h3J7c7UhnYoI7NQeOudDoj4MskOmW2U/MxNAUQ=",
-        "path": "/nix/store/fb05ypn0wgzy45gl93drv0pdmyf5c60c-source/home/modules/wm/scripts",
+        "narHash": "sha256-gX/K5muARrZ2ilqJgk86rB5/Rf5aZjPLlYSUCh9CnGE=",
+        "path": "/nix/store/q5lrs7pv48x1fpx9d7xwyclzz08zx6ma-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/fb05ypn0wgzy45gl93drv0pdmyf5c60c-source/home/modules/wm/scripts",
+        "path": "/nix/store/q5lrs7pv48x1fpx9d7xwyclzz08zx6ma-source/home/modules/wm/scripts",
         "type": "path"
       }
     },

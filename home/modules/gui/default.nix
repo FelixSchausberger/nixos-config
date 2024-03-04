@@ -3,7 +3,7 @@
 {
   # Import configurations of graphical applications
   imports = [
-    # ./ags.nix
+    ./ags
     ./firefox
     ./libraries
     ./dunst.nix

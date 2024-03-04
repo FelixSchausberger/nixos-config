@@ -5,10 +5,6 @@
   dpmsOnCommand = "hyprctl dispatch dpms on";
 in {
   home = {
-    # packages = with pkgs; [
-    #   hypridle
-    # ];
-
     file = {
       ".config/hypr/hypridle.conf".text = ''
         general {
@@ -40,6 +36,17 @@ in {
           brightness = 0.8172
           vibrancy = 0.1696
           vibrancy_darkness = 0.0
+        }
+
+        label {
+          monitor =
+          text = $TIME
+          font_size = 85
+          font_family = Fira Code NF bold
+
+          position = 0, 80
+          halign = center
+          valign = center
         }
       '';
     };
