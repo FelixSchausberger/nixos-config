@@ -61,8 +61,9 @@ in {
       "$fileManager" = "${pkgs.spacedrive}/bin/spacedrive";
 
       exec-once = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "ags"
         "${pkgs.hypridle}/bin/hypridle"
+        "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.swayosd}/bin/swayosd-server"
         "[workspace special:magic silent] wezterm start --class=floating-mode"

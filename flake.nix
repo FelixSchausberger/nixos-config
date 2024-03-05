@@ -2,7 +2,6 @@
   description = "Personal NixOS config";
 
   inputs = {
-    ags.url = "github:Aylur/ags";
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +17,10 @@
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
+    ironbar = {
+      url = "github:JakeStanger/ironbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur.url = "github:nix-community/NUR";
     scripts.url = "./home/modules/wm/scripts";
     wayland-pipewire-idle-inhibit = {
@@ -29,21 +32,21 @@
   nixConfig = {
     extra-trusted-substituters = [
       "https://nix-community.cachix.org"
-      # "https://devenv.cachix.org"
+      "https://devenv.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     ];
   };
 
   outputs = inputs @ {
-    ags,
     alejandra,
     devenv,
     home-manager,
     hycov,
+    ironbar,
     nixpkgs,
     nur,
     self,
@@ -58,7 +61,7 @@
         specialArgs = {
           secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
           flake-inputs = inputs;
-          inherit ags home-manager host wayland-pipewire-idle-inhibit;
+          inherit home-manager host wayland-pipewire-idle-inhibit;
         };
 
         modules = [
@@ -84,7 +87,7 @@
               # Read secrets from a JSON file
               secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
               flake-inputs = inputs;
-              inherit ags host hycov nixpkgs;
+              inherit host hycov ironbar nixpkgs;
             };
           }
         ];
