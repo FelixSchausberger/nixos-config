@@ -3,6 +3,7 @@
     ./gammastep.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./ironbar.nix
     ./wlsunset.nix
   ];
 
