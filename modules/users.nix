@@ -14,7 +14,7 @@
       isNormalUser = true;
       description = "Felix Schausberger";
       extraGroups = [ "networkmanager" "video" "wheel" ];
-      shell = pkgs.nushell;
+      # shell = pkgs.nushell;
     };
   };
 
