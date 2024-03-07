@@ -2,6 +2,7 @@
   programs.ironbar = {
     enable = true;
     config = {
+      "name" = "ironbar";
       "anchor_to_edges" = true;
       "position" = "bottom";
       "icon_theme" = "Paper";

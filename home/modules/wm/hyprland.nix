@@ -104,9 +104,9 @@ in {
           "$mod, p, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
           "$mod, v, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
           "alt, space, togglefloating"
-          "$mod, c, exec, ironbar toggle_popup bar-12 clock"
-          "$mod, i, exec, ${./scripts/src/bin/toggle_ironbar.sh}"
-          "$mod, x, exec, ${./scripts/src/bin/toggle_idle_inhibit.sh}"
+          "$mod, c, exec, ironbar toggle-popup ironbar clock"
+          "$mod, i, exec, bash -c ${./scripts/src/bin/toggle_ironbar.sh}"
+          "$mod, x, exec, bash -c ${./scripts/src/bin/toggle_idle_inhibit.sh}"
 
           # Move focus with mod + arrow keys
           "$mod, left, movefocus, l"
