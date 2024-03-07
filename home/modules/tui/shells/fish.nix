@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -8,7 +6,10 @@
     '';
     plugins = [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      {
+        name = "grc";
+        src = pkgs.fishPlugins.grc.src;
+      }
       # Manually packaging and enable a plugin
       {
         name = "z";
@@ -20,13 +21,13 @@
         };
       }
     ];
-
-    xdg.configFile."fish/functions/fish_prompt.fish".text = ''
-      set -l nix_shell_info (
-        if test -n "$IN_NIX_SHELL"
-          echo -n "<nix-shell> "
-        end
-      )
-    '';
   };
+
+  xdg.configFile."fish/functions/fish_prompt.fish".text = ''
+    set -l nix_shell_info (
+      if test -n "$IN_NIX_SHELL"
+        echo -n "<nix-shell> "
+      end
+    )
+  '';
 }
