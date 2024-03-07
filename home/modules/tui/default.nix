@@ -8,8 +8,8 @@
     ./fzf.nix
     ./git.nix
     ./i2p.nix
-    ./nushell.nix
     ./rbw.nix
+    ./shells
     ./starship.nix
     ./rclone.nix
     ./tealdeer.nix

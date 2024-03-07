@@ -10,13 +10,6 @@
     ./xdg.nix
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # For electron apps
-  };
-
-  # Specify Home Manager release version
-  home.stateVersion = "24.05";
-
   # Nicely reload system units when changing configs.
   systemd.user.startServices = "sd-switch";
 
