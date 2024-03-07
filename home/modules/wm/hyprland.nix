@@ -61,7 +61,6 @@ in {
       "$fileManager" = "${pkgs.spacedrive}/bin/spacedrive";
 
       exec-once = [
-        "ags"
         "${pkgs.hypridle}/bin/hypridle"
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
@@ -101,6 +100,7 @@ in {
           "$mod shift, q, killactive"
           "$mod shift, e, exit"
           "$mod, a, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
+          "$mod, o, exec, $terminal start --class=floating-mode ${editor} \"/mnt/gdrive/Obsidian/10 Projects/11 To Do.md\""
           "$mod, p, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
           "$mod, v, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
           "alt, space, togglefloating"
