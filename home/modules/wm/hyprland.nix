@@ -1,5 +1,5 @@
 {
-  hycov,
+  # hycov,
   pkgs,
   ...
 }: let
@@ -11,9 +11,9 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = [
-      hycov.packages.${pkgs.system}.hycov
-    ];
+    # plugins = [
+    #   hycov.packages.${pkgs.system}.hycov
+    # ];
 
     settings = {
       env = [
@@ -152,44 +152,43 @@ in {
         );
     };
 
-    extraConfig =
-      ''
-        # window resize
-        bind = $mod, R, submap, resize
-        submap = resize
-          binde = , right, resizeactive, 10 0
-          binde = , left, resizeactive, -10 0
-          binde = , up, resizeactive, 0 -10
-          binde = , down, resizeactive, 0 10
-          bind = , escape, submap, reset
-        submap = reset
-      ''
-      + ''
-        # hycov plugin
-        bind = $mod, tab, hycov:enteroverview
-        bind = $mod, tab, submap, switch
-        submap = switch
-          bind = $mod, left, hycov:movefocus,l
-          bind = $mod, right, hycov:movefocus,r
-          bind = $mod, up, hycov:movefocus,u
-          bind = $mod, down, hycov:movefocus,d
+    extraConfig = ''
+      # window resize
+      bind = $mod, R, submap, resize
+      submap = resize
+        binde = , right, resizeactive, 10 0
+        binde = , left, resizeactive, -10 0
+        binde = , up, resizeactive, 0 -10
+        binde = , down, resizeactive, 0 10
+        bind = , escape, submap, reset
+      submap = reset
+    '';
+    # + ''
+    #   # hycov plugin
+    #   bind = $mod, tab, hycov:enteroverview
+    #   bind = $mod, tab, submap, switch
+    #   submap = switch
+    #     bind = $mod, left, hycov:movefocus,l
+    #     bind = $mod, right, hycov:movefocus,r
+    #     bind = $mod, up, hycov:movefocus,u
+    #     bind = $mod, down, hycov:movefocus,d
 
-          bind = , escape, hycov:leaveoverview
-          bind = , escape, submap, reset
-          bind = , return, hycov:leaveoverview
-          bind = , return, submap, reset
-          bind = $mod, tab, hycov:leaveoverview
-          bind = $mod, tab, submap, reset
-        submap = reset
+    #     bind = , escape, hycov:leaveoverview
+    #     bind = , escape, submap, reset
+    #     bind = , return, hycov:leaveoverview
+    #     bind = , return, submap, reset
+    #     bind = $mod, tab, hycov:leaveoverview
+    #     bind = $mod, tab, submap, reset
+    #   submap = reset
 
-        plugin {
-            hycov {
-              overview_gappo = 60 # gaps width from screen
-              overview_gappi = 24 # gaps width from clients
-        	    hotarea_size = 10 # hotarea size in bottom left,10x10
-        	    enable_hotarea = 1 # enable mouse cursor hotarea
-            }
-        }
-      '';
+    #   plugin {
+    #       hycov {
+    #         overview_gappo = 60 # gaps width from screen
+    #         overview_gappi = 24 # gaps width from clients
+    #   	    hotarea_size = 10 # hotarea size in bottom left,10x10
+    #   	    enable_hotarea = 1 # enable mouse cursor hotarea
+    #       }
+    #   }
+    # '';
   };
 }
