@@ -35,11 +35,11 @@
       pull = "git pull";
       push = "git push";
       rebuild = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
-      repair = "nix-store --verify --check-contents --repair";
+      repair = "sudo nix-store --verify --check-contents --repair";
       rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
       tuiconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/tui/";
       wmconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/wm/";
-      update = "nix flake update ${config.home.homeDirectory}/.nixos"; # -I
+      update = "sudo nix flake update ${config.home.homeDirectory}/.nixos"; # -I
       upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
     };
   };

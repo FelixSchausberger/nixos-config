@@ -61,10 +61,10 @@ in {
       "$fileManager" = "${pkgs.spacedrive}/bin/spacedrive";
 
       exec-once = [
+        "${pkgs.hypridle}/bin/hypridle"
         "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.udiskie}/bin/udiskie"
         "${pkgs.swayosd}/bin/swayosd-server"
-        # "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"
         "[workspace special:magic silent] wezterm start --class=floating-mode"
       ];
 
@@ -100,9 +100,13 @@ in {
           "$mod shift, q, killactive"
           "$mod shift, e, exit"
           "$mod, a, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer"
+          "$mod, o, exec, $terminal start --class=floating-mode ${editor} \"/mnt/gdrive/Obsidian/10 Projects/11 To Do.md\""
           "$mod, p, exec, $terminal start --class=floating-mode ${./scripts/result/bin/rbw-fzf}"
           "$mod, v, exec, $terminal start --class=floating-mode ${./scripts/result/bin/cliphist}"
           "alt, space, togglefloating"
+          "$mod, c, exec, ironbar toggle-popup ironbar clock"
+          "$mod, i, exec, bash -c ${./scripts/src/bin/toggle_ironbar.sh}"
+          "$mod, x, exec, bash -c ${./scripts/src/bin/toggle_idle_inhibit.sh}"
 
           # Move focus with mod + arrow keys
           "$mod, left, movefocus, l"

@@ -1,9 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ host, pkgs, ... }:
-
 {
+  host,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hosts/${host}/hardware-configuration.nix
     ./modules/bluetooth.nix
@@ -13,6 +15,7 @@
     ./modules/nix.nix
     ./modules/polkit.nix
     ./modules/sound.nix
+    ./modules/usb.nix
     ./modules/users.nix
     ./modules/wifi.nix
   ];
@@ -81,11 +84,11 @@
 
   # Configure system-wide privileges.
   security = {
-    pam.services.swaylock.text = ''
-      # PAM configuration file for the swaylock screen locker. By default, it includes
-      # the 'login' configuration file (see /etc/pam.d/login)
-      auth include login
-    '';
+    # pam.services.swaylock.text = ''
+    #   # PAM configuration file for the swaylock screen locker. By default, it includes
+    #   # the 'login' configuration file (see /etc/pam.d/login)
+    #   auth include login
+    # '';
 
     # Don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;

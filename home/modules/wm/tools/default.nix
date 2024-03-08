@@ -1,9 +1,13 @@
-{
+{pkgs, ...}: {
   imports = [
     ./gammastep.nix
+    ./hyprlock.nix
     ./hyprpaper.nix
-    ./swayidle.nix
-    # ./wayland-pipewire-idle-inhibit.nix
+    ./ironbar.nix
     ./wlsunset.nix
+  ];
+
+  home.packages = with pkgs; [
+    swayimg
   ];
 }

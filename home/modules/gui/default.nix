@@ -3,8 +3,6 @@
 {
   # Import configurations of graphical applications
   imports = [
-    # ./ags.nix
-    ./eww
     ./firefox
     ./libraries
     ./dunst.nix
@@ -21,6 +19,7 @@
 
   home = {
     packages = [
+      pkgs.blender
       # pkgs.celeste
       pkgs.krita
       pkgs.obsidian
@@ -28,7 +27,8 @@
       pkgs.qbittorrent
       pkgs.rnote
       pkgs.spacedrive
-      pkgs.upscayl
+      # pkgs.upscayl
+      # pkgs.warp-terminal
     ];
   };
 }
