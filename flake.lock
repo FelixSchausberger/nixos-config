@@ -690,11 +690,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-BkU/EX/tA/GKkyLp34Sfc/30LqWerZzVPoSdnhe0M3w=",
-        "path": "/nix/store/vw8axdgqm8nxmwd130sqwrd6w1c3sgvd-source/home/modules/wm/scripts",
+        "path": "/nix/store/kflpdlnyzjircsg3fdpvzl0iv9hkivkc-source/home/modules/wm/scripts",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/vw8axdgqm8nxmwd130sqwrd6w1c3sgvd-source/home/modules/wm/scripts",
+        "path": "/nix/store/kflpdlnyzjircsg3fdpvzl0iv9hkivkc-source/home/modules/wm/scripts",
         "type": "path"
       }
     },
