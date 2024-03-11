@@ -13,7 +13,7 @@
     build = "nix build -L";
     br = "broot";
     cat = "bat";
-    cd = "z";
+    # cd = "z";
     clone = "git clone";
     cleanup = "sudo nix store gc --debug"; # "sudo nix-collect-garbage";
     cp = "cp -rpv";

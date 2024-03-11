@@ -35,7 +35,8 @@
       procs
       rm-improved
       ripgrep-all
-      tgpt
+      # tgpt
+      thefuck
       typst
       unzip
       wl-clipboard
