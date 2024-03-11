@@ -2,6 +2,8 @@
   programs.starship = {
     enable = true;
 
+    enableFishIntegration = true;
+
     # https://starship.rs/config/#prompt
     settings = {
       git_status = {

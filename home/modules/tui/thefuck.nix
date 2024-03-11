@@ -1,5 +1,5 @@
 {
-  programs.zoxide = {
+  programs.thefuck = {
     enable = true;
     enableFishIntegration = true;
   };

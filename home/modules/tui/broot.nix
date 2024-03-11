@@ -3,6 +3,7 @@
 lib.mkDefault {
   programs.broot = {
     enable = true;
+    enableFishIntegration = true;
     settings.verbs = [
       {
         # Navigate to parent directory
