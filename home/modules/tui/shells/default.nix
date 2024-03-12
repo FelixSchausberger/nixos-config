@@ -34,7 +34,6 @@
     rip = "rip --graveyard ${config.home.homeDirectory}/.local/share/Trash";
     tuiconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/tui/";
     wmconfig = "hx ${config.home.homeDirectory}/.nixos/home/modules/wm/";
-    update = "sudo nix flake update ${config.home.homeDirectory}/.nixos"; # -I
-    upgrade = "sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
+    upgrade = "sudo nix flake update ${config.home.homeDirectory}/.nixos && sudo nixos-rebuild --upgrade --flake ${config.home.homeDirectory}/.nixos/#${host} switch";
   };
 }

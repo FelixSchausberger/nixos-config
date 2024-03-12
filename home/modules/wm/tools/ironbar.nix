@@ -10,6 +10,8 @@
         {
           "type" = "workspaces";
           "all_monitors" = false;
+          "hidden" = ["special:magic"];
+          "sort" = "added";
         }
       ];
       "end" = [

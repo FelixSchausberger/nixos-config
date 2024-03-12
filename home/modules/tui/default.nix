@@ -34,10 +34,10 @@
       fd
       ouch
       procs
+      quickemu
       rm-improved
       ripgrep-all
-      # tgpt
-      thefuck
+      tgpt
       typst
       unzip
       wl-clipboard

@@ -13,10 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
     ironbar = {
       url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +41,6 @@
     alejandra,
     devenv,
     home-manager,
-    hycov,
     ironbar,
     nixpkgs,
     nur,
@@ -87,7 +82,7 @@
               # Read secrets from a JSON file
               secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
               flake-inputs = inputs;
-              inherit host hycov ironbar nixpkgs;
+              inherit host ironbar nixpkgs;
             };
           }
         ];

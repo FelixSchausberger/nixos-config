@@ -1,8 +1,4 @@
-{
-  # hycov,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   browser = "${pkgs.firefox}/bin/firefox";
   dunst = "${pkgs.dunst}/bin/dunstctl";
   editor = "${pkgs.helix}/bin/hx";
@@ -10,10 +6,6 @@
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-
-    # plugins = [
-    #   hycov.packages.${pkgs.system}.hycov
-    # ];
 
     settings = {
       env = [
@@ -167,32 +159,5 @@ in {
         bind = , escape, submap, reset
       submap = reset
     '';
-    # + ''
-    #   # hycov plugin
-    #   bind = $mod, tab, hycov:enteroverview
-    #   bind = $mod, tab, submap, switch
-    #   submap = switch
-    #     bind = $mod, left, hycov:movefocus,l
-    #     bind = $mod, right, hycov:movefocus,r
-    #     bind = $mod, up, hycov:movefocus,u
-    #     bind = $mod, down, hycov:movefocus,d
-
-    #     bind = , escape, hycov:leaveoverview
-    #     bind = , escape, submap, reset
-    #     bind = , return, hycov:leaveoverview
-    #     bind = , return, submap, reset
-    #     bind = $mod, tab, hycov:leaveoverview
-    #     bind = $mod, tab, submap, reset
-    #   submap = reset
-
-    #   plugin {
-    #       hycov {
-    #         overview_gappo = 60 # gaps width from screen
-    #         overview_gappi = 24 # gaps width from clients
-    #   	    hotarea_size = 10 # hotarea size in bottom left,10x10
-    #   	    enable_hotarea = 1 # enable mouse cursor hotarea
-    #       }
-    #   }
-    # '';
   };
 }
