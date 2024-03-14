@@ -1,9 +1,11 @@
 {pkgs, ...}: {
   imports = [
+    ./deadd-notification-center.nix
     ./gammastep.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./ironbar.nix
+    ./ironbar
+    ./wayland-pipewire-idle-inhibit.nix
     ./wlsunset.nix
   ];
 

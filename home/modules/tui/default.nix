@@ -15,7 +15,6 @@
     ./tealdeer.nix
     ./thefuck.nix
     ./topgrade.nix
-    ./wayland-pipewire-idle-inhibit.nix
     ./zoxide.nix
   ];
 

@@ -99,7 +99,7 @@ in {
           "$mod, c, exec, ironbar toggle-popup ironbar clock"
           "$mod, i, exec, bash -c ${./scripts/src/bin/toggle_ironbar.sh}"
           "$mod, x, exec, bash -c ${./scripts/src/bin/toggle_idle_inhibit.sh}"
-
+          
           # Move focus with mod + arrow keys
           "$mod, left, movefocus, l"
           "$mod, right, movefocus, r"
@@ -112,9 +112,12 @@ in {
           "$mod shift, down, movewindow, d"
 
           # Notification daemon
-          "ctrl, space, exec, ${dunst} close"
-          "ctrl shift, space, exec, ${dunst} close-all"
-          "ctrl, m, exec, ${dunst} set-paused, toggle"
+          # "ctrl, space, exec, ${dunst} close"
+          # "ctrl shift, space, exec, ${dunst} close-all"
+          # "ctrl, m, exec, ${dunst} set-paused, toggle"
+          "$mod, n, exec, kill -s USR1 $(pidof ${pkgs.deadd-notification-center}/bin/deadd-notification-center)"
+          "$mod, m, exec, notify-send.py a --hint boolean:deadd-notification-center:true string:type:pausePopups"
+          "$mod, l, exec, notify-send.py a --hint boolean:deadd-notification-center:true string:type:unpausePopups"
 
           # Example special workspace (scratchpad)
           "$mod, s, togglespecialworkspace, magic"
