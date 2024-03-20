@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./deadd-notification-center.nix
+    ./dunst.nix
     ./gammastep.nix
     ./hyprlock.nix
     ./hyprpaper.nix

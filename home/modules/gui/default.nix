@@ -5,7 +5,6 @@
   imports = [
     ./firefox
     ./libraries
-    ./dunst.nix
     ./mpv.nix
     ./nwg-drawer.nix
     ./vscode.nix
